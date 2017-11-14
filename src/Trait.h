@@ -36,6 +36,8 @@ public:
 	void setBreedChance(float);
 	void setHerdTendency(float);
 	void setWaterNeed(float);
+
+	bool operator==(const Trait&) const;
 };
 
 #endif /* TRAIT_H_ */
