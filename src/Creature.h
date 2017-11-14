@@ -9,6 +9,7 @@
 #include "Trait.h"
 #include "tree.hh"
 
+using std::list;
 using std::string;
 
 #ifndef CREATURE_H_
@@ -20,7 +21,7 @@ private:
 	tree<string> speciesTree;
 	int age;
 	float health;
-	list<Trait> traits;
+	std::list<Trait> traits;
 	int numTraits;
 	float waterNeed, breedChance, herdTendency;
 	float base_waterNeed, base_breedChance, base_herdTendency;

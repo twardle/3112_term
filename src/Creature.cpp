@@ -6,7 +6,11 @@
  */
 
 #include "Creature.h"
+#include "Trait.h"
 #include <string>
+
+using std::list;
+using std::string;
 
 /*
  * Creature Factors
@@ -29,7 +33,7 @@ Creature::Creature(){
 	health = 100.00;
 	species = "";
 	tree<string> speciesTree;
-	traits = new Trait[1];
+	list<Trait> traits;
 	numTraits = 1;
 	base_waterNeed = 0.00;
 	base_breedChance = 0.00;
@@ -52,13 +56,13 @@ list<Trait> Creature::getTraits(){
 	return traits;
 }
 void Creature::addTrait(Trait newTrait){
-	traits.push(newTrait);
+	traits.push_back(newTrait);
 }
-int Creature::removeTrait(Trait removeTrait){
-	std::list<int>::iterator remove = std::find(ilist.begin(), ilist.end(), removeTrait);
+bool Creature::removeTrait(Trait removeTrait){
+	std::list<Trait>::iterator remove = std::find(traits.begin(), traits.end(), removeTrait);
 
-	if(remove == removeTrait){
-		traits.remove(remove);
+	if(*remove == removeTrait){
+		traits.remove(removeTrait);
 		return true;
 	}
 	return false;
@@ -117,38 +121,44 @@ void Creature::setPredatorResist(float pr){
 
 void Creature::calcWaterNeed(){
 	float temp = 1.00;
-	for (std::list<int>::iterator it=traits.begin(); it != traits.end(); ++it)
-		temp *= it.waterNeed;
+	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
+		temp *= it->getBreedChance();
+	}
 	setWaterNeed(temp);
 }
 void Creature::calcBreedChance(){
 	float temp = 1.00;
-	for (std::list<int>::iterator it=traits.begin(); it != traits.end(); ++it)
-		temp *= it.breedChance;
+	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
+		temp *= it->getBreedChance();
+	}
 	setBreedChance(temp);
 }
 void Creature::calcHerdTendency(){
 	float temp = 1.00;
-	for (std::list<int>::iterator it=traits.begin(); it != traits.end(); ++it)
-		temp *= it.herdTendency;
+	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
+		temp *= it->getHerdTendency();
+	}
 	setHerdTendency(temp);
 }
 void Creature::calcTempResist(){
 	float temp = 1.00;
-	for (std::list<int>::iterator it=traits.begin(); it != traits.end(); ++it)
-		temp *= it.temp_resist;
+	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
+		temp *= it->getTempResist();
+	}
 	setTempResist(temp);
 }
 void Creature::calcDiseaseResist(){
 	float temp = 1.00;
-	for (std::list<int>::iterator it=traits.begin(); it != traits.end(); ++it)
-		temp *= it.disease_resist;
+	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
+		temp *= it->getDiseaseResist();
+	}
 	setDieaseResist(temp);
 }
 void Creature::calcPredatorResist(){
 	float temp = 1.00;
-	for (std::list<int>::iterator it=traits.begin(); it != traits.end(); ++it)
-		temp *= it.predator_resist;
+	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
+		temp *= it->getPredatorResist();
+	}
 	setPredatorResist(temp);
 }
 void Creature::calcStats(){

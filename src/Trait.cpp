@@ -17,7 +17,7 @@ Trait::~Trait() {
 }
 
 bool Trait::operator==(const Trait& other) const {
-	if(trait_name = other.trait_name)
+	if(trait_name == other.trait_name)
 		return true;
-	else return false;
+	return false;
 }
