@@ -6,7 +6,11 @@
  */
 
 #include "Creature.h"
+#include "Trait.h"
 #include <string>
+
+using std::list;
+using std::string;
 
 /*
  * Creature Factors
@@ -29,7 +33,7 @@ Creature::Creature(){
 	health = 100.00;
 	species = "";
 	tree<string> speciesTree;
-	traits = new Trait[1];
+	list<Trait> traits;
 	numTraits = 1;
 	base_waterNeed = 0.00;
 	base_breedChance = 0.00;
@@ -46,50 +50,22 @@ Creature::Creature(){
 }
 
 Creature::~Creature(){
-	delete [] traits;
 }
-int Creature::getTraits(Trait temp[]){
-	for(int i = 0; i < numTraits; i++){
-		temp[i] = traits[i];
-	}
-	return numTraits;
+
+list<Trait> Creature::getTraits(){
+	return traits;
 }
 void Creature::addTrait(Trait newTrait){
-	Trait * newSet = new Trait [numTraits+1];
-
-	for(int i = 0; i < numTraits; i++){
-		newSet[i] = traits[i];
-	}
-
-	numTraits++;
-	delete [] traits;
-
-	traits = new Trait [numTraits];
-
-	for(int i = 0; i < numTraits; i++){
-		traits[i] = newSet[i];
-	}
-	traits[numTraits-1] = newTrait;
-	delete [] newSet;
+	traits.push_back(newTrait);
 }
-void Creature::removeTrait(int index){
-	for(int i = index; i < numTraits-1; i++){
-		traits[i] = traits [i+1];
+bool Creature::removeTrait(Trait removeTrait){
+	std::list<Trait>::iterator remove = std::find(traits.begin(), traits.end(), removeTrait);
+
+	if(*remove == removeTrait){
+		traits.remove(removeTrait);
+		return true;
 	}
-
-	Trait * newSet = new Trait [numTraits-1];
-	for(int i = 0; i < numTraits-1; i++){
-		newSet[i] = traits[i];
-	}
-
-	numTraits--;
-	delete [] traits;
-
-	for(int i = 0; i < numTraits; i++){
-		traits[i] = newSet[i];
-	}
-
-	delete [] newSet;
+	return false;
 }
 
 int Creature::getAge(){
@@ -144,30 +120,60 @@ void Creature::setPredatorResist(float pr){
 }
 
 void Creature::calcWaterNeed(){
-
+	float temp = 1.00;
+	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
+		temp *= it->getBreedChance(); //FIXME: iterator pointer to class function
+	}
+	setWaterNeed(temp);
 }
 void Creature::calcBreedChance(){
-
+	float temp = 1.00;
+	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
+		temp *= it->getBreedChance(); //FIXME: iterator pointer to class function
+	}
+	setBreedChance(temp);
 }
 void Creature::calcHerdTendency(){
-
+	float temp = 1.00;
+	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
+		temp *= it->getHerdTendency(); //FIXME: iterator pointer to class function
+	}
+	setHerdTendency(temp);
 }
 void Creature::calcTempResist(){
-
+	float temp = 1.00;
+	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
+		temp *= it->getTempResist(); //FIXME: iterator pointer to class function
+	}
+	setTempResist(temp);
 }
 void Creature::calcDiseaseResist(){
-
+	float temp = 1.00;
+	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
+		temp *= it->getDiseaseResist(); //FIXME: iterator pointer to class function
+	}
+	setDieaseResist(temp);
 }
 void Creature::calcPredatorResist(){
-
+	float temp = 1.00;
+	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
+		temp *= it->getPredatorResist(); //FIXME: iterator pointer to class function
+	}
+	setPredatorResist(temp);
 }
 void Creature::calcStats(){
-
+	calcWaterNeed();
+	calcBreedChance();
+	calcHerdTendency();
+	calcTempResist();
+	calcDiseaseResist();
+	calcPredatorResist();
 }
 
 void Creature::breed(Creature other){
 
 }
+
 string Creature::mutate(){
 	return "mutated";
 }
