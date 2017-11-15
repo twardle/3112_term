@@ -122,42 +122,42 @@ void Creature::setPredatorResist(float pr){
 void Creature::calcWaterNeed(){
 	float temp = 1.00;
 	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
-		temp *= it->getBreedChance(); //FIXME: iterator pointer to class function
+		temp *= it.waterNeed;
 	}
 	setWaterNeed(temp);
 }
 void Creature::calcBreedChance(){
 	float temp = 1.00;
 	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
-		temp *= it->getBreedChance(); //FIXME: iterator pointer to class function
+		temp *= it.breedChance;
 	}
 	setBreedChance(temp);
 }
 void Creature::calcHerdTendency(){
 	float temp = 1.00;
 	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
-		temp *= it->getHerdTendency(); //FIXME: iterator pointer to class function
+		temp *= it.herdTendency;
 	}
 	setHerdTendency(temp);
 }
 void Creature::calcTempResist(){
 	float temp = 1.00;
 	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
-		temp *= it->getTempResist(); //FIXME: iterator pointer to class function
+		temp *= it.temp_resist;
 	}
 	setTempResist(temp);
 }
 void Creature::calcDiseaseResist(){
 	float temp = 1.00;
 	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
-		temp *= it->getDiseaseResist(); //FIXME: iterator pointer to class function
+		temp *= it.disease_resist;
 	}
 	setDieaseResist(temp);
 }
 void Creature::calcPredatorResist(){
 	float temp = 1.00;
 	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
-		temp *= it->getPredatorResist(); //FIXME: iterator pointer to class function
+		temp *= it.predator_resist;
 	}
 	setPredatorResist(temp);
 }
