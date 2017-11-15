@@ -14,35 +14,10 @@
 #include <string>
 #include <map>
 
-using namespace std;
+#include "weather.h"
 
-//Class Definition
-class Weather
-{
-private:
-	map<int,string> seasons;
-	string current_season;
-	int season_num;
-	float temperature;
-
-	//Methods
-	float find_temp(int s);
-	void set_map();
-
-public: 
-	//Constructors
-	Weather();
-	Weather(int season);
-
-	//Getters and Setters
-	string getSeason();
-	void setSeason(int s);
-	float getTemp();
-	void setTemp(float t);
-
-	//Method
-	void change_season();
-};
+using std::string;
+using std::map;
 
 Weather::Weather()
 {
@@ -51,6 +26,9 @@ Weather::Weather()
 	season_num = -1;
 	current_season = "None";
 	temperature = 0.0;
+
+	for(int i = 0; i < 4; i++)
+		temp[i] = 0;
 }
 
 Weather::Weather(int season)
@@ -59,7 +37,6 @@ Weather::Weather(int season)
 
 	season_num = season;
 	current_season = seasons[season_num];
-	temperature = find_temp(season_num);
 }
 
 string Weather::getSeason()
@@ -77,8 +54,7 @@ void Weather::setSeason(int s)
 	season_num = s;
 	current_season = seasons[season_num];
 
-	//Change temperature based on the season
-	temperature = find_temp(s);
+	find_temp();
 }
 
 void Weather::setTemp(float t)
@@ -94,16 +70,24 @@ void Weather::set_map()
 	seasons[3] = "Winter";
 }
 
-float Weather::find_temp(int s)
+void Weather::set_temps(float * temps)
 {
-	if(s == 0) //Spring
-		return 50.0;
-	else if(s == 1) //Summer
-		return 85.0; 
-	else if(s == 2) //Fall
-		return 50.0;
+	for(int i = 0; i < 4; i++)
+	{
+		temp[i] = temps[i];
+	}
+}
+
+void Weather::find_temp()
+{
+	if(season_num == 0) //Spring
+		temperature = temp[0];
+	else if(season_num == 1) //Summer
+		temperature = temp[1]; 
+	else if(season_num == 2) //Fall
+		temperature = temp[2];
 	else //Winter
-		return 30.0;
+		temperature = temp[3];
 }
 
 void Weather::change_season()
