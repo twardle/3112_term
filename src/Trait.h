@@ -13,22 +13,14 @@ using std::string;
 #define TRAIT_H_
 
 class Trait {
-private:
+public:
 	string trait_name;
 	float temp_resist, disease_resist, predator_resist;
 	float breedChance, herdTendency, waterNeed;
-public:
-	Trait();
-	Trait(std::string,float,float,float,float,float,float);
-	virtual ~Trait();
 
-	std::string getTrait();
-	float getTempResist();
-	float getDiseaseResist();
-	float getPredatorResist();
-	float getBreedChance();
-	float getHerdTendency();
-	float getWaterNeed();
+	Trait();
+	Trait(string,float,float,float,float,float,float);
+	virtual ~Trait();
 
 	void setTempResist(float);
 	void setDiseaseResist(float);
