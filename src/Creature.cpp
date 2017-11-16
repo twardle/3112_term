@@ -8,6 +8,7 @@
 #include "Creature.h"
 #include "Trait.h"
 #include <string>
+#include <cstdlib>
 
 using std::list;
 using std::string;
@@ -100,6 +101,25 @@ float Creature::getPredatorResist(){
 	return predator_resist;
 }
 
+float Creature::getBaseWaterNeed(){
+	return base_waterNeed;
+}
+float Creature::getBaseBreedChance(){
+	return base_breedChance;
+}
+float Creature::getBaseHerdTendency(){
+	return base_herdTendency;
+}
+float Creature::getBaseTempResist(){
+	return base_temp_resist;
+}
+float Creature::getBaseDiseaseResist(){
+	return base_disease_resist;
+}
+float Creature::getBasePredatorResist(){
+	return base_predator_resist;
+}
+
 void Creature::setWaterNeed(float wn){
 	base_waterNeed = wn;
 }
@@ -122,42 +142,42 @@ void Creature::setPredatorResist(float pr){
 void Creature::calcWaterNeed(){
 	float temp = 1.00;
 	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
-		temp *= it.waterNeed;
+		temp *= it->waterNeed;
 	}
 	setWaterNeed(temp);
 }
 void Creature::calcBreedChance(){
 	float temp = 1.00;
 	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
-		temp *= it.breedChance;
+		temp *= it->breedChance;
 	}
 	setBreedChance(temp);
 }
 void Creature::calcHerdTendency(){
 	float temp = 1.00;
 	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
-		temp *= it.herdTendency;
+		temp *= it->herdTendency;
 	}
 	setHerdTendency(temp);
 }
 void Creature::calcTempResist(){
 	float temp = 1.00;
 	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
-		temp *= it.temp_resist;
+		temp *= it->temp_resist;
 	}
 	setTempResist(temp);
 }
 void Creature::calcDiseaseResist(){
 	float temp = 1.00;
 	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
-		temp *= it.disease_resist;
+		temp *= it->disease_resist;
 	}
 	setDieaseResist(temp);
 }
 void Creature::calcPredatorResist(){
 	float temp = 1.00;
 	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
-		temp *= it.predator_resist;
+		temp *= it->predator_resist;
 	}
 	setPredatorResist(temp);
 }
@@ -170,7 +190,58 @@ void Creature::calcStats(){
 	calcPredatorResist();
 }
 
-void Creature::breed(Creature other){
+Creature Creature::breed(Creature other){
+	int breed = rand();
+	Creature baby();
+
+	//set offspring waterNeed
+	if(breed % 2 == 0)
+		baby.setWaterNeed(base_waterNeed);
+	else
+		baby.setWaterNeed(other.getBaseWaterNeed());
+
+	//set offspring breed chance
+	if(breed % 3 == 0)
+		baby.setBreedChance(base_breedChance);
+	else if(breed % 3 == 2)
+		baby.setBreedChance(other.getBaseBreedChance());
+	else
+		baby.setBreedChance((base_breedChance + other.getBaseBreedChance())/2);
+
+	//set offspring herd tendency
+	if(breed % 5 < 2)
+		baby.setHerdTendency(base_herdTendency);
+	else if(breed % 5 > 2)
+		baby.setHerdTendency(other.getBaseHerdTendency());
+	else
+		baby.setHerdTendency((base_herdTendency + other.getBaseHerdTendency())/2);
+
+	//set offspring temp resist
+	if(breed % 7 < 3)
+		baby.setTempResist(base_temp_resist);
+	else if(breed % 7 > 3)
+		baby.setTempResist(other.getBaseTempResist());
+	else
+		baby.setTempResist((base_temp_resist + other.getBaseTempResist())/2);
+
+	//set offspring disease resist
+	if(breed % 11 < 5)
+		baby.setDieaseResist(base_disease_resist);
+	else if(breed % 11 > 5)
+		baby.setDieaseResist(other.getBaseDiseaseResist());
+	else
+		baby.setDieaseResist((base_disease_resist + other.getBaseDiseaseResist())/2);
+
+	//set offspring predator resist
+	if(breed % 13 < 6)
+		baby.setPredatorResist(base_predator_resist);
+	else if(breed % 13 > 6)
+		baby.setPredatorResist(other.getBasePredatorResist());
+	else
+		baby.setPredatorResist((base_predator_resist + other.getBasePredatorResist())/2);
+
+
+	//FIXME: set offspring traits
 
 }
 
