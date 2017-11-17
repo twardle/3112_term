@@ -8,9 +8,6 @@
 |   |-Temperature ( varies by weather, encourages varied traits )
  */
 
-#include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
 #include <string>
 #include <map>
 
