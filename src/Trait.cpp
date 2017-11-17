@@ -21,48 +21,48 @@ Trait::~Trait() {
 	// TODO Auto-generated destructor stub
 }
 
-float getTempResist(){
+float Trait::getTempResist(){
 	return temp_resist;
 }
-float getDiseaseResist(){
+float Trait::getDiseaseResist(){
 	return disease_resist;
 }
-float getPredatorResist(){
+float Trait::getPredatorResist(){
 	return predator_resist;
 }
-float getBreedChance(){
+float Trait::getBreedChance(){
 	return breedChance;
 }
-float getHerdTendency(){
+float Trait::getHerdTendency(){
 	return herdTendency;
 }
-float getWaterNeed(){
+float Trait::getWaterNeed(){
 	return waterNeed;
 }
-string getTraitName(){
+string Trait::getTraitName(){
 	return trait_name;
 }
 
-void setTempResist(float tr){
+void Trait::setTempResist(float tr){
 	temp_resist = tr;
 }
-void setDiseaseResist(float dr){
+void Trait::setDiseaseResist(float dr){
 	disease_resist = dr;
 }
 
-void setPredatorResist(float pr){
+void Trait::setPredatorResist(float pr){
 	predator_resist = pr;
 }
 
-void setBreedChance(float bc){
+void Trait::setBreedChance(float bc){
 	breedChance = bc;
 }
 
-void setHerdTendency(float ht){
+void Trait::setHerdTendency(float ht){
 	herdTendency = ht;
 }
 
-void setWaterNeed(float wn){
+void Trait::setWaterNeed(float wn){
 	waterNeed = wn;
 }
 
