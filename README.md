@@ -1,13 +1,14 @@
-# Term project for ITCS 3112 - Evolution Simulator
-## Contributors
-### Candace Allison
-### [Tyler Wardle] (https://github.com/twardle)
+# Term project for ITCS 3112 - Evolution Simulator #
+---
+## Contributors ##
+* Candace Allison
+* [Tyler Wardle](https://github.com/twardle)
+---
+## Note: ##
 
-Note to Myself:
-***
 To compile class only C++ file: 
 `g++ -c <file>.cpp`
-***
+
 To link 2 classes together
 * For testing purposes
 * Assume one class uses the other as a variable
