@@ -1,33 +1,208 @@
-/*
- * Environment.cpp
+/** 
+ * Environment Class
+ * Candace Allison
  *
- *  Created on: Nov 6, 2017
- *      Author: Tyler
+ Environmental Factors
+|-Water Supply
+| |-Available Water Locations ( less means higher danger )
+| |-Water Refill Speed ( less means lower supportable population )
+|-Disease
+| |-Variant of mutation ( Only affects certain species, encourages evolution )
+|-Space
+  |- Current Population ( Lower means more herbivores, Higher means more predators )
+  |-Foliage - Grass, Sandy, etc 
  */
 
-#include "Environment.h"
+#include <map>
+#include <string>
 
-/*
- * Environmental Factors
- * |-Water Supply
- * | |-Available Water Locations ( less means higher danger )
- * | |-Water Refill Speed ( less means lower supportable population )
- * |-Weather
- * | |-Current Weather ( varies seasonally, encourages varied traits )
- * | |-Temperature ( varies seasonally, encourages varied traits )
- * |-Disease
- * | |-Variant of mutation ( Only effects certain species, encourages evolution )
- * |-Food Availability
- *   |- Space ( Lower means more herbivores, Higher means more predators )
- */
+#include "environment.h"
 
+using std::string;
+using std::map;
 
-Environment::Environment() {
-	// TODO Auto-generated constructor stub
+Environment::Environment()
+{
+	set_map();
 
+	current_environ = -1;
+	str_environ = "None";
+	water_supply = 0.0;
+	water_refill_speed = 0.0;
+	current_pop = 0;
+	danger = 0.0;
+	max_pop = 0;
+
+	//Set weather
+	cur_season = -1;
 }
 
-Environment::~Environment() {
-	// TODO Auto-generated destructor stub
+Environment::Environment(int b)
+{
+	set_map();
+
+	//Default values
+	current_pop = 0;
+	danger = 0;
+
+	//Set string for current environment
+	current_environ = b;
+	str_environ = biomes[b];
+
+	//Set weather
+	cur_season = 0;
+
+	//Biome determines all other factors
+	set_values();
 }
 
+string Environment::get_biome()
+{
+	return str_environ;
+}
+
+float Environment::get_water_supply()
+{
+	return water_supply;
+}
+
+void Environment::set_water_supply(float w)
+{
+	water_supply = w;
+}
+
+float Environment::get_water_refill_speed()
+{
+	return water_refill_speed;
+}
+
+void Environment::set_water_refill_speed(float w)
+{
+	water_refill_speed = w;
+}
+
+int Environment::get_current_pop()
+{
+	return current_pop;
+}
+
+void Environment::set_current_pop(int c)
+{
+	current_pop = c;
+}
+
+float Environment::get_danger()
+{
+	return danger;
+}
+
+void Environment::set_danger(float d)
+{
+	danger = d;
+}
+
+int Environment::get_max_pop()
+{
+	return max_pop;
+}
+
+void Environment::set_max_pop(int m)
+{
+	max_pop = m;
+}
+
+string Environment::get_season()
+{
+	return season.getSeason();
+}
+
+float Environment::get_temp()
+{
+	return season.getTemp();
+}
+
+void Environment::set_map()
+{
+	biomes[0] = "Desert";
+	biomes[1] = "Tundra";
+	biomes[2] = "Grasslands";
+	biomes[3] = "Wetlands";
+	biomes[4] = "Forest";
+}
+
+void Environment::set_values()
+{
+	if(current_environ == 0) //Desert
+	{
+		//Set water variables
+		set_water_supply(0.15);
+		set_water_refill_speed(0.15);
+
+		//Weather values
+		float temps[] = {80.0, 100.0, 80.0, 70.0};
+		season.set_temps(temps);
+
+		//Set maximum population
+		set_max_pop(100);
+	}
+	else if(current_environ == 1) //Tundra
+	{
+		//Set water variables
+		set_water_supply(0.15);
+		set_water_refill_speed(0.15);
+
+		//Weather values
+		float temps[] = {10.0, 30.0, 20.0, -10.0};
+		season.set_temps(temps);
+
+
+		//Set maximum population
+		set_max_pop(100);
+	}
+	else if(current_environ == 2) //Grasslands
+	{
+		//Set water variables
+		set_water_supply(0.5);
+		set_water_refill_speed(0.5);
+
+		//Weather values
+		float temps[] = {75.0, 95.0, 80.0, 65.0};
+		season.set_temps(temps);
+
+		//Set maximum population
+		set_max_pop(500);
+	}
+	else if(current_environ == 3) //Wetlands
+	{
+		//Set water variables
+		set_water_supply(0.9);
+		set_water_refill_speed(0.9);
+
+		//Weather values
+		float temps[] = {40.0, 75.0, 60.0, 25.0};
+		season.set_temps(temps);
+
+		//Set maximum population
+		set_max_pop(1000);
+	}
+	else  //Forest
+	{
+		//Set water variables
+		set_water_supply(0.75);
+		set_water_refill_speed(0.75);
+
+		//Weather values
+		float temps[] = {50.0, 95.0, 70.0, 30.0};
+		season.set_temps(temps);
+
+		//Set maximum population
+		set_max_pop(1000);
+	}
+
+	season.setSeason(cur_season);
+}
+
+void Environment::changeseason()
+{
+	season.change_season();
+}

@@ -1,17 +1,35 @@
-/*
- * Weather.h
- *
- *  Created on: Nov 6, 2017
- *      Author: Tyler
- */
+#include <string>
+#include <map>
 
-#ifndef WEATHER_H_
-#define WEATHER_H_
+using std::string;
+using std::map;
 
-class Weather {
-public:
+//Class Definition
+class Weather
+{
+private:
+	map<int,string> seasons;
+	string current_season;
+	int season_num;
+	float temperature;
+	float temp[4];
+
+	//Methods
+	void find_temp();
+	void set_map();
+
+public: 
+	//Constructors
 	Weather();
-	virtual ~Weather();
-};
+	Weather(int season);
 
-#endif /* WEATHER_H_ */
+	//Getters and Setters
+	string getSeason();
+	void setSeason(int s);
+	float getTemp();
+	void setTemp(float t);
+
+	//Method
+	void change_season();
+	void set_temps(float * temps);
+};

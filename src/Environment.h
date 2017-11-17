@@ -1,17 +1,69 @@
-/*
- * Environment.h
- *
- *  Created on: Nov 6, 2017
- *      Author: Tyler
- */
+#include <string>
+#include <map>
 
-#ifndef ENVIRONMENT_H_
-#define ENVIRONMENT_H_
+using std::string;
+using std::map;
 
-class Environment {
+#ifndef weather
+#define weather
+
+#include "weather.h"
+
+#endif
+
+#ifndef environment
+#define environment
+
+class Environment
+{
+private:
+    map<int,string> biomes;
+    int current_environ;
+    string str_environ;
+    
+    //Water Supply
+    float water_supply;
+    float water_refill_speed;
+    
+    //Disease - implement later
+    
+    //Weather
+    Weather season;
+    int cur_season;
+    
+    //Space
+    int current_pop;
+    
+    //Other variables
+    float danger;
+    int max_pop;
+    
+    //Private methods
+    void set_map();
+    void set_values();
+    void changeseason();
+    
 public:
-	Environment();
-	virtual ~Environment();
+    Environment();
+    Environment(int b);
+    
+    //Getters/Setters
+    string get_biome();
+    float get_water_supply();
+    void set_water_supply(float w);
+    float get_water_refill_speed();
+    void set_water_refill_speed(float w);
+    int get_current_pop();
+    void set_current_pop(int c);
+    float get_danger();
+    void set_danger(float d);
+    int get_max_pop();
+    void set_max_pop(int m);
+    string get_season();
+    float get_temp();
+    
+    //Methods
+    void calculate_danger();
 };
 
-#endif /* ENVIRONMENT_H_ */
+#endif
