@@ -1,5 +1,7 @@
 # Term project for ITCS 3112 - Evolution Simulator
-## Code written by Tyler Wardle and Candace Allison
+## Contributors
+### Candace Allison
+### [Tyler Wardle] (https://github.com/twardle)
 
 Note to Myself:
 ***
