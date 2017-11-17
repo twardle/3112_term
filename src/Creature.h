@@ -14,7 +14,7 @@ using std::string;
 
 #ifndef CREATURE_H_
 #define CREATURE_H_
-const int NUMTRAITS = 8;
+const int NUMTRAITS = 5;
 
 class Creature {
 private:
