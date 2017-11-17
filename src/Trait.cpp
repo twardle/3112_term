@@ -15,6 +15,8 @@ Trait::Trait() {
 	breedChance = 1.00;
 	herdTendency = 1.00;
 	waterNeed = 1.00;
+	dominance = false;
+	type = -1;
 }
 
 Trait::~Trait() {
@@ -42,6 +44,9 @@ float Trait::getWaterNeed(){
 string Trait::getTraitName(){
 	return trait_name;
 }
+int Trait::getType(){
+	return type;
+}
 
 void Trait::setTempResist(float tr){
 	temp_resist = tr;
@@ -64,6 +69,10 @@ void Trait::setHerdTendency(float ht){
 
 void Trait::setWaterNeed(float wn){
 	waterNeed = wn;
+}
+
+void Trait::setType(int i){
+	type = i;
 }
 
 bool Trait::operator >=(const Trait& other) const {

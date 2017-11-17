@@ -14,6 +14,7 @@ using std::string;
 
 #ifndef CREATURE_H_
 #define CREATURE_H_
+const int NUMTRAITS = 8;
 
 class Creature {
 private:
@@ -21,7 +22,7 @@ private:
 	tree<string> speciesTree;
 	int age;
 	float health;
-	std::list<Trait> traits;
+	Trait traits[NUMTRAITS];
 	int numTraits;
 	float waterNeed, breedChance, herdTendency;
 	float base_waterNeed, base_breedChance, base_herdTendency;
@@ -30,9 +31,9 @@ private:
 public:
 	Creature();
 	virtual ~Creature();
-	list<Trait> getTraits();
-	void addTrait(Trait);
-	bool removeTrait(Trait);
+	Trait getTrait(int);
+	void setTrait(int, Trait);
+	void removeTrait(int);
 
 	int getAge();
 	float getHealth();
@@ -45,6 +46,13 @@ public:
 	float getTempResist();
 	float getDiseaseResist();
 	float getPredatorResist();
+
+	float getBaseWaterNeed();
+	float getBaseBreedChance();
+	float getBaseHerdTendency();
+	float getBaseTempResist();
+	float getBaseDiseaseResist();
+	float getBasePredatorResist();
 
 	void setWaterNeed(float);
 	void setBreedChance(float);
@@ -61,7 +69,7 @@ public:
 	void calcPredatorResist();
 	void calcStats();
 
-	void breed(Creature);
+	Creature breed(Creature);
 	string mutate();
 
 };

@@ -34,7 +34,7 @@ Creature::Creature(){
 	health = 100.00;
 	species = "";
 	tree<string> speciesTree;
-	list<Trait> traits;
+	Trait traits[NUMTRAITS];
 	numTraits = 1;
 	base_waterNeed = 0.00;
 	base_breedChance = 0.00;
@@ -51,16 +51,19 @@ Creature::Creature(){
 }
 
 Creature::~Creature(){
+	//TODO: create destructor
 }
 
-list<Trait> Creature::getTraits(){
-	return traits;
+Trait Creature::getTrait(int index){
+	return traits[index];
 }
 void Creature::setTrait(int index, Trait newTrait){
-	traits[i] = newTrait;
+	traits[index] = newTrait;
 }
 void Creature::removeTrait(int index){
-	traits[index] = Trait();
+	Trait temporary;
+
+	traits[index] = temporary;
 }
 
 int Creature::getAge(){
@@ -135,42 +138,42 @@ void Creature::setPredatorResist(float pr){
 
 void Creature::calcWaterNeed(){
 	float temp = 1.00;
-	for(int i = 0; i < traitsNum; i++){
+	for(int i = 0; i < NUMTRAITS; i++){
 		temp *= traits[i].getWaterNeed();
 	}
 	setWaterNeed(temp);
 }
 void Creature::calcBreedChance(){
 	float temp = 1.00;
-	for(int i = 0; i < traitsNum; i++){
+	for(int i = 0; i < NUMTRAITS; i++){
 		temp *= traits[i].getBreedChance();
 	}
 	setBreedChance(temp);
 }
 void Creature::calcHerdTendency(){
 	float temp = 1.00;
-	for(int i = 0; i < traitsNum; i++){
+	for(int i = 0; i < NUMTRAITS; i++){
 		temp *= traits[i].getHerdTendency();
 	}
 	setHerdTendency(temp);
 }
 void Creature::calcTempResist(){
 	float temp = 1.00;
-	for(int i = 0; i < traitsNum; i++){
+	for(int i = 0; i < NUMTRAITS; i++){
 		temp *= traits[i].getTempResist();
 	}
 	setTempResist(temp);
 }
 void Creature::calcDiseaseResist(){
 	float temp = 1.00;
-	for(int i = 0; i < traitsNum; i++){
+	for(int i = 0; i < NUMTRAITS; i++){
 		temp *= traits[i].getDiseaseResist();
 	}
 	setDieaseResist(temp);
 }
 void Creature::calcPredatorResist(){
 	float temp = 1.00;
-	for(int i = 0; i < traitsNum; i++){
+	for(int i = 0; i < NUMTRAITS; i++){
 		temp *= traits[i].getPredatorResist();
 	}
 	setPredatorResist(temp);
@@ -186,7 +189,7 @@ void Creature::calcStats(){
 
 Creature Creature::breed(Creature other){
 	int breed = rand();
-	Creature baby();
+	Creature baby;
 
 	//set offspring waterNeed
 	if(breed % 2 == 0)

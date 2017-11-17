@@ -20,10 +20,11 @@ private:
 	bool dominance;
 	int type;
 
+public:
 	Trait();
 	Trait(string,float,float,float,float,float,float);
 	virtual ~Trait();
-public:
+
 	float getTempResist();
 	float getDiseaseResist();
 	float getPredatorResist();
@@ -31,6 +32,7 @@ public:
 	float getHerdTendency();
 	float getWaterNeed();
 	string getTraitName();
+	int getType();
 
 	void setTempResist(float);
 	void setDiseaseResist(float);
@@ -38,6 +40,7 @@ public:
 	void setBreedChance(float);
 	void setHerdTendency(float);
 	void setWaterNeed(float);
+	void setType(int);
 
 	bool operator >=(const Trait&) const;
 	bool operator==(const Trait&) const;
