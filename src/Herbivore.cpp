@@ -17,7 +17,7 @@
  *   |- Lowest
  */
 
-Herbivore::Herbivore() {
+Herbivore::Herbivore() : Creature() {
 	// TODO Auto-generated constructor stub
 
 }

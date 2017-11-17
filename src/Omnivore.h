@@ -8,7 +8,9 @@
 #ifndef OMNIVORE_H_
 #define OMNIVORE_H_
 
-class Omnivore {
+#include "Creature.cpp"
+
+class Omnivore : public Creature {
 public:
 	Omnivore();
 	virtual ~Omnivore();

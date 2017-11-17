@@ -17,7 +17,7 @@
  *   |- Average
  */
 
-Omnivore::Omnivore() {
+Omnivore::Omnivore() : Creature() {
 	// TODO Auto-generated constructor stub
 
 }

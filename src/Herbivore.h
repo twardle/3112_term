@@ -8,7 +8,9 @@
 #ifndef HERBIVORE_H_
 #define HERBIVORE_H_
 
-class Herbivore {
+#include "Creature.cpp"
+
+class Herbivore : public Creature {
 public:
 	Herbivore();
 	virtual ~Herbivore();

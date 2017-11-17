@@ -17,7 +17,7 @@
  *   |- Highest
  */
 
-Carnivore::Carnivore() {
+Carnivore::Carnivore() : Creature() {
 	// TODO Auto-generated constructor stub
 
 }
