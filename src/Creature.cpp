@@ -56,17 +56,11 @@ Creature::~Creature(){
 list<Trait> Creature::getTraits(){
 	return traits;
 }
-void Creature::addTrait(Trait newTrait){
-	traits.push_back(newTrait);
+void Creature::setTrait(int index, Trait newTrait){
+	traits[i] = newTrait;
 }
-bool Creature::removeTrait(Trait removeTrait){
-	std::list<Trait>::iterator remove = std::find(traits.begin(), traits.end(), removeTrait);
-
-	if(*remove == removeTrait){
-		traits.remove(removeTrait);
-		return true;
-	}
-	return false;
+void Creature::removeTrait(int index){
+	traits[index] = Trait();
 }
 
 int Creature::getAge(){
@@ -141,43 +135,43 @@ void Creature::setPredatorResist(float pr){
 
 void Creature::calcWaterNeed(){
 	float temp = 1.00;
-	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
-		temp *= it->waterNeed;
+	for(int i = 0; i < traitsNum; i++){
+		temp *= traits[i].getWaterNeed();
 	}
 	setWaterNeed(temp);
 }
 void Creature::calcBreedChance(){
 	float temp = 1.00;
-	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
-		temp *= it->breedChance;
+	for(int i = 0; i < traitsNum; i++){
+		temp *= traits[i].getBreedChance();
 	}
 	setBreedChance(temp);
 }
 void Creature::calcHerdTendency(){
 	float temp = 1.00;
-	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
-		temp *= it->herdTendency;
+	for(int i = 0; i < traitsNum; i++){
+		temp *= traits[i].getHerdTendency();
 	}
 	setHerdTendency(temp);
 }
 void Creature::calcTempResist(){
 	float temp = 1.00;
-	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
-		temp *= it->temp_resist;
+	for(int i = 0; i < traitsNum; i++){
+		temp *= traits[i].getTempResist();
 	}
 	setTempResist(temp);
 }
 void Creature::calcDiseaseResist(){
 	float temp = 1.00;
-	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
-		temp *= it->disease_resist;
+	for(int i = 0; i < traitsNum; i++){
+		temp *= traits[i].getDiseaseResist();
 	}
 	setDieaseResist(temp);
 }
 void Creature::calcPredatorResist(){
 	float temp = 1.00;
-	for (std::list<Trait>::iterator it=traits.begin(); it != traits.end(); ++it){
-		temp *= it->predator_resist;
+	for(int i = 0; i < traitsNum; i++){
+		temp *= traits[i].getPredatorResist();
 	}
 	setPredatorResist(temp);
 }
@@ -241,7 +235,17 @@ Creature Creature::breed(Creature other){
 		baby.setPredatorResist((base_predator_resist + other.getBasePredatorResist())/2);
 
 
-	//FIXME: set offspring traits
+	//set offspring traits
+	for(int i = 0; i < NUMTRAITS; i++){
+		if(traits[i] >= other.traits[i])
+			baby.traits[i] = traits[i];
+		else
+			baby.traits[i] = other.traits[i];
+	}
+
+	baby.mutate();
+
+	return baby;
 
 }
 

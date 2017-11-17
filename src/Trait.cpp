@@ -21,6 +21,28 @@ Trait::~Trait() {
 	// TODO Auto-generated destructor stub
 }
 
+float getTempResist(){
+	return temp_resist;
+}
+float getDiseaseResist(){
+	return disease_resist;
+}
+float getPredatorResist(){
+	return predator_resist;
+}
+float getBreedChance(){
+	return breedChance;
+}
+float getHerdTendency(){
+	return herdTendency;
+}
+float getWaterNeed(){
+	return waterNeed;
+}
+string getTraitName(){
+	return trait_name;
+}
+
 void setTempResist(float tr){
 	temp_resist = tr;
 }
@@ -42,6 +64,15 @@ void setHerdTendency(float ht){
 
 void setWaterNeed(float wn){
 	waterNeed = wn;
+}
+
+bool Trait::operator >=(const Trait& other) const {
+	if(trait_name == other.trait_name)
+		return true;
+	else if(type == other.type && dominance)
+		return true;
+	else
+		return false;
 }
 
 bool Trait::operator==(const Trait& other) const {
