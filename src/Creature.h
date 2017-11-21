@@ -6,8 +6,8 @@
  */
 #include <string>
 #include <list>
-#include "weather.h"
-#include "environment.cpp"
+#include "Weather.h"
+#include "Environment.h"
 #include "Trait.h"
 #include "tree.hh"
 
