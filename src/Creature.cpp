@@ -37,12 +37,12 @@ Creature::Creature(){
 	tree<string> speciesTree;
 	Trait traits[NUMTRAITS];
 	numTraits = 1;
-	base_waterNeed = 0.00;
-	base_breedChance = 0.00;
-	base_herdTendency = 0.00;
-	base_temp_resist = 0.00;
-	base_disease_resist = 0.00;
-	base_predator_resist = 0.00;
+	base_waterNeed = 1.00;
+	base_breedChance = 0.3;
+	base_herdTendency = 1.00;
+	base_temp_resist = 1.00;
+	base_disease_resist = 1.00;
+	base_predator_resist = 1.00;
 	waterNeed = base_waterNeed;
 	breedChance = base_breedChance;
 	herdTendency = base_herdTendency;
