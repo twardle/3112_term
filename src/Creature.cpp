@@ -215,7 +215,7 @@ bool Creature::updateHealth(Weather currSeason, Environment Env){
 	if(health < 0)
 			return false;
 
-	float water = Env.get_water_supply()
+	float water = Env.get_water_supply();
 
 	if(water < waterNeed){
 		float diff = waterNeed - water;

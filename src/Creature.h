@@ -6,6 +6,8 @@
  */
 #include <string>
 #include <list>
+#include "weather.h"
+#include "environment.cpp"
 #include "Trait.h"
 #include "tree.hh"
 
@@ -71,10 +73,10 @@ public:
 	void setDieaseResist(float);
 	void setPredatorResist(float);
 
-	void updateHealth();
+	bool updateHealth(Weather, Environment);
 	void calcStats();
 
-	Creature breed(Creature);
+	Creature breed(Creature, int);
 
 };
 
