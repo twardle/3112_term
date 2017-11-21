@@ -31,8 +31,9 @@ using std::string;
 
 Creature::Creature(){
 	age = 0;
-	health = 100.00;
+	health = 1.00;
 	species = "";
+	diseased = false;
 	tree<string> speciesTree;
 	Trait traits[NUMTRAITS];
 	numTraits = 1;
@@ -186,9 +187,49 @@ void Creature::calcStats(){
 	calcDiseaseResist();
 	calcPredatorResist();
 }
+bool Creature::updateHealth(Weather currSeason, Environment Env){
+	calcStats();
 
-Creature Creature::breed(Creature other){
-	int breed = rand();
+	if(diseased){
+		float diff = .25 * disease_resist;
+		health -= diff;
+	}
+	if(health < 0)
+		return false;
+
+	float temp = currSeason.getTemp();
+
+	if((47.2 * temp_resist) > temp || (67.2 * temp_resist) < temp){
+		if((47.2 * temp_resist) > temp){
+			float diff = (47.2 * temp_resist) - temp;
+			diff *= 0.1;
+			health -= diff;
+		}
+		else{
+			float diff = temp - (67.2 * temp_resist);
+			diff *= 0.1;
+			health -= diff;
+		}
+	}
+
+	if(health < 0)
+			return false;
+
+	float water = Env.get_water_supply()
+
+	if(water < waterNeed){
+		float diff = waterNeed - water;
+		diff *= .65;
+		health -= diff;
+	}
+
+	if(health < 0)
+			return false;
+
+	return true;
+}
+
+Creature Creature::breed(Creature other, int breed){
 	Creature baby;
 
 	//set offspring waterNeed
@@ -245,8 +286,8 @@ Creature Creature::breed(Creature other){
 		else
 			baby.traits[i] = other.traits[i];
 	}
-
-	baby.mutate();
+	if(breed % 10 == 0)
+		baby.mutate();
 
 	return baby;
 

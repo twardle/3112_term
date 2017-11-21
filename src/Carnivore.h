@@ -14,6 +14,7 @@ class Carnivore : public Creature {
 public:
 	Carnivore();
 	virtual ~Carnivore();
+	bool hunt(int);
 };
 
 #endif /* CARNIVORE_H_ */

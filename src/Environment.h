@@ -1,4 +1,4 @@
-#include <string>
+if()#include <string>
 #include <map>
 
 using std::string;

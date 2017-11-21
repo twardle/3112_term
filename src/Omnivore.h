@@ -14,6 +14,7 @@ class Omnivore : public Creature {
 public:
 	Omnivore();
 	virtual ~Omnivore();
+	bool hunt(int);
 };
 
 #endif /* OMNIVORE_H_ */

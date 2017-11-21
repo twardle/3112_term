@@ -21,6 +21,7 @@ private:
 	string species;
 	tree<string> speciesTree;
 	int age;
+	bool diseased;
 	float health;
 	Trait traits[NUMTRAITS];
 	int numTraits;
@@ -28,6 +29,22 @@ private:
 	float base_waterNeed, base_breedChance, base_herdTendency;
 	float temp_resist, disease_resist, predator_resist;
 	float base_temp_resist, base_disease_resist, base_predator_resist;
+
+	float getBaseWaterNeed();
+	float getBaseBreedChance();
+	float getBaseHerdTendency();
+	float getBaseTempResist();
+	float getBaseDiseaseResist();
+	float getBasePredatorResist();
+
+	void calcWaterNeed();
+	void calcBreedChance();
+	void calcHerdTendency();
+	void calcTempResist();
+	void calcDiseaseResist();
+	void calcPredatorResist();
+
+	string mutate();
 public:
 	Creature();
 	virtual ~Creature();
@@ -47,13 +64,6 @@ public:
 	float getDiseaseResist();
 	float getPredatorResist();
 
-	float getBaseWaterNeed();
-	float getBaseBreedChance();
-	float getBaseHerdTendency();
-	float getBaseTempResist();
-	float getBaseDiseaseResist();
-	float getBasePredatorResist();
-
 	void setWaterNeed(float);
 	void setBreedChance(float);
 	void setHerdTendency(float);
@@ -61,16 +71,10 @@ public:
 	void setDieaseResist(float);
 	void setPredatorResist(float);
 
-	void calcWaterNeed();
-	void calcBreedChance();
-	void calcHerdTendency();
-	void calcTempResist();
-	void calcDiseaseResist();
-	void calcPredatorResist();
+	void updateHealth();
 	void calcStats();
 
 	Creature breed(Creature);
-	string mutate();
 
 };
 
