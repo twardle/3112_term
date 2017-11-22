@@ -31,6 +31,7 @@ using std::string;
 
 Creature::Creature(){
 	age = 0;
+	infant = false;
 	health = 1.00;
 	species = "";
 	diseased = false;
@@ -188,8 +189,6 @@ void Creature::calcStats(){
 	calcPredatorResist();
 }
 bool Creature::updateHealth(Weather currSeason, Environment Env){
-	calcStats();
-
 	if(diseased){
 		float diff = .25 * disease_resist;
 		health -= diff;
@@ -222,6 +221,8 @@ bool Creature::updateHealth(Weather currSeason, Environment Env){
 		diff *= .65;
 		health -= diff;
 	}
+	else
+		Env.set_water_supply(water - waterNeed);
 
 	if(health < 0)
 			return false;
@@ -286,14 +287,18 @@ Creature Creature::breed(Creature other, int breed){
 		else
 			baby.traits[i] = other.traits[i];
 	}
+
 	if(breed % 10 == 0)
 		baby.mutate();
+
+	baby.calcStats();
 
 	return baby;
 
 }
 
 string Creature::mutate(){
+	//TODO: implement method
 	return "mutated";
 }
 

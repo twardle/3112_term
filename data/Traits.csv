@@ -1,20 +1,28 @@
 trait_name,type,dominance,Animal,breedChance,herdTendency,waterNeed,temp_resist,disease_resist,predator_resist
-Short Fur,1,,N/A,++,+,+,+,/,--
-Long Fur,1,,N/A,+,++,++,++,-,-
-Scales,1,,N/A,+,-,-,-,/,+
-Feathers,1,,N/A,++,+,-,+,--,--
-Skin,1,,N/A,+,+,/,-,++,--
-Sharp Teeth,2,,Predator,-,-,--,/,/,++
-Grinding Teeth,2,,Herbivore,++,++,+,/,/,-
-Mixed Teeth,2,,Omnivore,+,+,/,/,/,/
-Hoof,3,,N/A,+,+,+,/,-,+
-Pad,3,,N/A,++,+,++,/,+,-
-Claw,3,,Predator,/,-,-,/,-,++
-Tetrachromat,4,,N/A,++,+,+,/,/,-
-Trichromat,4,,N/A,+,+,+,/,/,/
-Dichromat,4,,N/A,+,+,/,/,/,-
-Infrared,4,,Predator,-,-,-,/,/,++
-Large size,5,,N/A,-,+,++,+,/,++
-Medium size,5,,N/A,++,/,+,-,/,+
-Small size,5,,N/A,+,-,-,-,+,/
-Insect size,5,,N/A,/,++,--,--,/,-
+Short Fur,1,0,Herbivore,++,+,+,+,/,--
+Long Fur,1,1,Herbivore,+,++,++,++,-,-
+Feathers,1,0,Omnivore,++,+,-,+,--,--
+Scales,1,1,Omnivore,+,-,-,-,/,+
+Scales,1,1,Predator,+,-,-,-,/,+
+Skin,1,0,Predator,+,+,/,-,++,--
+Sharp Teeth,2,1,Predator,-,-,--,/,/,++
+Grinding Teeth,2,1,Herbivore,++,++,+,/,/,-
+Mixed Teeth,2,1,Omnivore,+,+,/,/,/,/
+Hoof,3,0,Predator,+,+,+,/,-,+
+Hoof,3,1,Herbivore,+,+,+,/,-,+
+Pad,3,0,Herbivore,++,+,++,/,+,-
+Pad,3,1,Omnivore,++,+,++,/,+,-
+Claw,3,0,Omnivore,/,-,-,/,-,++
+Claw,3,1,Predator,/,-,-,/,-,++
+Tetrachromat,4,0,Predator,++,+,+,/,/,-
+Tetrachromat,4,0,Omnivore,++,+,+,/,/,-
+Trichromat,4,1,Omnivore,+,+,+,/,/,/
+Trichromat,4,0,Herbivore,+,+,+,/,/,/
+Dichromat,4,1,Herbivore,+,+,/,/,/,-
+Infrared,4,1,Predator,-,-,-,/,/,++
+Large size,5,1,Predator,-,+,++,+,/,++
+Large size,5,0,Herbivore,-,+,++,+,/,++
+Medium size,5,0,Predator,++,/,+,-,/,+
+Medium size,5,1,Omnivore,++,/,+,-,/,+
+Small size,5,0,Omnivore,+,-,-,-,+,/
+Insect size,5,1,Herbivore,/,++,--,--,/,-
