@@ -1,28 +1,28 @@
 trait_name,type,dominance,Animal,breedChance,herdTendency,waterNeed,temp_resist,disease_resist,predator_resist
-Short Fur,1,0,Herbivore,++,+,+,+,/,--
-Long Fur,1,1,Herbivore,+,++,++,++,-,-
-Feathers,1,0,Omnivore,++,+,-,+,--,--
-Scales,1,1,Omnivore,+,-,-,-,/,+
-Scales,1,1,Predator,+,-,-,-,/,+
-Skin,1,0,Predator,+,+,/,-,++,--
-Sharp Teeth,2,1,Predator,-,-,--,/,/,++
-Grinding Teeth,2,1,Herbivore,++,++,+,/,/,-
-Mixed Teeth,2,1,Omnivore,+,+,/,/,/,/
-Hoof,3,0,Predator,+,+,+,/,-,+
-Hoof,3,1,Herbivore,+,+,+,/,-,+
-Pad,3,0,Herbivore,++,+,++,/,+,-
-Pad,3,1,Omnivore,++,+,++,/,+,-
-Claw,3,0,Omnivore,/,-,-,/,-,++
-Claw,3,1,Predator,/,-,-,/,-,++
-Tetrachromat,4,0,Predator,++,+,+,/,/,-
-Tetrachromat,4,0,Omnivore,++,+,+,/,/,-
-Trichromat,4,1,Omnivore,+,+,+,/,/,/
-Trichromat,4,0,Herbivore,+,+,+,/,/,/
-Dichromat,4,1,Herbivore,+,+,/,/,/,-
-Infrared,4,1,Predator,-,-,-,/,/,++
-Large size,5,1,Predator,-,+,++,+,/,++
-Large size,5,0,Herbivore,-,+,++,+,/,++
-Medium size,5,0,Predator,++,/,+,-,/,+
-Medium size,5,1,Omnivore,++,/,+,-,/,+
-Small size,5,0,Omnivore,+,-,-,-,+,/
-Insect size,5,1,Herbivore,/,++,--,--,/,-
+Short Fur,1,0,Herbivore,1.25,1.1,1.1,1.1,1,0.75
+Long Fur,1,1,Herbivore,1.1,1.25,1.25,1.25,0.9,0.9
+Feathers,1,0,Omnivore,1.25,1.1,0.9,1.1,0.75,0.75
+Scales,1,1,Omnivore,1.1,0.9,0.9,0.9,1,1.1
+Scales,1,1,Predator,1.1,0.9,0.9,0.9,1,1.1
+Skin,1,0,Predator,1.1,1.1,1,0.9,1.25,0.75
+Sharp Teeth,2,1,Predator,0.9,0.9,0.75,1,1,1.25
+Grinding Teeth,2,1,Herbivore,1.25,1.25,1.1,1,1,0.9
+Mixed Teeth,2,1,Omnivore,1.1,1.1,1,1,1,1
+Hoof,3,0,Predator,1.1,1.1,1.1,1,0.9,1.1
+Hoof,3,1,Herbivore,1.1,1.1,1.1,1,0.9,1.1
+Pad,3,0,Herbivore,1.25,1.1,1.25,1,1.1,0.9
+Pad,3,1,Omnivore,1.25,1.1,1.25,1,1.1,0.9
+Claw,3,0,Omnivore,1,0.9,0.9,1,0.9,1.25
+Claw,3,1,Predator,1,0.9,0.9,1,0.9,1.25
+Tetrachromat,4,0,Predator,1.25,1.1,1.1,1,1,0.9
+Tetrachromat,4,0,Omnivore,1.25,1.1,1.1,1,1,0.9
+Trichromat,4,1,Omnivore,1.1,1.1,1.1,1,1,1
+Trichromat,4,0,Herbivore,1.1,1.1,1.1,1,1,1
+Dichromat,4,1,Herbivore,1.1,1.1,1,1,1,0.9
+Infrared,4,1,Predator,0.9,0.9,0.9,1,1,1.25
+Large size,5,1,Predator,0.9,1.1,1.25,1.1,1,1.25
+Large size,5,0,Herbivore,0.9,1.1,1.25,1.1,1,1.25
+Medium size,5,0,Predator,1.25,1,1.1,0.9,1,1.1
+Medium size,5,1,Omnivore,1.25,1,1.1,0.9,1,1.1
+Small size,5,0,Omnivore,1.1,0.9,0.9,0.9,1.1,1
+Insect size,5,1,Herbivore,1,1.25,0.75,0.75,1,0.9
