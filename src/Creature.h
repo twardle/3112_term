@@ -6,10 +6,11 @@
  */
 #include <string>
 #include <list>
-#include "Weather.h"
+
 #include "Environment.h"
 #include "Trait.h"
 #include "tree.hh"
+#include "Weather.h"
 
 using std::list;
 using std::string;
