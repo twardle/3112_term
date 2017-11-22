@@ -17,6 +17,7 @@ Trait::Trait() {
 	waterNeed = 1.00;
 	dominance = false;
 	type = -1;
+	animalType = -1;
 }
 
 Trait::~Trait() {
@@ -47,7 +48,19 @@ string Trait::getTraitName(){
 int Trait::getType(){
 	return type;
 }
+bool Trait::getDominance(){
+	return dominance;
+}
 
+void Trait::setTraitName(string name){
+	trait_name = name;
+}
+void Trait::setDominance(bool dom){
+	dominance = dom;
+}
+void Trait::setAnimalType(int type){
+	animalType = type;
+}
 void Trait::setTempResist(float tr){
 	temp_resist = tr;
 }
@@ -88,4 +101,19 @@ bool Trait::operator==(const Trait& other) const {
 	if(trait_name == other.trait_name)
 		return true;
 	return false;
+}
+
+void Trait::operator =(const Trait& other){
+	temp_resist = other.temp_resist;
+	disease_resist = other.disease_resist;
+	predator_resist = other.predator_resist;
+	breedChance = other.breedChance;
+	herdTendency = other.herdTendency;
+	waterNeed = other.waterNeed;
+	trait_name = other.trait_name;
+	dominance = other.dominance;
+	type =  other.type;
+	animalType = other.animalType;
+
+	return;
 }

@@ -19,6 +19,7 @@ private:
 	float breedChance, herdTendency, waterNeed;
 	bool dominance;
 	int type;
+	int animalType;
 
 public:
 	Trait();
@@ -32,8 +33,13 @@ public:
 	float getHerdTendency();
 	float getWaterNeed();
 	string getTraitName();
+	bool getDominance();
+	int getAnimalType();
 	int getType();
 
+	void setTraitName(string);
+	void setDominance(bool);
+	void setAnimalType(int);
 	void setTempResist(float);
 	void setDiseaseResist(float);
 	void setPredatorResist(float);
@@ -43,7 +49,8 @@ public:
 	void setType(int);
 
 	bool operator >=(const Trait&) const;
-	bool operator==(const Trait&) const;
+	bool operator ==(const Trait&) const;
+	void operator =(const Trait&);
 };
 
 #endif /* TRAIT_H_ */

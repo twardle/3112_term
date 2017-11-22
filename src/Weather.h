@@ -4,6 +4,9 @@
 using std::string;
 using std::map;
 
+#ifndef weather
+#define weather
+
 //Class Definition
 class Weather
 {
@@ -33,3 +36,5 @@ public:
 	void change_season();
 	void set_temps(float * temps);
 };
+
+#endif

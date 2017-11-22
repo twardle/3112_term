@@ -15,15 +15,24 @@
 
 #include <map>
 #include <string>
-
-#include "environment.h"
+#include <fstream>
+#include <sstream>
+#include "Environment.h"
+#include "Trait.h"
 
 using std::string;
 using std::map;
+using std::stringstream;
 
 Environment::Environment()
 {
 	set_map();
+
+	for(int i = 0; i < 5; i++){
+		for(int j = 0; j < 5; j++){
+			traitList[i][j] = Trait();
+		}
+	}
 
 	current_environ = -1;
 	str_environ = "None";
@@ -40,6 +49,12 @@ Environment::Environment()
 Environment::Environment(int b)
 {
 	set_map();
+
+	for(int i = 0; i < 5; i++){
+		for(int j = 0; j < 5; j++){
+			traitList[i][j] = Trait();
+		}
+	}
 
 	//Default values
 	current_pop = 0;
@@ -205,4 +220,76 @@ void Environment::set_values()
 void Environment::changeseason()
 {
 	season.change_season();
+}
+
+void Environment::readTraits(){
+	std::ifstream file ("data/Traits.csv");
+	string value;
+	while(file.good()){
+		int i;
+		Trait newTrait;
+		stringstream ss;
+		float x;
+		bool y;
+		int z;
+		getline (file, value, ',');
+		newTrait.setTraitName(value);
+		getline (file, value, ',');
+		ss << value;
+		ss >> z;
+		newTrait.setType(z);
+		getline (file, value , ',');
+		ss << value;
+		ss >> y;
+		newTrait.setDominance(y);
+		getline (file, value, ',');
+		switch(value[0]){
+		case 'H':
+		case 'h':
+			newTrait.setAnimalType(0);
+			break;
+		case 'O':
+		case 'o':
+			newTrait.setAnimalType(1);
+			break;
+		case 'P':
+		case 'p':
+			newTrait.setAnimalType(2);
+			break;
+		default:
+			newTrait.setAnimalType(-1);
+		}
+
+		getline (file, value, ',');
+		ss << value;
+		ss >> x;
+		newTrait.setBreedChance(x);
+		getline (file, value, ',');
+		ss << value;
+		ss >> x;
+		newTrait.setHerdTendency(x);
+		getline (file, value, ',');
+		ss << value;
+		ss >> x;
+		newTrait.setWaterNeed(x);
+		getline (file, value, ',');
+		ss << value;
+		ss >> x;
+		newTrait.setTempResist(x);
+		getline (file, value, ',');
+		ss << value;
+		ss >> x;
+		newTrait.setDiseaseResist(x);
+		getline (file, value, ',');
+		ss << value;
+		ss >> x;
+		newTrait.setPredatorResist(x);
+
+		traitList[newTrait.getType()][i++] = newTrait;
+
+		if(i == 5)
+			i = 0;
+		else if(newTrait.getType() == 0 && i == 3)
+			i = 0;
+	}
 }

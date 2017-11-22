@@ -1,18 +1,16 @@
-if()#include <string>
+#include <string>
 #include <map>
 
 using std::string;
 using std::map;
 
-#ifndef weather
-#define weather
+#include "Weather.h"
+#include "Trait.h"
+#include <fstream>
+#include <sstream>
 
-#include "weather.h"
-
-#endif
-
-#ifndef environment
-#define environment
+#ifndef ENVIRONMENT_H_
+#define ENVIRONMENT_H_
 
 class Environment
 {
@@ -20,33 +18,35 @@ private:
     map<int,string> biomes;
     int current_environ;
     string str_environ;
-    
+
     //Water Supply
     float water_supply;
     float water_refill_speed;
-    
+
     //Disease - implement later
-    
+
     //Weather
     Weather season;
     int cur_season;
-    
+
     //Space
     int current_pop;
-    
+
     //Other variables
     float danger;
     int max_pop;
-    
+    Trait traitList[5][5];
+
+
     //Private methods
     void set_map();
     void set_values();
     void changeseason();
-    
+
 public:
     Environment();
     Environment(int b);
-    
+
     //Getters/Setters
     string get_biome();
     float get_water_supply();
@@ -61,9 +61,10 @@ public:
     void set_max_pop(int m);
     string get_season();
     float get_temp();
-    
+
     //Methods
     void calculate_danger();
+    void readTraits();
 };
 
 #endif

@@ -8,10 +8,11 @@
 |   |-Temperature ( varies by weather, encourages varied traits )
  */
 
+#include "Weather.h"
+
 #include <string>
 #include <map>
 
-#include "weather.h"
 
 using std::string;
 using std::map;
