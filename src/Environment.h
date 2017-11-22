@@ -12,8 +12,7 @@ using std::map;
 #ifndef ENVIRONMENT_H_
 #define ENVIRONMENT_H_
 
-class Environment
-{
+class Environment {
 private:
     map<int,string> biomes;
     int current_environ;
@@ -35,7 +34,6 @@ private:
     //Other variables
     float danger;
     int max_pop;
-    Trait traitList[5][5];
 
 
     //Private methods
@@ -44,21 +42,24 @@ private:
     void changeseason();
 
 public:
+
+    Trait traitList[5][6];
+
     Environment();
-    Environment(int b);
+    Environment(int);
 
     //Getters/Setters
     string get_biome();
     float get_water_supply();
-    void set_water_supply(float w);
+    void set_water_supply(float);
     float get_water_refill_speed();
-    void set_water_refill_speed(float w);
+    void set_water_refill_speed(float);
     int get_current_pop();
-    void set_current_pop(int c);
+    void set_current_pop(int);
     float get_danger();
-    void set_danger(float d);
+    void set_danger(float);
     int get_max_pop();
-    void set_max_pop(int m);
+    void set_max_pop(int);
     string get_season();
     float get_temp();
 

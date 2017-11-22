@@ -51,6 +51,9 @@ int Trait::getType(){
 bool Trait::getDominance(){
 	return dominance;
 }
+int Trait::getAnimalType(){
+	return animalType;
+}
 
 void Trait::setTraitName(string name){
 	trait_name = name;
