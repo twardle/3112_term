@@ -27,7 +27,6 @@ private:
 	bool diseased;
 	float health;
 	Trait traits[NUMTRAITS];
-	int numTraits;
 	float waterNeed, breedChance, herdTendency;
 	float base_waterNeed, base_breedChance, base_herdTendency;
 	float temp_resist, disease_resist, predator_resist;
@@ -58,6 +57,7 @@ public:
 	int getAge();
 	float getHealth();
 	string getSpecies();
+	void setSpecies(string);
 	tree<string> getSpeciesTree();
 
 	float getWaterNeed();

@@ -36,7 +36,6 @@ Creature::Creature(){
 	diseased = false;
 	tree<string> speciesTree;
 	Trait traits[NUMTRAITS];
-	numTraits = 1;
 	base_waterNeed = 1.00;
 	base_breedChance = 0.3;
 	base_herdTendency = 1.00;
@@ -75,6 +74,9 @@ float Creature::getHealth(){
 }
 string Creature::getSpecies(){
 	return species;
+}
+void Creature::setSpecies(string name){
+	species = name;
 }
 tree<string> Creature::getSpeciesTree(){
 	return speciesTree;
