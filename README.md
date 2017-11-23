@@ -18,6 +18,7 @@ To link 2 classes together
 `g++ -o Class1 class1.o class2.o`
 
 To iterate through the creature array:
+
 	`for(it = cList.begin(); it != cList.end(); it++){
 		Creature val = *it;
 		std::cout << val.getAge() << std::endl;
