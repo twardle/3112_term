@@ -19,7 +19,7 @@ To link 2 classes together
 
 To iterate through the creature array:
 
-	`for(it = cList.begin(); it != cList.end(); it++){
+	for(it = cList.begin(); it != cList.end(); it++){
 		Creature val = *it;
 		std::cout << val.getAge() << std::endl;
-	}`
+	}
