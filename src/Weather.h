@@ -4,8 +4,8 @@
 using std::string;
 using std::map;
 
-#ifndef weather
-#define weather
+#ifndef WEATHER_H_
+#define WEATHER_H_
 
 //Class Definition
 class Weather

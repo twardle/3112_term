@@ -1,13 +1,13 @@
 #include <string>
 #include <map>
+#include "Weather.h"
+#include <fstream>
+#include "Trait.h"
+#include <sstream>
+#include <list>
 
 using std::string;
 using std::map;
-
-#include "Weather.h"
-#include "Trait.h"
-#include <fstream>
-#include <sstream>
 
 #ifndef ENVIRONMENT_H_
 #define ENVIRONMENT_H_
@@ -40,6 +40,7 @@ private:
     void set_map();
     void set_values();
     void changeseason();
+
 
 public:
 

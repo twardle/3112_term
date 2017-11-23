@@ -22,6 +22,7 @@ private:
 	int animalType;
 
 public:
+
 	Trait();
 	Trait(string,float,float,float,float,float,float);
 	virtual ~Trait();

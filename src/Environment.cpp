@@ -276,8 +276,12 @@ void Environment::readTraits() {
 		newTrait.setPredatorResist(x);
 
 		traitList[newTrait.getType()][i++] = newTrait;
-		if(i == 6)
-			i = 0;
+		if(i == 6){
+			if(newTrait.getType() == 4)
+				break;
+			else
+				i = 0;
+		}
 		else if(newTrait.getType() == 0 && i == 3)
 			i = 0;
 	}
