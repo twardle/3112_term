@@ -12,11 +12,26 @@ using std::map;
 #ifndef ENVIRONMENT_H_
 #define ENVIRONMENT_H_
 
+struct biomes
+{
+	std::string name = "None";
+	float temps[4];
+	float water_supply_m;
+	float water_refill_m;
+};
+
+struct seasons
+{
+	float water_supply_m;
+	float water_refill_m;
+};
+
 class Environment {
 private:
-    map<int,string> biomes;
+	struct biomes biome;
+	struct seasons season_multiply;
+
     int current_environ;
-    string str_environ;
 
     //Water Supply
     float water_supply;
@@ -35,9 +50,7 @@ private:
     float danger;
     int max_pop;
 
-
     //Private methods
-    void set_map();
     void set_values();
 
 public:

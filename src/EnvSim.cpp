@@ -71,14 +71,14 @@ int main()
 
 	//Get season
 	cout << "Biome: " << Env.get_biome() << endl;
-	//cout << "Season: " << Env.get_season() << endl;
 
 	int val = 100;
 	int current = 0;
 	//Implement change of season
 	do
 	{
-		//TODO CODE HERE
+		//TODO Update creature health
+		//TODO Update values
 
 		//Get new season
 		cout << "Season: " << Env.get_season() << endl;
