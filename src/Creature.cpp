@@ -75,6 +75,9 @@ float Creature::getHealth(){
 string Creature::getSpecies(){
 	return species;
 }
+void Creature::updateHealth(float update){
+	health += update;
+}
 void Creature::setSpecies(string name){
 	species = name;
 }

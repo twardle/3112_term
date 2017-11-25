@@ -59,6 +59,7 @@ public:
 	int getAge();
 	float getHealth();
 	string getSpecies();
+	void updateHealth(float);
 	void setSpecies(string);
 	tree<string> getSpeciesTree();
 

@@ -16,38 +16,48 @@ private:
 	bool herding = false;
 public:
 	bool hunt(Creature prey){
-			if(prey.getHealth() - (1 - prey.getPredatorResist()) < 0)
-				return true;
-			else
-				return false;
-		};
+		if(prey.getHealth() - (2 - prey.getPredatorResist()) < 0)
+			return true;
+		else{
+			prey.updateHealth((2 - prey.getPredatorResist()));
+			return false;
+		}
+	};
 
 	bool hunt(Herbivore prey){
 		if(prey.getHerding()){
-			if(prey.getHealth() - (1 - prey.getPredatorResist() + 0.5) < 0)
+			if(prey.getHealth() - (2 - prey.getPredatorResist() + 0.5) < 0)
 				return true;
-			else
+			else{
+				prey.updateHealth((2 - prey.getPredatorResist() + 0.5));
 				return false;
+			}
 		}
-		else if(prey.getHealth() - (1 - prey.getPredatorResist()) < 0)
+		else if(prey.getHealth() - (2 - prey.getPredatorResist()) < 0)
 			return true;
-		else
+		else{
+			prey.updateHealth((2 - prey.getPredatorResist()));
 			return false;
+		}
 
 		return false;
 	};
 
 	bool hunt(Omnivore prey){
 		if(prey.getHerding()){
-			if(prey.getHealth() - (1 - prey.getPredatorResist() + 0.5) < 0)
+			if(prey.getHealth() - (2 - prey.getPredatorResist() + 0.5) < 0)
 				return true;
-			else
+			else{
+				prey.updateHealth((2 - prey.getPredatorResist() + 0.5));
 				return false;
+			}
 		}
-		else if(prey.getHealth() - (1 - prey.getPredatorResist()) < 0)
+		else if(prey.getHealth() - (2 - prey.getPredatorResist()) < 0)
 			return true;
-		else
+		else{
+			prey.updateHealth((2 - prey.getPredatorResist()));
 			return false;
+		}
 
 		return false;
 	};
