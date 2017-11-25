@@ -15,7 +15,7 @@
  * | |-Lowest
  * |-Breeding
  *   |- Highest
- */
+
 
 Carnivore::Carnivore() : Creature() {
 	// TODO Auto-generated constructor stub
@@ -25,4 +25,4 @@ Carnivore::Carnivore() : Creature() {
 Carnivore::~Carnivore() {
 	// TODO Auto-generated destructor stub
 }
-
+*/

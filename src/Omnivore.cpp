@@ -15,7 +15,7 @@
  * | |-Highest
  * |-Breeding
  *   |- Average
- */
+
 
 Omnivore::Omnivore() : Creature() {
 	// TODO Auto-generated constructor stub
@@ -25,4 +25,4 @@ Omnivore::Omnivore() : Creature() {
 Omnivore::~Omnivore() {
 	// TODO Auto-generated destructor stub
 }
-
+*/

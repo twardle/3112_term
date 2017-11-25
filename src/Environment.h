@@ -39,8 +39,6 @@ private:
     //Private methods
     void set_map();
     void set_values();
-    void changeseason();
-
 
 public:
 
@@ -67,6 +65,7 @@ public:
     //Methods
     void calculate_danger();
     void readTraits();
+    void changeseason();
 };
 
 #endif

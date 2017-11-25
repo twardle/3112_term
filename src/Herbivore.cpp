@@ -15,7 +15,7 @@
  * | |-Average
  * |-Breeding
  *   |- Lowest
- */
+
 
 Herbivore::Herbivore() : Creature() {
 	// TODO Auto-generated constructor stub
@@ -25,4 +25,4 @@ Herbivore::Herbivore() : Creature() {
 Herbivore::~Herbivore() {
 	// TODO Auto-generated destructor stub
 }
-
+*/
