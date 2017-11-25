@@ -20,6 +20,9 @@ using std::string;
 const int NUMTRAITS = 5;
 
 class Creature {
+protected:
+	float waterNeed, breedChance, herdTendency;
+	float temp_resist, disease_resist, predator_resist;
 private:
 	string species;
 	tree<string> speciesTree;
@@ -27,9 +30,8 @@ private:
 	bool diseased;
 	float health;
 	Trait traits[NUMTRAITS];
-	float waterNeed, breedChance, herdTendency;
+
 	float base_waterNeed, base_breedChance, base_herdTendency;
-	float temp_resist, disease_resist, predator_resist;
 	float base_temp_resist, base_disease_resist, base_predator_resist;
 
 	float getBaseWaterNeed();
