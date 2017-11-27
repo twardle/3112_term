@@ -9,6 +9,7 @@
 #include "Trait.h"
 #include <string>
 #include <cstdlib>
+#include <sstream>
 
 using std::list;
 using std::string;
@@ -86,21 +87,27 @@ tree<string> Creature::getSpeciesTree(){
 }
 
 float Creature::getWaterNeed(){
+	calcWaterNeed();
 	return waterNeed;
 }
 float Creature::getBreedChance(){
+	calcBreedChance();
 	return breedChance;
 }
 float Creature::getHerdTendency(){
+	calcHerdTendency();
 	return herdTendency;
 }
 float Creature::getTempResist(){
+	calcTempResist();
 	return temp_resist;
 }
 float Creature::getDiseaseResist(){
+	calcDiseaseResist();
 	return disease_resist;
 }
 float Creature::getPredatorResist(){
+	calcPredatorResist();
 	return predator_resist;
 }
 
@@ -300,6 +307,29 @@ Creature Creature::breed(Creature other, int breed){
 
 string Creature::mutate(){
 	return "mutated";
+}
+
+string Creature::toString(){
+	std::stringstream ss;
+	string cString;
+
+	ss << "\nSPECIES:\t" << species;
+	ss << "\nAGE:\t\t" << age;
+	ss << "\nHEALTH:\t\t" << health;
+	ss << "\nDISEASED:\t" << diseased;
+
+	for(int i = 0; i < NUMTRAITS; i++){
+		ss << "\nTRAIT '" << i+1 << "':\t" << traits[i].toString();
+	}
+
+	ss << "\nWATER NEED:\t" << waterNeed;
+	ss << "\nBREED CHANCE:\t" << breedChance;
+	ss << "\nHERD TENDENCY:\t" << herdTendency;
+	ss << "\nTEMP RESIST:\t" << temp_resist;
+	ss << "\nDISEASE RESIST:\t" << disease_resist;
+	ss << "\nPRED RESIST:\t" << predator_resist;
+	cString = ss.str();
+	return cString;
 }
 
 

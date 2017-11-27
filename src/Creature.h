@@ -82,6 +82,8 @@ public:
 
 	Creature breed(Creature, int);
 
+	string toString();
+
 };
 
 #endif /* CREATURE_H_ */

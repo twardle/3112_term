@@ -14,8 +14,14 @@
 
 #include "Environment.h"
 #include "Creature.h"
+#include "Trait.h"
+#include "Carnivore.h"
+#include "Herbivore.h"
+#include "Omnivore.h"
 
 using namespace std;
+
+
 
 int main()
 {
@@ -35,28 +41,64 @@ int main()
 
 	Env.readTraits(); //Get traits
 
-	for(int i = 0; i < 10; i++){
+	for(int i = 0; i < 10; i++)
+	{
 		int cType = rand() % 3;
-		for(int j = 0; j < 10; j++){
-			switch (cType){
-			case 0:
-				//TODO: Predator
-				break;
-			case 1:
-				//TODO: Omnivore
-				break;
-			case 2:
-				//TODO: Herbivore
-				break;
-			default:
-				cout << "err" << std::endl;
+		bool dominance;
+		Carnivore newCarnivore;
+		Omnivore newOmnivore;
+		Herbivore newHerbivore;
+		switch (cType){
+		case 0:
+			newCarnivore.setTrait(0,Env.traitList[0][2]);
+			for(int i = 1; i < 5 ; i++){
+				for(int j = 0; j < 6; j++){
+					dominance = rand() % 2;
+					if(Env.traitList[i][j].getAnimalType() == 2 && Env.traitList[i][j].getDominance() == dominance)
+						newCarnivore.setTrait(i,Env.traitList[i][j]);
+				}
 			}
+
+			for(int j = 0; j < 10; j++){
+				cList.push_back(newCarnivore);
+			}
+			break;
+		case 1:
+			newOmnivore.setTrait(0,Env.traitList[0][1]);
+			for(int i = 1; i < 5 ; i++){
+				for(int j = 0; j < 6; j++){
+					dominance = rand() % 2;
+					if(Env.traitList[i][j].getAnimalType() == 1 && Env.traitList[i][j].getDominance() == dominance)
+						newOmnivore.setTrait(i,Env.traitList[i][j]);
+				}
+			}
+
+			for(int j = 0; j < 10; j++){
+				cList.push_back(newOmnivore);
+			}
+			break;
+		case 2:
+			newHerbivore.setTrait(0,Env.traitList[0][0]);
+			for(int i = 1; i < 5 ; i++){
+				for(int j = 0; j < 6; j++){
+					dominance = rand() % 2;
+					if(Env.traitList[i][j].getAnimalType() == 0 && Env.traitList[i][j].getDominance() == dominance)
+						newHerbivore.setTrait(i,Env.traitList[i][j]);
+				}
+			}
+
+			for(int j = 0; j < 10; j++){
+				cList.push_back(newHerbivore);
+			}
+			break;
+		default:
+			cout << "err" << std::endl;
 		}
 	}
 
 	for(it = cList.begin(); it != cList.end(); it++){
 		Creature val = *it;
-		cout << val.getSpecies() << std::endl;
+		cout << val.toString() << std::endl;
 	}
 
 	//Randomly generate season and biome
@@ -81,13 +123,13 @@ int main()
 		//TODO Update values
 
 		//Get new season
-		cout << "Season: " << Env.get_season() << endl;
-		cout << "Temp: " << Env.get_temp() << endl;
+		//cout << "Season: " << Env.get_season() << endl;
+		//cout << "Temp: " << Env.get_temp() << endl;
 
 		//Change the season
 		Env.changeseason();
 
-		cout << "New Season...\n" << endl;
+		//cout << "New Season...\n" << endl;
 
 		//Increment current
 		current++;

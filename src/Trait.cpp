@@ -91,6 +91,10 @@ void Trait::setType(int i){
 	type = i;
 }
 
+string Trait::toString(){
+	return trait_name;
+}
+
 bool Trait::operator >=(const Trait& other) const {
 	if(trait_name == other.trait_name)
 		return true;

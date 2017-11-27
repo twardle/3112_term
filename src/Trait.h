@@ -49,6 +49,8 @@ public:
 	void setWaterNeed(float);
 	void setType(int);
 
+	string toString();
+
 	bool operator >=(const Trait&) const;
 	bool operator ==(const Trait&) const;
 	void operator =(const Trait&);
