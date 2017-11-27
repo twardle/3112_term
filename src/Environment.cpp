@@ -244,7 +244,11 @@ void Environment::readTraits() {
 		newTrait.setType(z);
 		getline (file, value , ',');
 		ss << value;
-		ss >> y;
+		if(value.compare("0"))
+			y = true;
+		else
+			y = false;
+
 		newTrait.setDominance(y);
 		getline (file, value, ',');
 		switch(value[0]){

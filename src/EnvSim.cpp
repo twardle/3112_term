@@ -30,11 +30,16 @@ int main()
 	list <Creature> cList;
 	list <Creature> :: iterator it;
 	string userSeed;
+	int pCount = 0;
+	int hCount = 0;
+	int oCount = 0;
+
 
 	//Get user input for program seed
 	cout << "INPUT SEED:\t";
 	std::cin >> userSeed;
 	std::stringstream ss ( userSeed);
+	std::stringstream species;
 	int seed;
 	ss >> seed;
 	srand( seed );
@@ -54,42 +59,46 @@ int main()
 			for(int i = 1; i < 5 ; i++){
 				for(int j = 0; j < 6; j++){
 					dominance = rand() % 2;
-					if(Env.traitList[i][j].getAnimalType() == 2 && Env.traitList[i][j].getDominance() == dominance)
-						newCarnivore.setTrait(i,Env.traitList[i][j]);
+					if(Env.traitList[i][j].getAnimalType() == 2)
+							if(Env.traitList[i][j].getDominance() == dominance)
+								newCarnivore.setTrait(i,Env.traitList[i][j]);
 				}
 			}
-
-			for(int j = 0; j < 10; j++){
+			for(int j = 0; j < 1; j++){
 				cList.push_back(newCarnivore);
 			}
+			pCount++;
 			break;
 		case 1:
 			newOmnivore.setTrait(0,Env.traitList[0][1]);
 			for(int i = 1; i < 5 ; i++){
 				for(int j = 0; j < 6; j++){
 					dominance = rand() % 2;
-					if(Env.traitList[i][j].getAnimalType() == 1 && Env.traitList[i][j].getDominance() == dominance)
-						newOmnivore.setTrait(i,Env.traitList[i][j]);
+					if(Env.traitList[i][j].getAnimalType() == 1)
+						if(Env.traitList[i][j].getDominance() == dominance)
+							newOmnivore.setTrait(i,Env.traitList[i][j]);
 				}
 			}
-
-			for(int j = 0; j < 10; j++){
+			for(int j = 0; j < 1; j++){
 				cList.push_back(newOmnivore);
 			}
+			oCount++;
 			break;
 		case 2:
 			newHerbivore.setTrait(0,Env.traitList[0][0]);
 			for(int i = 1; i < 5 ; i++){
 				for(int j = 0; j < 6; j++){
 					dominance = rand() % 2;
-					if(Env.traitList[i][j].getAnimalType() == 0 && Env.traitList[i][j].getDominance() == dominance)
-						newHerbivore.setTrait(i,Env.traitList[i][j]);
+					if(Env.traitList[i][j].getAnimalType() == 0)
+							if(Env.traitList[i][j].getDominance() == dominance)
+								newHerbivore.setTrait(i,Env.traitList[i][j]);
 				}
 			}
-
-			for(int j = 0; j < 10; j++){
+			cout << newHerbivore.getSpecies();
+			for(int j = 0; j < 1; j++){
 				cList.push_back(newHerbivore);
 			}
+			hCount++;
 			break;
 		default:
 			cout << "err" << std::endl;
@@ -100,6 +109,10 @@ int main()
 		Creature val = *it;
 		cout << val.toString() << std::endl;
 	}
+
+	for(int i = 0; i < 5; i++)
+		for(int j = 0; j < 6; j++)
+			cout << Env.traitList[i][j].getAnimalType() << std::endl;
 
 	//Randomly generate season and biome
 	//New srand seed

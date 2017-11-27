@@ -6,6 +6,7 @@
  */
 
 #include "Trait.h"
+#include <sstream>
 
 Trait::Trait() {
 	trait_name = "empty";
@@ -92,7 +93,20 @@ void Trait::setType(int i){
 }
 
 string Trait::toString(){
-	return trait_name;
+	std::stringstream ss;
+
+	ss << "\nTRAIT NAME:\t" << trait_name;
+	ss << "\nLOCATION:\t" << type;
+	ss << "\nDOMINANCE:\t" << dominance;
+	//ss << "\nWATER NEED:\t" << waterNeed;
+	//ss << "\nHERD TENDENCY:\t" << herdTendency;
+	//ss << "\nBREED CHANCE:\t" << breedChance;
+	//ss << "\nTEMP RESIST:\t" << temp_resist;
+	//ss << "\nDISEASE RESIST:\t" << disease_resist;
+	//ss << "\nPRED RESIST:\t" << predator_resist;
+
+	string output = ss.str();
+	return output;
 }
 
 bool Trait::operator >=(const Trait& other) const {
