@@ -293,7 +293,11 @@ Creature Creature::breed(Creature other, int breed){
 
 	//set offspring traits
 	for(int i = 0; i < NUMTRAITS; i++){
-		if(traits[i] >= other.traits[i])
+		if(traits[i].getType() == -1)
+			baby.traits[i] = other.traits[i];
+		else if(other.traits[i].getType() == -1)
+			other.traits[i] = baby.traits[i];
+		else if(traits[i] >= other.traits[i])
 			baby.traits[i] = traits[i];
 		else
 			baby.traits[i] = other.traits[i];
