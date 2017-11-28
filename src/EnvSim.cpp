@@ -26,6 +26,8 @@ using namespace std;
 int main()
 {
 	//Main Variables
+	int const NUMSPECIES = 10;
+	int const NUMCREATURES = 1;
 	Environment Env = Environment(); //Create environment
 	list <Creature> cList;
 	list <Creature> :: iterator it;
@@ -46,7 +48,7 @@ int main()
 
 	Env.readTraits(); //Get traits
 
-	for(int i = 0; i < 10; i++)
+	for(int i = 0; i < NUMSPECIES; i++)
 	{
 		int cType = rand() % 3;
 		bool dominance;
@@ -64,7 +66,8 @@ int main()
 								newCarnivore.setTrait(i,Env.traitList[i][j]);
 				}
 			}
-			for(int j = 0; j < 1; j++){
+			newCarnivore.setSpecies("Carnivore");
+			for(int j = 0; j < NUMCREATURES; j++){
 				cList.push_back(newCarnivore);
 			}
 			pCount++;
@@ -79,7 +82,8 @@ int main()
 							newOmnivore.setTrait(i,Env.traitList[i][j]);
 				}
 			}
-			for(int j = 0; j < 1; j++){
+			newOmnivore.setSpecies("Omnivore");
+			for(int j = 0; j < NUMCREATURES; j++){
 				cList.push_back(newOmnivore);
 			}
 			oCount++;
@@ -94,8 +98,8 @@ int main()
 								newHerbivore.setTrait(i,Env.traitList[i][j]);
 				}
 			}
-			cout << newHerbivore.getSpecies();
-			for(int j = 0; j < 1; j++){
+			newHerbivore.setSpecies("Herbivore");
+			for(int j = 0; j < NUMCREATURES; j++){
 				cList.push_back(newHerbivore);
 			}
 			hCount++;
@@ -112,20 +116,20 @@ int main()
 
 	for(int i = 0; i < 5; i++)
 		for(int j = 0; j < 6; j++)
-			cout << Env.traitList[i][j].getAnimalType() << std::endl;
+			//cout << Env.traitList[i][j].getAnimalType() << std::endl;
 
 	//Randomly generate season and biome
 	//New srand seed
 	srand((unsigned)time(0));
 
 	int random_biome = (rand() % 5);
-	cout << "Random Biome: " << random_biome << endl;
+	//cout << "Random Biome: " << random_biome << endl;
 
 	//Set season and biome
 	Env = Environment(random_biome);
 
 	//Get season
-	cout << "Biome: " << Env.get_biome() << endl;
+	//cout << "Biome: " << Env.get_biome() << endl;
 
 	int val = 100;
 	int current = 0;
