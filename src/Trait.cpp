@@ -95,9 +95,9 @@ void Trait::setType(int i){
 string Trait::toString(){
 	std::stringstream ss;
 
-	ss << "\nTRAIT NAME:\t" << trait_name;
-	ss << "\nLOCATION:\t" << type;
-	ss << "\nDOMINANCE:\t" << dominance;
+	ss << "\n\tTRAIT NAME:\t" << trait_name;
+	ss << "\n\tLOCATION:\t" << type;
+	ss << "\n\tDOMINANCE:\t" << dominance;
 	//ss << "\nWATER NEED:\t" << waterNeed;
 	//ss << "\nHERD TENDENCY:\t" << herdTendency;
 	//ss << "\nBREED CHANCE:\t" << breedChance;

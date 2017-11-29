@@ -16,7 +16,9 @@
 #include <map>
 #include <string>
 #include <fstream>
+#include <iostream>
 #include <sstream>
+#include <stdlib.h>
 #include "Environment.h"
 #include "Trait.h"
 
@@ -241,9 +243,9 @@ void Environment::readTraits() {
 		getline (file, value, ',');
 		ss << value;
 		ss >> z;
+		ss.clear();
 		newTrait.setType(z);
 		getline (file, value , ',');
-		ss << value;
 		if(value.compare("0"))
 			y = true;
 		else
@@ -269,28 +271,22 @@ void Environment::readTraits() {
 		}
 
 		getline (file, value, ',');
-		ss << value;
-		ss >> x;
+		x = atof (value.c_str());
 		newTrait.setBreedChance(x);
 		getline (file, value, ',');
-		ss << value;
-		ss >> x;
+		x = atof (value.c_str());
 		newTrait.setHerdTendency(x);
 		getline (file, value, ',');
-		ss << value;
-		ss >> x;
+		x = atof (value.c_str());
 		newTrait.setWaterNeed(x);
 		getline (file, value, ',');
-		ss << value;
-		ss >> x;
+		x = atof (value.c_str());
 		newTrait.setTempResist(x);
 		getline (file, value, ',');
-		ss << value;
-		ss >> x;
+		x = atof (value.c_str());
 		newTrait.setDiseaseResist(x);
 		getline (file, value);
-		ss << value;
-		ss >> x;
+		x = atof (value.c_str());
 		newTrait.setPredatorResist(x);
 
 		traitList[newTrait.getType()][i++] = newTrait;

@@ -11,7 +11,6 @@
 #include <stdlib.h>
 #include <sstream>
 #include <ctime>
-
 #include "Environment.h"
 #include "Creature.h"
 #include "Trait.h"
@@ -116,7 +115,7 @@ int main()
 
 	for(int i = 0; i < 5; i++)
 		for(int j = 0; j < 6; j++)
-			//cout << Env.traitList[i][j].getAnimalType() << std::endl;
+			//cout << Env.traitList[i][j].toString() << std::endl;
 
 	//Randomly generate season and biome
 	//New srand seed
