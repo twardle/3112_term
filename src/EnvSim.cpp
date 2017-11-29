@@ -44,6 +44,7 @@ int main()
 	int seed;
 	ss >> seed;
 	srand( seed );
+	int random_biome = (rand() % 5);
 
 	Env.readTraits(); //Get traits
 
@@ -110,6 +111,7 @@ int main()
 
 	for(it = cList.begin(); it != cList.end(); it++){
 		Creature val = *it;
+		val.calcStats();
 		cout << val.toString() << std::endl;
 	}
 
@@ -117,11 +119,7 @@ int main()
 		for(int j = 0; j < 6; j++)
 			//cout << Env.traitList[i][j].toString() << std::endl;
 
-	//Randomly generate season and biome
-	//New srand seed
-	srand((unsigned)time(0));
 
-	int random_biome = (rand() % 5);
 	//cout << "Random Biome: " << random_biome << endl;
 
 	//Set season and biome

@@ -8,6 +8,7 @@
 #include "Creature.h"
 #include "Trait.h"
 #include <string>
+#include <iostream>
 #include <cstdlib>
 #include <sstream>
 
@@ -150,46 +151,52 @@ void Creature::setPredatorResist(float pr){
 }
 
 void Creature::calcWaterNeed(){
+	waterNeed = base_waterNeed;
 	float temp = 1.00;
 	for(int i = 0; i < NUMTRAITS; i++){
 		temp *= traits[i].getWaterNeed();
 	}
-	setWaterNeed(temp);
+	waterNeed *= temp;
 }
 void Creature::calcBreedChance(){
+	breedChance = base_breedChance;
 	float temp = 1.00;
 	for(int i = 0; i < NUMTRAITS; i++){
 		temp *= traits[i].getBreedChance();
 	}
-	setBreedChance(temp);
+	breedChance *= temp;
 }
 void Creature::calcHerdTendency(){
+	herdTendency = base_herdTendency;
 	float temp = 1.00;
 	for(int i = 0; i < NUMTRAITS; i++){
 		temp *= traits[i].getHerdTendency();
 	}
-	setHerdTendency(temp);
+	herdTendency *= temp;
 }
 void Creature::calcTempResist(){
+	temp_resist = base_temp_resist;
 	float temp = 1.00;
 	for(int i = 0; i < NUMTRAITS; i++){
 		temp *= traits[i].getTempResist();
 	}
-	setTempResist(temp);
+	temp_resist *= temp;
 }
 void Creature::calcDiseaseResist(){
+	disease_resist = base_disease_resist;
 	float temp = 1.00;
 	for(int i = 0; i < NUMTRAITS; i++){
 		temp *= traits[i].getDiseaseResist();
 	}
-	setDieaseResist(temp);
+	disease_resist *= temp;
 }
 void Creature::calcPredatorResist(){
+	predator_resist = base_predator_resist;
 	float temp = 1.00;
 	for(int i = 0; i < NUMTRAITS; i++){
 		temp *= traits[i].getPredatorResist();
 	}
-	setPredatorResist(temp);
+	predator_resist *= temp;
 }
 void Creature::calcStats(){
 	calcWaterNeed();
