@@ -42,7 +42,7 @@ private:
 	float getBasePredatorResist();
 
 	void calcWaterNeed();
-	void calcBreedChance();
+	void calcBreedChance(Environment);
 	void calcHerdTendency();
 	void calcTempResist();
 	void calcDiseaseResist();
@@ -64,7 +64,7 @@ public:
 	tree<string> getSpeciesTree();
 
 	float getWaterNeed();
-	float getBreedChance();
+	float getBreedChance(Environment Env);
 	float getHerdTendency();
 	float getTempResist();
 	float getDiseaseResist();
@@ -78,7 +78,7 @@ public:
 	void setPredatorResist(float);
 
 	bool updateHealth(Weather, Environment);
-	void calcStats();
+	void calcStats(Environment);
 
 	Creature breed(Creature, int);
 

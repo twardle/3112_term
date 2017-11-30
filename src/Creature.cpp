@@ -91,8 +91,8 @@ float Creature::getWaterNeed(){
 	calcWaterNeed();
 	return waterNeed;
 }
-float Creature::getBreedChance(){
-	calcBreedChance();
+float Creature::getBreedChance(Environment Env){
+	calcBreedChance(Env);
 	return breedChance;
 }
 float Creature::getHerdTendency(){
@@ -158,13 +158,25 @@ void Creature::calcWaterNeed(){
 	}
 	waterNeed *= temp;
 }
-void Creature::calcBreedChance(){
+void Creature::calcBreedChance(Environment Env){
+	float temperature = Env.get_temp();
 	breedChance = base_breedChance;
 	float temp = 1.00;
 	for(int i = 0; i < NUMTRAITS; i++){
 		temp *= traits[i].getBreedChance();
 	}
+	if((47.2 * temp_resist) > temperature || (67.2 * temp_resist) < temperature){
+			if((47.2 * temp_resist) > temperature){
+				float diff = (47.2 * temp_resist) - temperature;
+				temp *= (diff * 0.1);
+			}
+			else{
+				float diff = temperature - (67.2 * temp_resist);
+				temp *= (diff * 0.1);
+			}
+		}
 	breedChance *= temp;
+
 }
 void Creature::calcHerdTendency(){
 	herdTendency = base_herdTendency;
@@ -198,16 +210,16 @@ void Creature::calcPredatorResist(){
 	}
 	predator_resist *= temp;
 }
-void Creature::calcStats(){
+void Creature::calcStats(Environment Env){
 	calcWaterNeed();
-	calcBreedChance();
+	calcBreedChance(Env);
 	calcHerdTendency();
 	calcTempResist();
 	calcDiseaseResist();
 	calcPredatorResist();
 }
 bool Creature::updateHealth(Weather currSeason, Environment Env){
-	calcStats();
+	calcStats(Env);
 
 	if(diseased){
 		float diff = .25 * disease_resist;

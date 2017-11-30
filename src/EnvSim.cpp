@@ -49,6 +49,7 @@ int main()
 	ss >> seed;
 	srand( seed );
 	int random_biome = (rand() % 5);
+	Env = Environment(random_biome);
 
 	Env.readTraits(); //Get traits
 
@@ -56,6 +57,7 @@ int main()
 	{
 		int cType = rand() % 3;
 		bool dominance;
+		string species = "";
 		Carnivore newCarnivore;
 		Omnivore newOmnivore;
 		Herbivore newHerbivore;
@@ -66,11 +68,15 @@ int main()
 				for(int j = 0; j < 6; j++){
 					dominance = rand() % 2;
 					if(Env.traitList[i][j].getAnimalType() == 2)
-							if(Env.traitList[i][j].getDominance() == dominance)
+							if(Env.traitList[i][j].getDominance() == dominance){
 								newCarnivore.setTrait(i,Env.traitList[i][j]);
+							}
 				}
 			}
-			newCarnivore.setSpecies("Carnivore");
+			species = "C";
+			for(int i = 1; i < 5; i++)
+				species += (newCarnivore.getTrait(i).getTraitName()).at(0);
+			newCarnivore.setSpecies(species);
 			for(int j = 0; j < NUMCREATURES; j++){
 				//cList.push_back(newCarnivore);
 				species_dict[i].push_back(newCarnivore);
@@ -87,7 +93,10 @@ int main()
 							newOmnivore.setTrait(i,Env.traitList[i][j]);
 				}
 			}
-			newOmnivore.setSpecies("Omnivore");
+			species = "O";
+			for(int i = 1; i < 5; i++)
+				species += (newOmnivore.getTrait(i).getTraitName()).at(0);
+			newOmnivore.setSpecies(species);
 			for(int j = 0; j < NUMCREATURES; j++){
 				//cList.push_back(newOmnivore);
 				species_dict[i].push_back(newOmnivore);
@@ -104,7 +113,10 @@ int main()
 								newHerbivore.setTrait(i,Env.traitList[i][j]);
 				}
 			}
-			newHerbivore.setSpecies("Herbivore");
+			species = "H";
+			for(int i = 1; i < 5; i++)
+				species += (newHerbivore.getTrait(i).getTraitName()).at(0);
+			newHerbivore.setSpecies(species);
 			for(int j = 0; j < NUMCREATURES; j++){
 				//cList.push_back(newHerbivore);
 				species_dict[i].push_back(newHerbivore);
@@ -140,25 +152,24 @@ int main()
 	/*
 	for(it = cList.begin(); it != cList.end(); it++) {
 		Creature val = *it;
-		val.calcStats();
+		val.calcStats(Env);
 		cout << val.toString() << std::endl;
 	}*/
 
 	for(int i = 0; i < 5; i++)
-		for(int j = 0; j < 6; j++)
+		for(int j = 0; j < 6; j++){}
 			//cout << Env.traitList[i][j].toString() << std::endl;
 
 
+	int val = 100;
+	int current = 0;
 	//cout << "Random Biome: " << random_biome << endl;
 
 	//Set season and biome
-	Env = Environment(random_biome);
 
 	//Get season
 	//cout << "Biome: " << Env.get_biome() << endl;
 
-	int val = 100;
-	int current = 0;
 	//Implement change of season
 	do
 	{
