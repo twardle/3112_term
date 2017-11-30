@@ -220,7 +220,6 @@ void Creature::calcStats(Environment Env){
 }
 bool Creature::updateHealth(Environment Env){
 	Weather currSeason = Env.get_season();
-	calcStats(Env);
 
 	if(diseased){
 		float diff = .25 * disease_resist;

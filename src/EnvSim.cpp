@@ -135,16 +135,20 @@ int main()
 	for(it = species_dict.begin(); it != species_dict.end(); it++)
 	{
 		string key = it->first;
-
+		vector<Creature> temp;
+		Creature tempC;
 		vector<Creature> val = it->second;
 		vector<Creature> :: iterator vec;
 
 		for(vec = val.begin(); vec != val.end(); vec++)
 		{
-			Creature val = *vec;
-			val.calcStats(Env);
-			//cout << val.toString() << endl;
+			tempC = *vec;
+			tempC.calcStats(Env);
+			cout << tempC.toString() << endl;
+			temp.push_back(tempC);
 		}
+		val.clear();
+		std::copy(temp.begin(), temp.end(),val.begin());
 	}
 	//cout << "Random Biome: " << random_biome << endl;
 
@@ -165,9 +169,8 @@ int main()
 
 				for(vec = val.begin(); vec != val.end(); vec++)
 				{
-					Creature val = *vec;
-					if (!val.updateHealth(Env))
-						cout << val.toString() << endl;
+					if (!vec->updateHealth(Env))
+						cout << vec->toString() << endl;
 				}
 			}
 
@@ -196,10 +199,9 @@ int main()
 
 					for(vec = val.begin(); vec != val.end(); vec++)
 					{
-						Creature val = *vec;
-						if (val.getHealth() > 0){
+						if (vec->getHealth() > 0){
 							count++;
-							cout << val.toString() << endl;
+							cout << vec->toString() << endl;
 						}
 					}
 				}
