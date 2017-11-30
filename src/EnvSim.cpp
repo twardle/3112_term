@@ -1,6 +1,6 @@
 //============================================================================
 // Name        : EnvSim.cpp
-// Author      : 
+// Author      : Tyler Wardle and Candace Allison
 // Version     :
 // Copyright   : Your copyright notice
 // Description :
@@ -11,6 +11,9 @@
 #include <stdlib.h>
 #include <sstream>
 #include <ctime>
+#include <map>
+#include <vector>
+
 #include "Environment.h"
 #include "Creature.h"
 #include "Trait.h"
@@ -20,21 +23,22 @@
 
 using namespace std;
 
-
-
 int main()
 {
 	//Main Variables
 	int const NUMSPECIES = 10;
-	int const NUMCREATURES = 1;
+	int const NUMCREATURES = 2;
 	Environment Env = Environment(); //Create environment
 	list <Creature> cList;
-	list <Creature> :: iterator it;
+	map<int, vector<Creature>> species_dict;
+	map<int, vector<Creature>> :: iterator it;
+	//list <Creature> :: iterator it;
+
+
 	string userSeed;
 	int pCount = 0;
 	int hCount = 0;
 	int oCount = 0;
-
 
 	//Get user input for program seed
 	cout << "INPUT SEED:\t";
@@ -68,7 +72,8 @@ int main()
 			}
 			newCarnivore.setSpecies("Carnivore");
 			for(int j = 0; j < NUMCREATURES; j++){
-				cList.push_back(newCarnivore);
+				//cList.push_back(newCarnivore);
+				species_dict[i].push_back(newCarnivore);
 			}
 			pCount++;
 			break;
@@ -84,7 +89,8 @@ int main()
 			}
 			newOmnivore.setSpecies("Omnivore");
 			for(int j = 0; j < NUMCREATURES; j++){
-				cList.push_back(newOmnivore);
+				//cList.push_back(newOmnivore);
+				species_dict[i].push_back(newOmnivore);
 			}
 			oCount++;
 			break;
@@ -100,7 +106,8 @@ int main()
 			}
 			newHerbivore.setSpecies("Herbivore");
 			for(int j = 0; j < NUMCREATURES; j++){
-				cList.push_back(newHerbivore);
+				//cList.push_back(newHerbivore);
+				species_dict[i].push_back(newHerbivore);
 			}
 			hCount++;
 			break;
@@ -109,11 +116,33 @@ int main()
 		}
 	}
 
-	for(it = cList.begin(); it != cList.end(); it++){
+	for(it = species_dict.begin(); it != species_dict.end(); it++)
+	{
+		int key = it->first;
+
+		cout << "Creature " << key + 1 << endl;
+
+		vector<Creature> val = it->second;
+		vector<Creature> :: iterator vec;
+
+		for(vec = val.begin(); vec != val.end(); vec++)
+		{
+			Creature val = *vec;
+			val.calcStats();
+			cout << val.toString() << endl;
+		}
+
+
+		//val.calcStats();
+		//cout << val.toString() << endl;
+	}
+
+	/*
+	for(it = cList.begin(); it != cList.end(); it++) {
 		Creature val = *it;
 		val.calcStats();
 		cout << val.toString() << std::endl;
-	}
+	}*/
 
 	for(int i = 0; i < 5; i++)
 		for(int j = 0; j < 6; j++)

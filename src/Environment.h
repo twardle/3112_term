@@ -1,10 +1,10 @@
 #include <string>
-#include <map>
-#include "Weather.h"
 #include <fstream>
-#include "Trait.h"
 #include <sstream>
 #include <list>
+
+#include "Weather.h"
+#include "Trait.h"
 
 using std::string;
 using std::map;

@@ -13,7 +13,6 @@
   |-Foliage - Grass, Sandy, etc 
  */
 
-#include <map>
 #include <string>
 #include <fstream>
 #include <iostream>
