@@ -14,6 +14,7 @@
 #include <map>
 #include <vector>
 
+#include <cstdlib>
 #include "Environment.h"
 #include "Creature.h"
 #include "Trait.h"
@@ -27,7 +28,7 @@ int main()
 {
 	//Main Variables
 	int const NUMSPECIES = 10;
-	int const NUMCREATURES = 100;
+	int const NUMCREATURES = 1;
 	Environment Env = Environment(); //Create environment
 	list <Creature> cList;
 	map<string, vector<Creature>> species_dict;
@@ -45,8 +46,12 @@ int main()
 	std::cin >> userSeed;
 	std::stringstream ss ( userSeed);
 	std::stringstream species;
-	int seed;
-	ss >> seed;
+	int seed = 0;
+	for (unsigned int i = 0; i < userSeed.length(); i++)
+	    {
+	        char x = userSeed.at(i);
+	        seed += int(x);
+	    }
 	srand( seed );
 	int random_biome = (rand() % 5);
 	Env = Environment(random_biome);
