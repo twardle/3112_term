@@ -27,11 +27,11 @@ int main()
 {
 	//Main Variables
 	int const NUMSPECIES = 10;
-	int const NUMCREATURES = 2;
+	int const NUMCREATURES = 100;
 	Environment Env = Environment(); //Create environment
 	list <Creature> cList;
-	map<int, vector<Creature>> species_dict;
-	map<int, vector<Creature>> :: iterator it;
+	map<string, vector<Creature>> species_dict;
+	map<string, vector<Creature>> :: iterator it;
 	//list <Creature> :: iterator it;
 
 
@@ -79,7 +79,7 @@ int main()
 			newCarnivore.setSpecies(species);
 			for(int j = 0; j < NUMCREATURES; j++){
 				//cList.push_back(newCarnivore);
-				species_dict[i].push_back(newCarnivore);
+				species_dict[newCarnivore.getSpecies()].push_back(newCarnivore);
 			}
 			pCount++;
 			break;
@@ -99,7 +99,7 @@ int main()
 			newOmnivore.setSpecies(species);
 			for(int j = 0; j < NUMCREATURES; j++){
 				//cList.push_back(newOmnivore);
-				species_dict[i].push_back(newOmnivore);
+				species_dict[newOmnivore.getSpecies()].push_back(newOmnivore);
 			}
 			oCount++;
 			break;
@@ -119,7 +119,7 @@ int main()
 			newHerbivore.setSpecies(species);
 			for(int j = 0; j < NUMCREATURES; j++){
 				//cList.push_back(newHerbivore);
-				species_dict[i].push_back(newHerbivore);
+				species_dict[newHerbivore.getSpecies()].push_back(newHerbivore);
 			}
 			hCount++;
 			break;
@@ -130,9 +130,9 @@ int main()
 
 	for(it = species_dict.begin(); it != species_dict.end(); it++)
 	{
-		int key = it->first;
+		string key = it->first;
 
-		cout << "Creature " << key + 1 << endl;
+		cout << "Creature " << key << endl;
 
 		vector<Creature> val = it->second;
 		vector<Creature> :: iterator vec;
