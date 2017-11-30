@@ -140,7 +140,7 @@ int main()
 		for(vec = val.begin(); vec != val.end(); vec++)
 		{
 			Creature val = *vec;
-			val.calcStats();
+			val.calcStats(Env);
 			cout << val.toString() << endl;
 		}
 
