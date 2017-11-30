@@ -72,7 +72,7 @@ public:
     void set_danger(float);
     int get_max_pop();
     void set_max_pop(int);
-    string get_season();
+    Weather get_season();
     float get_temp();
 
     //Methods

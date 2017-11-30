@@ -218,7 +218,8 @@ void Creature::calcStats(Environment Env){
 	calcDiseaseResist();
 	calcPredatorResist();
 }
-bool Creature::updateHealth(Weather currSeason, Environment Env){
+bool Creature::updateHealth(Environment Env){
+	Weather currSeason = Env.get_season();
 	calcStats(Env);
 
 	if(diseased){

@@ -29,10 +29,12 @@ int main()
 	//Main Variables
 	int const NUMSPECIES = 10;
 	int const NUMCREATURES = 1;
+	int const NUMSEASONS = 1;
 	Environment Env = Environment(); //Create environment
 	list <Creature> cList;
 	map<string, vector<Creature>> species_dict;
 	map<string, vector<Creature>> :: iterator it;
+	int current = 0;
 	//list <Creature> :: iterator it;
 
 
@@ -83,7 +85,6 @@ int main()
 				species += (newCarnivore.getTrait(i).getTraitName()).at(0);
 			newCarnivore.setSpecies(species);
 			for(int j = 0; j < NUMCREATURES; j++){
-				//cList.push_back(newCarnivore);
 				species_dict[newCarnivore.getSpecies()].push_back(newCarnivore);
 			}
 			pCount++;
@@ -103,7 +104,6 @@ int main()
 				species += (newOmnivore.getTrait(i).getTraitName()).at(0);
 			newOmnivore.setSpecies(species);
 			for(int j = 0; j < NUMCREATURES; j++){
-				//cList.push_back(newOmnivore);
 				species_dict[newOmnivore.getSpecies()].push_back(newOmnivore);
 			}
 			oCount++;
@@ -123,7 +123,6 @@ int main()
 				species += (newHerbivore.getTrait(i).getTraitName()).at(0);
 			newHerbivore.setSpecies(species);
 			for(int j = 0; j < NUMCREATURES; j++){
-				//cList.push_back(newHerbivore);
 				species_dict[newHerbivore.getSpecies()].push_back(newHerbivore);
 			}
 			hCount++;
@@ -137,8 +136,6 @@ int main()
 	{
 		string key = it->first;
 
-		cout << "Creature " << key << endl;
-
 		vector<Creature> val = it->second;
 		vector<Creature> :: iterator vec;
 
@@ -146,28 +143,9 @@ int main()
 		{
 			Creature val = *vec;
 			val.calcStats(Env);
-			cout << val.toString() << endl;
+			//cout << val.toString() << endl;
 		}
-
-
-		//val.calcStats();
-		//cout << val.toString() << endl;
 	}
-
-	/*
-	for(it = cList.begin(); it != cList.end(); it++) {
-		Creature val = *it;
-		val.calcStats(Env);
-		cout << val.toString() << std::endl;
-	}*/
-
-	for(int i = 0; i < 5; i++)
-		for(int j = 0; j < 6; j++){}
-			//cout << Env.traitList[i][j].toString() << std::endl;
-
-
-	int val = 100;
-	int current = 0;
 	//cout << "Random Biome: " << random_biome << endl;
 
 	//Set season and biome
@@ -178,11 +156,25 @@ int main()
 	//Implement change of season
 	do
 	{
-		//TODO Update creature health
+		for(it = species_dict.begin(); it != species_dict.end(); it++)
+			{
+				string key = it->first;
+
+				vector<Creature> val = it->second;
+				vector<Creature> :: iterator vec;
+
+				for(vec = val.begin(); vec != val.end(); vec++)
+				{
+					Creature val = *vec;
+					if (!val.updateHealth(Env))
+						cout << val.toString() << endl;
+				}
+			}
+
 		//TODO Update values
 
 		//Get new season
-		//cout << "Season: " << Env.get_season() << endl;
+		//cout << "Season: " << Env.get_season().getSeason() << endl;
 		//cout << "Temp: " << Env.get_temp() << endl;
 
 		//Change the season
@@ -192,6 +184,25 @@ int main()
 
 		//Increment current
 		current++;
-	}while(current < val);
+	}while(current < NUMSEASONS);
+	int count = 0;
 
+	for(it = species_dict.begin(); it != species_dict.end(); it++)
+				{
+					string key = it->first;
+
+					vector<Creature> val = it->second;
+					vector<Creature> :: iterator vec;
+
+					for(vec = val.begin(); vec != val.end(); vec++)
+					{
+						Creature val = *vec;
+						if (val.getHealth() > 0){
+							count++;
+							cout << val.toString() << endl;
+						}
+					}
+				}
+
+	cout << count << "," << Env.get_water_supply();
 }

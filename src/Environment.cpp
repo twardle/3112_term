@@ -115,8 +115,8 @@ void Environment::set_max_pop(int m) {
 	max_pop = m;
 }
 
-string Environment::get_season() {
-	return season.getSeason();
+Weather Environment::get_season() {
+	return season;
 }
 
 float Environment::get_temp() {
@@ -134,8 +134,8 @@ void Environment::set_values() {
 		biome.temps[3] = 70.0;
 
 		//Set water variables
-		set_water_supply(0.15);
-		set_water_refill_speed(0.15);
+		set_water_supply(750.00);
+		set_water_refill_speed(water_supply/2);
 
 		//Weather values
 		season.set_temps(biome.temps);
@@ -152,8 +152,8 @@ void Environment::set_values() {
 		biome.temps[3] = -10.0;
 
 		//Set water variables
-		set_water_supply(0.15);
-		set_water_refill_speed(0.15);
+		set_water_supply(1250);
+		set_water_refill_speed(water_supply/2);
 
 		//Weather values
 		season.set_temps(biome.temps);
@@ -171,8 +171,8 @@ void Environment::set_values() {
 		biome.temps[3] = 65.0;
 
 		//Set water variables
-		set_water_supply(0.5);
-		set_water_refill_speed(0.5);
+		set_water_supply(1500);
+		set_water_refill_speed(water_supply/2);
 
 		//Weather values
 		season.set_temps(biome.temps);
@@ -189,8 +189,8 @@ void Environment::set_values() {
 		biome.temps[3] = 25.0;
 
 		//Set water variables
-		set_water_supply(0.9);
-		set_water_refill_speed(0.9);
+		set_water_supply(2000);
+		set_water_refill_speed(water_supply/2);
 
 		//Weather values
 		season.set_temps(biome.temps);
@@ -207,8 +207,8 @@ void Environment::set_values() {
 		biome.temps[3] = 30.0;
 
 		//Set water variables
-		set_water_supply(0.75);
-		set_water_refill_speed(0.75);
+		set_water_supply(1750);
+		set_water_refill_speed(water_supply/2);
 
 		//Weather values
 		season.set_temps(biome.temps);
@@ -245,11 +245,7 @@ void Environment::readTraits() {
 		ss.clear();
 		newTrait.setType(z);
 		getline (file, value , ',');
-		if(value.compare("0"))
-			y = true;
-		else
-			y = false;
-
+		y = atoi (value.c_str());
 		newTrait.setDominance(y);
 		getline (file, value, ',');
 		switch(value[0]){
