@@ -25,8 +25,8 @@
 using namespace std;
 
 int const NUMSPECIES = 10;
-int const NUMCREATURES = 1;
-int const NUMSEASONS = 1;
+int const NUMCREATURES = 100;
+int const NUMSEASONS = 4;
 
 int sUsed = 0;
 int cUsed = 0;
@@ -48,6 +48,7 @@ int main()
 	hList = new Herbivore[NUMSPECIES * NUMCREATURES];
 	oList = new Omnivore[NUMSPECIES * NUMCREATURES];
 	int current = 0;
+	int numDead = 0;
 
 
 	string userSeed;
@@ -66,11 +67,9 @@ int main()
 	srand( seed );
 	int random_biome = (rand() % 5);
 	Env = Environment(random_biome);
-
 	Env.readTraits(); //Get traits
 
 	creatureInstantiation(Env,sList,cList,hList,oList);
-
 
 	for(int i = 0; i < sUsed; i++){
 			sList[i].calcStats(Env);
@@ -87,10 +86,12 @@ int main()
 	do
 	{
 		for(int i = 0; i < sUsed; i++){
-			if (sList[i].updateHealth(Env))
-				cout << sList[i].toString() << endl;
-			}
-
+			if(sList[i].getHealth() > 0)
+				if (!sList[i].updateHealth(Env)){
+					cout << sList[i].toString() << endl;
+					numDead++;
+					}
+				}
 		//TODO Update values
 
 		//Get new season
@@ -110,11 +111,10 @@ int main()
 	for(int i = 0; i < sUsed; i++){
 		if (sList[i].getHealth() > 0){
 			count++;
-			cout << sList[i].toString() << endl;
+			//cout << sList[i].toString() << endl;
 		}
 	}
-
-	cout << sUsed << "," << Env.get_water_supply();
+	cout << "Water Supply:\t" << Env.get_water_supply() << ", Number Dead:\t" << numDead;;
 	delete [] cList;
 
 	return 0;

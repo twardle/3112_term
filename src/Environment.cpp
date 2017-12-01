@@ -222,6 +222,7 @@ void Environment::set_values() {
 
 void Environment::changeseason() {
 	season.change_season();
+	set_water_supply(water_supply + water_refill_speed);
 }
 
 void Environment::readTraits() {

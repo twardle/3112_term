@@ -218,33 +218,38 @@ void Creature::calcStats(Environment Env){
 	calcDiseaseResist();
 	calcPredatorResist();
 }
-bool Creature::updateHealth(Environment Env){
+bool Creature::updateHealth(Environment& Env){
 	Weather currSeason = Env.get_season();
 
 	if(diseased){
 		float diff = .25 * disease_resist;
 		health -= diff;
 	}
-	if(health < 0)
+	if(health < 0){
+		std::cout << "died at disease" << std::endl;
 		return false;
+	}
 
 	float temp = currSeason.getTemp();
 
 	if((47.2 * temp_resist) > temp || (67.2 * temp_resist) < temp){
 		if((47.2 * temp_resist) > temp){
 			float diff = (47.2 * temp_resist) - temp;
-			diff *= 0.1;
+			diff *= 0.01;
 			health -= diff;
 		}
 		else{
 			float diff = temp - (67.2 * temp_resist);
-			diff *= 0.1;
+			diff *= 0.0025;
 			health -= diff;
 		}
+
 	}
 
-	if(health < 0)
+	if(health < 0){
+			std::cout << "died at temp" << std::endl;
 			return false;
+		}
 
 	float water = Env.get_water_supply();
 
@@ -253,9 +258,13 @@ bool Creature::updateHealth(Environment Env){
 		diff *= .65;
 		health -= diff;
 	}
+	else
+		Env.set_water_supply(water - waterNeed);
 
-	if(health < 0)
+	if(health < 0){
+			std::cout << "died at water" << std::endl;
 			return false;
+		}
 
 	return true;
 }

@@ -77,7 +77,7 @@ public:
 	void setDieaseResist(float);
 	void setPredatorResist(float);
 
-	bool updateHealth(Environment);
+	bool updateHealth(Environment&);
 	void calcStats(Environment);
 
 	Creature breed(Creature, int);
