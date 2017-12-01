@@ -24,24 +24,33 @@
 
 using namespace std;
 
+int const NUMSPECIES = 10;
+int const NUMCREATURES = 1;
+int const NUMSEASONS = 1;
+
+int sUsed = 0;
+int cUsed = 0;
+int hUsed = 0;
+int oUsed = 0;
+
+void creatureInstantiation(Environment,Creature[],Carnivore[],Herbivore[],Omnivore[]);
+
 int main()
 {
 	//Main Variables
-	int const NUMSPECIES = 10;
-	int const NUMCREATURES = 1;
-	int const NUMSEASONS = 1;
 	Environment Env = Environment(); //Create environment
-	list <Creature> cList;
-	map<string, vector<Creature>> species_dict;
-	map<string, vector<Creature>> :: iterator it;
+	Creature * sList = NULL;
+	Carnivore * cList = NULL;
+	Herbivore * hList = NULL;
+	Omnivore * oList = NULL;
+	sList = new Creature[NUMSPECIES * NUMCREATURES];
+	cList = new Carnivore[NUMSPECIES * NUMCREATURES];
+	hList = new Herbivore[NUMSPECIES * NUMCREATURES];
+	oList = new Omnivore[NUMSPECIES * NUMCREATURES];
 	int current = 0;
-	//list <Creature> :: iterator it;
 
 
 	string userSeed;
-	int pCount = 0;
-	int hCount = 0;
-	int oCount = 0;
 
 	//Get user input for program seed
 	cout << "INPUT SEED:\t";
@@ -60,6 +69,58 @@ int main()
 
 	Env.readTraits(); //Get traits
 
+	creatureInstantiation(Env,sList,cList,hList,oList);
+
+
+	for(int i = 0; i < sUsed; i++){
+			sList[i].calcStats(Env);
+			cout << sList[i].toString() << endl;
+	}
+	//cout << "Random Biome: " << random_biome << endl;
+
+	//Set season and biome
+
+	//Get season
+	//cout << "Biome: " << Env.get_biome() << endl;
+
+	//Implement change of season
+	do
+	{
+		for(int i = 0; i < sUsed; i++){
+			if (sList[i].updateHealth(Env))
+				cout << sList[i].toString() << endl;
+			}
+
+		//TODO Update values
+
+		//Get new season
+		//cout << "Season: " << Env.get_season().getSeason() << endl;
+		//cout << "Temp: " << Env.get_temp() << endl;
+
+		//Change the season
+		Env.changeseason();
+
+		//cout << "New Season...\n" << endl;
+
+		//Increment current
+		current++;
+	}while(current < NUMSEASONS);
+	int count = 0;
+
+	for(int i = 0; i < sUsed; i++){
+		if (sList[i].getHealth() > 0){
+			count++;
+			cout << sList[i].toString() << endl;
+		}
+	}
+
+	cout << sUsed << "," << Env.get_water_supply();
+	delete [] cList;
+
+	return 0;
+}
+
+void creatureInstantiation(Environment Env, Creature sList[], Carnivore cList[], Herbivore hList[], Omnivore oList[]){
 	for(int i = 0; i < NUMSPECIES; i++)
 	{
 		int cType = rand() % 3;
@@ -85,9 +146,9 @@ int main()
 				species += (newCarnivore.getTrait(i).getTraitName()).at(0);
 			newCarnivore.setSpecies(species);
 			for(int j = 0; j < NUMCREATURES; j++){
-				species_dict[newCarnivore.getSpecies()].push_back(newCarnivore);
+				sList[sUsed++] = newCarnivore;
+				cList[cUsed++] = newCarnivore;
 			}
-			pCount++;
 			break;
 		case 1:
 			newOmnivore.setTrait(0,Env.traitList[0][1]);
@@ -104,9 +165,9 @@ int main()
 				species += (newOmnivore.getTrait(i).getTraitName()).at(0);
 			newOmnivore.setSpecies(species);
 			for(int j = 0; j < NUMCREATURES; j++){
-				species_dict[newOmnivore.getSpecies()].push_back(newOmnivore);
+				sList[sUsed++] = newOmnivore;
+				oList[oUsed++] = newOmnivore;
 			}
-			oCount++;
 			break;
 		case 2:
 			newHerbivore.setTrait(0,Env.traitList[0][0]);
@@ -123,88 +184,12 @@ int main()
 				species += (newHerbivore.getTrait(i).getTraitName()).at(0);
 			newHerbivore.setSpecies(species);
 			for(int j = 0; j < NUMCREATURES; j++){
-				species_dict[newHerbivore.getSpecies()].push_back(newHerbivore);
+				sList[sUsed++] = newHerbivore;
+				hList[hUsed++] = newHerbivore;
 			}
-			hCount++;
 			break;
 		default:
 			cout << "err" << std::endl;
 		}
 	}
-
-	for(it = species_dict.begin(); it != species_dict.end(); it++)
-	{
-		string key = it->first;
-		vector<Creature> temp;
-		Creature tempC;
-		vector<Creature> val = it->second;
-		vector<Creature> :: iterator vec;
-
-		for(vec = val.begin(); vec != val.end(); vec++)
-		{
-			tempC = *vec;
-			tempC.calcStats(Env);
-			cout << tempC.toString() << endl;
-			temp.push_back(tempC);
-		}
-		val.clear();
-		std::copy(temp.begin(), temp.end(),val.begin());
-	}
-	//cout << "Random Biome: " << random_biome << endl;
-
-	//Set season and biome
-
-	//Get season
-	//cout << "Biome: " << Env.get_biome() << endl;
-
-	//Implement change of season
-	do
-	{
-		for(it = species_dict.begin(); it != species_dict.end(); it++)
-			{
-				string key = it->first;
-
-				vector<Creature> val = it->second;
-				vector<Creature> :: iterator vec;
-
-				for(vec = val.begin(); vec != val.end(); vec++)
-				{
-					if (!vec->updateHealth(Env))
-						cout << vec->toString() << endl;
-				}
-			}
-
-		//TODO Update values
-
-		//Get new season
-		//cout << "Season: " << Env.get_season().getSeason() << endl;
-		//cout << "Temp: " << Env.get_temp() << endl;
-
-		//Change the season
-		Env.changeseason();
-
-		//cout << "New Season...\n" << endl;
-
-		//Increment current
-		current++;
-	}while(current < NUMSEASONS);
-	int count = 0;
-
-	for(it = species_dict.begin(); it != species_dict.end(); it++)
-				{
-					string key = it->first;
-
-					vector<Creature> val = it->second;
-					vector<Creature> :: iterator vec;
-
-					for(vec = val.begin(); vec != val.end(); vec++)
-					{
-						if (vec->getHealth() > 0){
-							count++;
-							cout << vec->toString() << endl;
-						}
-					}
-				}
-
-	cout << count << "," << Env.get_water_supply();
 }
