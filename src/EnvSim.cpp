@@ -33,20 +33,20 @@ int cUsed = 0;
 int hUsed = 0;
 int oUsed = 0;
 
-void creatureInstantiation(Environment,Creature[],Carnivore[],Herbivore[],Omnivore[]);
+void creatureInstantiation(Environment,Creature[],int[],int[],int[]);
 
 int main()
 {
 	//Main Variables
 	Environment Env = Environment(); //Create environment
 	Creature * sList = NULL;
-	Carnivore * cList = NULL;
-	Herbivore * hList = NULL;
-	Omnivore * oList = NULL;
+	int * cList = NULL;
+	int * hList = NULL;
+	int * oList = NULL;
 	sList = new Creature[NUMSPECIES * NUMCREATURES];
-	cList = new Carnivore[NUMSPECIES * NUMCREATURES];
-	hList = new Herbivore[NUMSPECIES * NUMCREATURES];
-	oList = new Omnivore[NUMSPECIES * NUMCREATURES];
+	cList = new int[NUMSPECIES * NUMCREATURES];
+	hList = new int[NUMSPECIES * NUMCREATURES];
+	oList = new int[NUMSPECIES * NUMCREATURES];
 	int current = 0;
 	int numDead = 0;
 
@@ -120,7 +120,7 @@ int main()
 	return 0;
 }
 
-void creatureInstantiation(Environment Env, Creature sList[], Carnivore cList[], Herbivore hList[], Omnivore oList[]){
+void creatureInstantiation(Environment Env, Creature sList[], int cList[], int hList[], int oList[]){
 	for(int i = 0; i < NUMSPECIES; i++)
 	{
 		int cType = rand() % 3;
@@ -146,8 +146,8 @@ void creatureInstantiation(Environment Env, Creature sList[], Carnivore cList[],
 				species += (newCarnivore.getTrait(i).getTraitName()).at(0);
 			newCarnivore.setSpecies(species);
 			for(int j = 0; j < NUMCREATURES; j++){
-				sList[sUsed++] = newCarnivore;
-				cList[cUsed++] = newCarnivore;
+				sList[sUsed] = newCarnivore;
+				cList[cUsed++] = sUsed++;
 			}
 			break;
 		case 1:
@@ -165,8 +165,8 @@ void creatureInstantiation(Environment Env, Creature sList[], Carnivore cList[],
 				species += (newOmnivore.getTrait(i).getTraitName()).at(0);
 			newOmnivore.setSpecies(species);
 			for(int j = 0; j < NUMCREATURES; j++){
-				sList[sUsed++] = newOmnivore;
-				oList[oUsed++] = newOmnivore;
+				sList[sUsed] = newOmnivore;
+				oList[oUsed++] = sUsed++;
 			}
 			break;
 		case 2:
@@ -184,8 +184,8 @@ void creatureInstantiation(Environment Env, Creature sList[], Carnivore cList[],
 				species += (newHerbivore.getTrait(i).getTraitName()).at(0);
 			newHerbivore.setSpecies(species);
 			for(int j = 0; j < NUMCREATURES; j++){
-				sList[sUsed++] = newHerbivore;
-				hList[hUsed++] = newHerbivore;
+				sList[sUsed] = newHerbivore;
+				hList[hUsed++] = sUsed++;
 			}
 			break;
 		default:
