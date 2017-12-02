@@ -226,7 +226,7 @@ bool Creature::updateHealth(Environment& Env){
 		health -= diff;
 	}
 	if(health < 0){
-		std::cout << "died at disease" << std::endl;
+		//std::cout << "died at disease" << std::endl;
 		return false;
 	}
 
@@ -247,7 +247,7 @@ bool Creature::updateHealth(Environment& Env){
 	}
 
 	if(health < 0){
-			std::cout << "died at temp" << std::endl;
+			//std::cout << "died at temp" << std::endl;
 			return false;
 		}
 
@@ -262,7 +262,7 @@ bool Creature::updateHealth(Environment& Env){
 		Env.set_water_supply(water - waterNeed);
 
 	if(health < 0){
-			std::cout << "died at water" << std::endl;
+			//std::cout << "died at water" << std::endl;
 			return false;
 		}
 
