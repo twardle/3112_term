@@ -98,30 +98,20 @@ int translateSeed(string userSeed){
 int iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords oList[], cCoords hList[]){
 	int numDead = 0;
 
-	for(int i = 0; i < hUsed; i++){
-		if(hList[i].alive){
-			if(sList[oList[i].creature].getHealth() < 0){
-				hList[i].alive = false;
-				numDead++;
-			}
-			((Herbivore)(sList[oList[i].creature])).herd();
-		}
-	}
 
 	for(int i = 0; i < oUsed; i++){
-		int num = rand() % 2;
 		if(oList[i].alive){
 			if(sList[oList[i].creature].getHealth() < 0){
 				oList[i].alive = false;
 				numDead++;
 			}
-			else if(num == 1){
-				int creature = rand() % sUsed;
-				if(sList[creature] != sList[oList[i].creature])
-					((Omnivore)(sList[oList[i].creature])).hunt(sList[creature]);
-			}
 			else{
-				((Omnivore)(sList[oList[i].creature])).herd();
+				int creature = rand() % sUsed;
+				if(creature != oList[i].creature && sList[creature].getHealth() > 0){
+					cout << "pre-hunt" << sList[creature].getHealth() << endl;
+					if(((Omnivore)(sList[oList[i].creature])).hunt(sList[creature]))
+						cout << "hunted" << sList[creature].getHealth() << endl;
+				}
 			}
 		}
 	}
@@ -134,8 +124,18 @@ int iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords 
 			}
 			else{
 				int creature = rand() % sUsed;
-				if(sList[creature] != sList[cList[i].creature])
-					((Carnivore)(sList[cList[i].creature])).hunt(sList[creature]);
+				if(creature != cList[i].creature && sList[creature].getHealth() > 0)
+					if(((Carnivore)(sList[cList[i].creature])).hunt(sList[creature]))
+						cout << "hunted";
+			}
+		}
+	}
+
+	for(int i = 0; i < hUsed; i++){
+		if(hList[i].alive){
+			if(sList[oList[i].creature].getHealth() <= 0){
+				hList[i].alive = false;
+				numDead++;
 			}
 		}
 	}
@@ -143,7 +143,7 @@ int iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords 
 	for(int i = 0; i < sUsed; i++){
 		if(sList[i].getHealth() > 0)
 			if (sList[i].updateHealth(Env)){
-				cout << sList[i].toString() << endl;
+				//cout << sList[i].toString() << endl;
 			}
 		}
 

@@ -14,6 +14,9 @@ class Herbivore : public Creature {
 private:
 	bool herding = false;
 public:
+	Herbivore(){
+
+	}
 	void herd(){
 		if(herdTendency > .5)
 			herding = true;

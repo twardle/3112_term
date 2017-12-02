@@ -67,12 +67,24 @@ void Creature::removeTrait(int index){
 
 	traits[index] = temporary;
 }
+bool Creature::getDiseased(){
+	return diseased;
+}
+void Creature::setDiseased(bool dis){
+	diseased = dis;
+}
 
 int Creature::getAge(){
 	return age;
 }
+void Creature::setAge(int nAge){
+	age = nAge;
+}
 float Creature::getHealth(){
 	return health;
+}
+void Creature::setHealth(float nHealth){
+	health = nHealth;
 }
 string Creature::getSpecies(){
 	return species;

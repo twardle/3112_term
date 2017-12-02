@@ -57,10 +57,14 @@ public:
 	void removeTrait(int);
 
 	int getAge();
+	void setAge(int);
 	float getHealth();
+	void setHealth(float);
 	string getSpecies();
 	void updateHealth(float);
 	void setSpecies(string);
+	bool getDiseased();
+	void setDiseased(bool);
 	tree<string> getSpeciesTree();
 
 	float getWaterNeed();

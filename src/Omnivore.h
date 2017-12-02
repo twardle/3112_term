@@ -15,49 +15,66 @@ class Omnivore : public Creature {
 private:
 	bool herding = false;
 public:
-	bool hunt(Creature prey){
-		if(prey.getHealth() - (2 - prey.getPredatorResist()) < 0)
+	Omnivore(){
+
+	}
+	Omnivore(Creature & creature){
+	}
+	bool hunt(Creature & prey){
+		if(prey.getPredatorResist() > 1)
+			prey.updateHealth(prey.getPredatorResist() - 2);
+		else
+			prey.setHealth(0);
+		if(prey.getHealth() <= 0)
 			return true;
-		else{
-			prey.updateHealth((2 - prey.getPredatorResist()));
+		else
 			return false;
-		}
 	};
 
 	bool hunt(Herbivore prey){
 		if(prey.getHerding()){
-			if(prey.getHealth() - (2 - prey.getPredatorResist() + 0.5) < 0)
+			if(prey.getPredatorResist() + 0.5 > 1)
+				prey.updateHealth(prey.getPredatorResist() - 1.5);
+			else
+				prey.setHealth(0);
+
+			if(prey.getHealth() <= 0)
 				return true;
-			else{
-				prey.updateHealth((2 - prey.getPredatorResist() + 0.5));
+			else
 				return false;
-			}
 		}
-		else if(prey.getHealth() - (2 - prey.getPredatorResist()) < 0)
+		else if(prey.getPredatorResist() > 1)
+			prey.updateHealth(prey.getPredatorResist() - 2);
+		else
+			prey.setHealth(0);
+		if(prey.getHealth() <= 0)
 			return true;
-		else{
-			prey.updateHealth((2 - prey.getPredatorResist()));
+		else
 			return false;
-		}
 
 		return false;
 	};
 
 	bool hunt(Omnivore prey){
 		if(prey.getHerding()){
-			if(prey.getHealth() - (2 - prey.getPredatorResist() + 0.5) < 0)
+			if(prey.getPredatorResist() + 0.5 > 1)
+				prey.updateHealth(prey.getPredatorResist() - 1.5);
+			else
+				prey.setHealth(0);
+
+			if(prey.getHealth() <= 0)
 				return true;
-			else{
-				prey.updateHealth((2 - prey.getPredatorResist() + 0.5));
+			else
 				return false;
-			}
 		}
-		else if(prey.getHealth() - (2 - prey.getPredatorResist()) < 0)
+		else if(prey.getPredatorResist() > 1)
+			prey.updateHealth(prey.getPredatorResist() - 2);
+		else
+			prey.setHealth(0);
+		if(prey.getHealth() <= 0)
 			return true;
-		else{
-			prey.updateHealth((2 - prey.getPredatorResist()));
+		else
 			return false;
-		}
 
 		return false;
 	};
