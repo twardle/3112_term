@@ -125,6 +125,7 @@ int iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords 
 					if(sUsed < sMax)
 						if(hUsed < hMax){
 							cCoords temp;
+							//TODO:  Consider passing reference creature
 							sList[cList[i].creature].breed(sList[cList[breed].creature],rand());
 							temp.species = sList[sUsed].getSpecies();
 							temp.creature = sUsed++;
@@ -163,6 +164,7 @@ int iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords 
 					if(sUsed < sMax)
 						if(oUsed < hMax){
 							cCoords temp;
+							//TODO:  Consider passing reference creature
 							sList[sUsed] = sList[oList[i].creature].breed(sList[oList[breed].creature],rand());
 							temp.species = sList[sUsed].getSpecies();
 							temp.creature = sUsed++;
@@ -200,6 +202,7 @@ int iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords 
 					if(sUsed < sMax)
 						if(hUsed < hMax){
 							cCoords temp;
+							//TODO:  Consider passing reference creature
 							sList[sUsed] = sList[hList[i].creature].breed(sList[hList[breed].creature],rand());
 							temp.species = sList[sUsed].getSpecies();
 							temp.creature = sUsed++;
