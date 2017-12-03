@@ -62,7 +62,7 @@ public:
 	void setHealth(float);
 	string getSpecies();
 	void updateHealth(float);
-	void setSpecies(string);
+	void setSpecies();
 	bool getDiseased();
 	void setDiseased(bool);
 	tree<string> getSpeciesTree();

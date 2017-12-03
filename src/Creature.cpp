@@ -93,8 +93,16 @@ string Creature::getSpecies(){
 void Creature::updateHealth(float update){
 	health += update;
 }
-void Creature::setSpecies(string name){
-	species = name;
+void Creature::setSpecies(){
+	if(traits[0].getTraitName().at(0) == 'G')
+		species = "H";
+	else if(traits[0].getTraitName().at(0) == 'S')
+		species = "C";
+	else
+		species = "O";
+
+	for(int i = 1; i < 5; i++)
+		species += (traits[i].getTraitName()).at(0);
 }
 tree<string> Creature::getSpeciesTree(){
 	return speciesTree;
