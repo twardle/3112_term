@@ -23,7 +23,7 @@ using namespace std;
 //global variables
 int const NUMSPECIES = 10;
 int const NUMCREATURES = 100;
-int const NUMSEASONS = 4;
+int const NUMSEASONS = 1000;
 int sUsed = 0;
 int cUsed = 0;
 int hUsed = 0;
@@ -78,8 +78,9 @@ int main()
 
 		Env.changeseason();
 	}
-
-	cout << "\nWater Supply:\t" << Env.get_water_supply() << "\nNumber Dead:\t" << numDead << "\nBiome:\t" << Env.get_biome();
+	cout << Env.toString(sUsed - numDead);
+	cout << Env.get_season().toString();
+	//cout << "\nWater Supply:\t" << Env.get_water_supply() << "\nNumber Dead:\t" << numDead << "\nBiome:\t" << Env.get_biome();
 	delete [] cList;
 
 	return 0;
@@ -108,9 +109,10 @@ int iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords 
 			else{
 				int creature = rand() % sUsed;
 				if(creature != oList[i].creature && sList[creature].getHealth() > 0){
-					cout << "pre-hunt" << sList[creature].getHealth() << endl;
-					if(((Omnivore)(sList[oList[i].creature])).hunt(sList[creature]))
-						cout << "hunted" << sList[creature].getHealth() << endl;
+					((Omnivore)(sList[oList[i].creature])).hunt(sList[creature]);
+//					cout << "pre-hunt" << sList[creature].getHealth() << endl;
+//					if(((Omnivore)(sList[oList[i].creature])).hunt(sList[creature]))
+//						cout << "hunted" << sList[creature].getHealth() << endl;
 				}
 			}
 		}
@@ -124,9 +126,12 @@ int iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords 
 			}
 			else{
 				int creature = rand() % sUsed;
-				if(creature != cList[i].creature && sList[creature].getHealth() > 0)
-					if(((Carnivore)(sList[cList[i].creature])).hunt(sList[creature]))
-						cout << "hunted";
+				if(creature != cList[i].creature && sList[creature].getHealth() > 0){
+					((Carnivore)(sList[cList[i].creature])).hunt(sList[creature]);
+//					cout << "pre-hunt" << sList[creature].getHealth() << endl;
+//					if(((Carnivore)(sList[cList[i].creature])).hunt(sList[creature]))
+//						cout << "hunted" << sList[creature].getHealth() << endl;
+				}
 			}
 		}
 	}

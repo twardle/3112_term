@@ -34,6 +34,7 @@ private:
     int current_environ;
 
     //Water Supply
+    float max_water_supply;
     float water_supply;
     float water_refill_speed;
 
@@ -42,6 +43,7 @@ private:
     //Weather
     Weather season;
     int cur_season;
+    int num_iterations;
 
     //Space
     int current_pop;
@@ -74,11 +76,14 @@ public:
     void set_max_pop(int);
     Weather get_season();
     float get_temp();
+    void set_max_water_supply(float);
 
     //Methods
     void calculate_danger();
     void readTraits();
     void changeseason();
+
+    string toString(int);
 };
 
 #endif

@@ -36,10 +36,12 @@ Environment::Environment()
 
 	current_environ = -1;
 	water_supply = 0.0;
+	max_water_supply = water_supply * 2;
 	water_refill_speed = 0.0;
 	current_pop = 0;
 	danger = 0.0;
 	max_pop = 0;
+	num_iterations = 0;
 
 	//Set weather
 	cur_season = -1;
@@ -58,11 +60,16 @@ Environment::Environment(int b)
 	current_pop = 0;
 	danger = 0;
 
+	water_supply = 0.0;
+	max_water_supply = water_supply * 2;
+	water_refill_speed = 0.0;
+
 	//Set string for current environment
 	current_environ = b;
 
 	//Set weather
 	cur_season = 0;
+	num_iterations = 0;
 
 	//Biome determines all other factors
 	set_values();
@@ -122,6 +129,9 @@ Weather Environment::get_season() {
 float Environment::get_temp() {
 	return season.getTemp();
 }
+void Environment::set_max_water_supply(float max){
+	max_water_supply = max;
+}
 
 void Environment::set_values() {
 	if(current_environ == 0) //Desert
@@ -135,6 +145,7 @@ void Environment::set_values() {
 
 		//Set water variables
 		set_water_supply(750.00);
+		set_max_water_supply(water_supply * 2);
 		set_water_refill_speed(water_supply/2);
 
 		//Weather values
@@ -153,6 +164,7 @@ void Environment::set_values() {
 
 		//Set water variables
 		set_water_supply(1250);
+		set_max_water_supply(water_supply * 2);
 		set_water_refill_speed(water_supply/2);
 
 		//Weather values
@@ -172,6 +184,7 @@ void Environment::set_values() {
 
 		//Set water variables
 		set_water_supply(1500);
+		set_max_water_supply(water_supply * 2);
 		set_water_refill_speed(water_supply/2);
 
 		//Weather values
@@ -190,6 +203,7 @@ void Environment::set_values() {
 
 		//Set water variables
 		set_water_supply(2000);
+		set_max_water_supply(water_supply * 2);
 		set_water_refill_speed(water_supply/2);
 
 		//Weather values
@@ -208,6 +222,7 @@ void Environment::set_values() {
 
 		//Set water variables
 		set_water_supply(1750);
+		set_max_water_supply(water_supply * 2);
 		set_water_refill_speed(water_supply/2);
 
 		//Weather values
@@ -222,7 +237,11 @@ void Environment::set_values() {
 
 void Environment::changeseason() {
 	season.change_season();
-	set_water_supply(water_supply + water_refill_speed);
+	num_iterations++;
+	if(water_supply + water_refill_speed < max_water_supply)
+		set_water_supply(water_supply + water_refill_speed);
+	else
+		set_water_supply(max_water_supply);
 }
 
 void Environment::readTraits() {
@@ -295,4 +314,17 @@ void Environment::readTraits() {
 		else if(newTrait.getType() == 0 && i == 3)
 			i = 0;
 	}
+}
+
+string Environment::toString(int pop){
+	std::stringstream ss;
+	string toString;
+
+	ss << "\nBIOME:\t\t" << get_biome();
+	ss << "\nNUM ITERATIONS:\t" << num_iterations;
+	ss << "\nWATER SUPPLY:\t" << water_supply << " (+" << water_refill_speed << ")";
+	ss << "\nPOPULATION:\t" << pop;
+
+	toString = ss.str();
+	return toString;
 }

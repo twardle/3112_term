@@ -9,7 +9,7 @@
  */
 
 #include "Weather.h"
-
+#include <sstream>
 #include <string>
 #include <map>
 
@@ -100,4 +100,17 @@ void Weather::change_season()
 	}
 
 	setSeason(season_num);
+}
+
+string Weather::toString(){
+	std::stringstream ss;
+	string toString;
+
+	ss << "\nSEASON:\t\t" << current_season;
+	ss << "\nTEMPERATURE:\t" << temperature;
+
+	toString = ss.str();
+	return toString;
+
+
 }

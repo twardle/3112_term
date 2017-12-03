@@ -35,6 +35,8 @@ public:
 	//Method
 	void change_season();
 	void set_temps(float * temps);
+
+	string toString();
 };
 
 #endif

@@ -4,14 +4,14 @@
  *  Created on: Nov 6, 2017
  *      Author: Tyler
  */
-
 #include "Creature.h"
 #include "Trait.h"
 #include <string>
 #include <iostream>
 #include <cstdlib>
 #include <sstream>
-
+#include <assert.h>
+#define NDEBUG
 using std::list;
 using std::string;
 
@@ -81,6 +81,7 @@ void Creature::setAge(int nAge){
 	age = nAge;
 }
 float Creature::getHealth(){
+	assert(health == health);
 	return health;
 }
 void Creature::setHealth(float nHealth){
