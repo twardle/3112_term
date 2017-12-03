@@ -23,15 +23,15 @@ using namespace std;
 //global variables
 int const NUMSPECIES = 10;
 int const NUMCREATURES = 100;
-int const NUMSEASONS = 100;
+int const NUMSEASONS = 20;
 int sUsed = 0;
 int cUsed = 0;
 int hUsed = 0;
 int oUsed = 0;
-int sMax = NUMSPECIES * NUMCREATURES * 2;
-int cMax = NUMSPECIES * NUMCREATURES * 2;
-int hMax = NUMSPECIES * NUMCREATURES * 2;
-int oMax = NUMSPECIES * NUMCREATURES * 2;
+int sMax = NUMSPECIES * NUMCREATURES * 100;
+int cMax = NUMSPECIES * NUMCREATURES * 100;
+int hMax = NUMSPECIES * NUMCREATURES * 100;
+int oMax = NUMSPECIES * NUMCREATURES * 100;
 
 struct cCoords{
 	string species;
@@ -79,9 +79,17 @@ int main()
 	//iterate seasons
 	for(int i = 0; i < NUMSEASONS; i++){
 		numDead += iterateSeason(Env, sList, cList, oList, hList);
-
+		cout << Env.get_water_supply() << "," << numDead << endl;
+		for(int j = 0; j < sUsed; j++){
+			float avgWaterNeed=1.0;
+			if(sList[j].getHealth() > 0){
+				avgWaterNeed *= sList[j].getWaterNeed();
+			}
+			cout << "AVG:" << avgWaterNeed << endl;
+		}
 		Env.changeseason();
 	}
+
 	cout << Env.toString(sUsed - numDead);
 	cout << Env.get_season().toString();
 	//cout << "\nWater Supply:\t" << Env.get_water_supply() << "\nNumber Dead:\t" << numDead << "\nBiome:\t" << Env.get_biome();
