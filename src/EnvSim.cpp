@@ -23,11 +23,15 @@ using namespace std;
 //global variables
 int const NUMSPECIES = 10;
 int const NUMCREATURES = 100;
-int const NUMSEASONS = 1000;
+int const NUMSEASONS = 100;
 int sUsed = 0;
 int cUsed = 0;
 int hUsed = 0;
 int oUsed = 0;
+int sMax = NUMSPECIES * NUMCREATURES * 2;
+int cMax = NUMSPECIES * NUMCREATURES * 2;
+int hMax = NUMSPECIES * NUMCREATURES * 2;
+int oMax = NUMSPECIES * NUMCREATURES * 2;
 
 struct cCoords{
 	string species;
@@ -49,10 +53,10 @@ int main()
 	cCoords * cList = NULL;
 	cCoords * hList = NULL;
 	cCoords * oList = NULL;
-	sList = new Creature[NUMSPECIES * NUMCREATURES];
-	cList = new cCoords[NUMSPECIES * NUMCREATURES];
-	hList = new cCoords[NUMSPECIES * NUMCREATURES];
-	oList = new cCoords[NUMSPECIES * NUMCREATURES];
+	sList = new Creature[sMax];
+	cList = new cCoords[cMax];
+	hList = new cCoords[hMax];
+	oList = new cCoords[oMax];
 	int numDead = 0;
 	string userSeed;
 
@@ -100,24 +104,6 @@ int iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords 
 	int numDead = 0;
 
 
-	for(int i = 0; i < oUsed; i++){
-		if(oList[i].alive){
-			if(sList[oList[i].creature].getHealth() < 0){
-				oList[i].alive = false;
-				numDead++;
-			}
-			else{
-				int creature = rand() % sUsed;
-				if(creature != oList[i].creature && sList[creature].getHealth() > 0){
-					((Omnivore)(sList[oList[i].creature])).hunt(sList[creature]);
-//					cout << "pre-hunt" << sList[creature].getHealth() << endl;
-//					if(((Omnivore)(sList[oList[i].creature])).hunt(sList[creature]))
-//						cout << "hunted" << sList[creature].getHealth() << endl;
-				}
-			}
-		}
-	}
-
 	for(int i = 0; i < cUsed; i++){
 		if(cList[i].alive){
 			if(sList[cList[i].creature].getHealth() < 0){
@@ -125,6 +111,26 @@ int iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords 
 				numDead++;
 			}
 			else{
+				int breed = rand() % cUsed;
+				bool breeding = ((((rand() % 200) + 1) / 100.0) <= sList[cList[i].creature].getBreedChance(Env));
+				if(breeding){
+					if(sUsed < sMax)
+						if(hUsed < hMax){
+							cCoords temp;
+							sList[cList[i].creature].breed(sList[cList[breed].creature],rand());
+							temp.species = sList[sUsed].getSpecies();
+							temp.creature = sUsed++;
+							cList[cUsed++] = temp;
+						}
+						else{
+							//TODO: IMPLEMENT cList reinitialization
+						}
+					else{
+						//TODO: IMPLEMENT sList reinitialization
+					}
+				}
+
+				//cout << breeding << endl;
 				int creature = rand() % sUsed;
 				if(creature != cList[i].creature && sList[creature].getHealth() > 0){
 					((Carnivore)(sList[cList[i].creature])).hunt(sList[creature]);
@@ -136,11 +142,69 @@ int iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords 
 		}
 	}
 
+	for(int i = 0; i < oUsed; i++){
+		if(oList[i].alive){
+			if(sList[oList[i].creature].getHealth() < 0){
+				oList[i].alive = false;
+				numDead++;
+			}
+			else{
+				int breed = rand() % oUsed;
+				bool breeding = ((((rand() % 200) + 1) / 100.0) <= sList[oList[i].creature].getBreedChance(Env));
+				if(breeding){
+					if(sUsed < sMax)
+						if(oUsed < hMax){
+							cCoords temp;
+							sList[sUsed] = sList[oList[i].creature].breed(sList[oList[breed].creature],rand());
+							temp.species = sList[sUsed].getSpecies();
+							temp.creature = sUsed++;
+							oList[oUsed++] = temp;
+						}
+						else{
+							//TODO: IMPLEMENT oList reinitialization
+						}
+					else{
+						//TODO: IMPLEMENT sList reinitialization
+					}
+				}
+				//cout << breeding << endl;
+				int creature = rand() % sUsed;
+				if(creature != oList[i].creature && sList[creature].getHealth() > 0){
+					((Omnivore)(sList[oList[i].creature])).hunt(sList[creature]);
+//					cout << "pre-hunt" << sList[creature].getHealth() << endl;
+//					if(((Omnivore)(sList[oList[i].creature])).hunt(sList[creature]))
+//						cout << "hunted" << sList[creature].getHealth() << endl;
+				}
+			}
+		}
+	}
+
 	for(int i = 0; i < hUsed; i++){
 		if(hList[i].alive){
 			if(sList[oList[i].creature].getHealth() <= 0){
 				hList[i].alive = false;
 				numDead++;
+			}
+			else{
+				int breed = rand() % hUsed;
+				bool breeding = ((((rand() % 200) + 1) / 100.0) <= sList[hList[i].creature].getBreedChance(Env));
+				if(breeding){
+					if(sUsed < sMax)
+						if(hUsed < hMax){
+							cCoords temp;
+							sList[sUsed] = sList[hList[i].creature].breed(sList[hList[breed].creature],rand());
+							temp.species = sList[sUsed].getSpecies();
+							temp.creature = sUsed++;
+							hList[hUsed++] = temp;
+						}
+						else{
+							//TODO: IMPLEMENT hList reinitialization
+						}
+					else{
+						//TODO: IMPLEMENT sList reinitialization
+					}
+				}
+				//cout << breeding << endl;
 			}
 		}
 	}

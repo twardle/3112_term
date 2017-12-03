@@ -39,7 +39,7 @@ Creature::Creature(){
 	tree<string> speciesTree;
 	Trait traits[NUMTRAITS];
 	base_waterNeed = 1.00;
-	base_breedChance = 0.3;
+	base_breedChance = 0.1;
 	base_herdTendency = 1.00;
 	base_temp_resist = 1.00;
 	base_disease_resist = 1.00;
