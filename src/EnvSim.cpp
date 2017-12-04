@@ -21,8 +21,10 @@
 using namespace std;
 
 bool const PRINT_CREATURES = false;
-bool const PRINT_DEBUG = false;
+bool const PRINT_DEBUG_POP = false;
 bool const PRINT_DEBUG_HUNT = false;
+bool const PRINT_BIOME_SEASON = false;
+bool const DEBUG_PLOT = false;
 
 //global variables
 int const NUMSPECIES = 10;
@@ -40,11 +42,16 @@ struct cCoords{
 	bool alive = true;
 };
 
+struct cCount{
+	string species;
+	int count;
+};
+
 void iterateSeason(Environment&,Creature[],cCoords[],cCoords[],cCoords[]);
 
 void creatureInstantiation(Environment,Creature[],cCoords[],cCoords[],cCoords[]);
 
-int clearDead(Creature[],cCoords[],cCoords[],cCoords[]);
+void clearDead(Creature[],cCoords[],cCoords[],cCoords[]);
 
 int translateSeed(string);
 
@@ -56,11 +63,13 @@ int main()
 	cCoords * cList = NULL;
 	cCoords * hList = NULL;
 	cCoords * oList = NULL;
+	cCount * plotCount = NULL;
+	plotCount = new cCount[sMax];
 	sList = new Creature[sMax];
 	cList = new cCoords[sMax];
 	hList = new cCoords[sMax];
 	oList = new cCoords[sMax];
-	int numDead = 0;
+	int pUsed = 0;
 	string userSeed;
 
 	//Get user input for program seed
@@ -92,15 +101,46 @@ int main()
 			}
 			//cout << "AVG:" << avgWaterNeed << endl;
 		}
-		numDead = clearDead(sList,cList,oList,hList);
+		clearDead(sList,cList,oList,hList);
 		Env.changeseason();
-		cout << "\nPop:\t" << sUsed;
+		if(PRINT_DEBUG_POP)
+			cout << "Pop:\t" << sUsed << endl;
+	}
+	if(PRINT_BIOME_SEASON){
+		cout << Env.toString(sUsed);
+		cout << Env.get_season().toString() << endl << endl;
 	}
 
-	//cout << sUsed << endl;
+	for(int i = 0; i < sUsed; i++){
+		int found = false;
+		int j;
+		for(j = 0; j < pUsed; j++){
+			for(int k = 0; k < 5; k++){
+				if(plotCount[j].species.at(k) != sList[i].getSpecies().at(k)){
+					found = false;
+					break;
+				}
+				else
+					found = true;
+			}
+			if(found)
+				break;
+		}
+		if(found){
+			plotCount[j].count++;
+		}
+		else{
+			cCount temp;
+			temp.count = 1;
+			temp.species = sList[i].getSpecies();
+			plotCount[pUsed++] = temp;
+		}
+	}
 
-	cout << Env.toString(sUsed);
-	cout << Env.get_season().toString();
+	for(int i = 0; i < pUsed; i++)
+		if(DEBUG_PLOT)
+			cout << plotCount[i].species << "," << plotCount[i].count << endl;
+
 	delete [] cList;
 
 	return 0;
@@ -297,7 +337,7 @@ void creatureInstantiation(Environment Env, Creature sList[], cCoords cList[], c
 }
 
 
-int clearDead(Creature * sList,cCoords * cList,cCoords * oList,cCoords * hList){
+void clearDead(Creature * sList,cCoords * cList,cCoords * oList,cCoords * hList){
 	int currUsed = 0;
 	int numDead = 0;
 	for(int i = 0; i < sUsed; i++){
@@ -317,6 +357,4 @@ int clearDead(Creature * sList,cCoords * cList,cCoords * oList,cCoords * hList){
 		else numDead++;
 	}
 	sUsed = currUsed;
-
-	return numDead;
 }

@@ -49,8 +49,6 @@ private:
 	void calcTempResist();
 	void calcDiseaseResist();
 	void calcPredatorResist();
-
-	string mutate();
 public:
 	int index;
 

@@ -343,27 +343,33 @@ Creature Creature::breed(Creature other, int breed){
 		baby.setPredatorResist((base_predator_resist + other.getBasePredatorResist())/2);
 
 
+	bool mutate = false;
+	bool mTrait = rand() % 4 + 1;
+
+	if(breed % 500 == 0){
+		if(PRINT_DEBUG)
+			std::cout << "mutated" << std::endl;
+		mutate = true;
+	}
+
 	//set offspring traits
 	for(int i = 0; i < NUMTRAITS; i++){
 		if(traits[i].getType() == -1)
 			baby.traits[i] = other.traits[i];
 		else if(other.traits[i].getType() == -1)
 			other.traits[i] = baby.traits[i];
-		else if(traits[i] >= other.traits[i])
+		else if(traits[i] >= other.traits[i] && !mutate)
 			baby.traits[i] = traits[i];
-		else
+		else if(traits[i] >= other.traits[i] && mutate)
+			traits[i] = baby.traits[i];
+		else if (!mutate)
 			baby.traits[i] = other.traits[i];
+		else
+			other.traits[i] = baby.traits[i];
 	}
-	if(breed % 10 == 0)
-		if(PRINT_DEBUG)
-			std::cout << baby.mutate() << std::endl;
 
 	return baby;
 
-}
-
-string Creature::mutate(){
-	return "mutated";
 }
 
 string Creature::toString(){
