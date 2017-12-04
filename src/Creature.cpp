@@ -15,6 +15,8 @@
 using std::list;
 using std::string;
 
+bool const PRINT_DEBUG = false;
+
 /*
  * Creature Factors
  * |-Food
@@ -353,7 +355,8 @@ Creature Creature::breed(Creature other, int breed){
 			baby.traits[i] = other.traits[i];
 	}
 	if(breed % 10 == 0)
-		baby.mutate();
+		if(PRINT_DEBUG)
+			std::cout << baby.mutate() << std::endl;
 
 	return baby;
 

@@ -20,7 +20,7 @@
 
 using namespace std;
 
-bool const PRINT_CREATURES = true;
+bool const PRINT_CREATURES = false;
 bool const PRINT_DEBUG = false;
 bool const PRINT_DEBUG_HUNT = false;
 
@@ -32,15 +32,13 @@ int sUsed = 0;
 int cUsed = 0;
 int hUsed = 0;
 int oUsed = 0;
-int sMax = NUMSPECIES * NUMCREATURES * 150;
+int sMax = NUMSPECIES * NUMCREATURES * 1000;
 
 struct cCoords{
 	string species;
 	int creature;
 	bool alive = true;
 };
-
-void setNewMax(int w, Creature[], cCoords[], cCoords[], cCoords[]);
 
 void iterateSeason(Environment&,Creature[],cCoords[],cCoords[],cCoords[]);
 
@@ -96,6 +94,7 @@ int main()
 		}
 		numDead = clearDead(sList,cList,oList,hList);
 		Env.changeseason();
+		cout << "\nPop:\t" << sUsed;
 	}
 
 	//cout << sUsed << endl;
@@ -142,12 +141,12 @@ void iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords
 				}
 				int creature = rand() % sUsed;
 				if(creature != cList[i].creature && sList[creature].getHealth() > 0){
-					((Carnivore)(sList[cList[i].creature])).hunt(sList[creature]);
-					if(PRINT_DEBUG_HUNT){
+					if(PRINT_DEBUG_HUNT)
 						cout << "pre-hunt" << sList[creature].getHealth() << endl;
-						if(((Carnivore)(sList[cList[i].creature])).hunt(sList[creature]))
-							cout << "hunted" << sList[creature].getHealth() << endl;
-					}
+					((Carnivore)(sList[cList[i].creature])).hunt(sList[creature]);
+					if(PRINT_DEBUG_HUNT)
+						cout << "hunted" << sList[creature].getHealth() << endl;
+
 				}
 			}
 		}
@@ -176,12 +175,12 @@ void iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords
 				}
 				int creature = rand() % sUsed;
 				if(creature != oList[i].creature && sList[creature].getHealth() > 0){
-					((Omnivore)(sList[oList[i].creature])).hunt(sList[creature]);
-					if(PRINT_DEBUG_HUNT){
+					if(PRINT_DEBUG_HUNT)
 						cout << "pre-hunt" << sList[creature].getHealth() << endl;
-						if(((Omnivore)(sList[oList[i].creature])).hunt(sList[creature]))
-							cout << "hunted" << sList[creature].getHealth() << endl;
-					}
+					((Omnivore)(sList[oList[i].creature])).hunt(sList[creature]);
+					if(PRINT_DEBUG_HUNT)
+						cout << "hunted" << sList[creature].getHealth() << endl;
+
 				}
 			}
 		}

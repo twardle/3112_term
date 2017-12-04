@@ -15,16 +15,18 @@ class Omnivore : public Creature {
 private:
 	bool herding = false;
 public:
-	Omnivore(){
-
-	}
-	Omnivore(Creature & creature){
-	}
+	Omnivore(){}
+	Omnivore(Creature & creature){}
 	bool hunt(Creature & prey){
+		float currHealth = prey.getHealth();
 		if(prey.getPredatorResist() > 1)
 			prey.updateHealth(prey.getPredatorResist() - 2);
 		else
 			prey.setHealth(0);
+
+		if(currHealth < prey.getHealth())
+			prey.setHealth(currHealth);
+
 		if(prey.getHealth() <= 0)
 			return true;
 		else
@@ -32,11 +34,15 @@ public:
 	};
 
 	bool hunt(Herbivore prey){
+		float currHealth = prey.getHealth();
 		if(prey.getHerding()){
 			if(prey.getPredatorResist() + 0.5 > 1)
 				prey.updateHealth(prey.getPredatorResist() - 1.5);
 			else
 				prey.setHealth(0);
+
+			if(currHealth < prey.getHealth())
+				prey.setHealth(currHealth);
 
 			if(prey.getHealth() <= 0)
 				return true;
@@ -47,6 +53,10 @@ public:
 			prey.updateHealth(prey.getPredatorResist() - 2);
 		else
 			prey.setHealth(0);
+
+		if(currHealth < prey.getHealth())
+			prey.setHealth(currHealth);
+
 		if(prey.getHealth() <= 0)
 			return true;
 		else
@@ -56,11 +66,15 @@ public:
 	};
 
 	bool hunt(Omnivore prey){
+		float currHealth = prey.getHealth();
 		if(prey.getHerding()){
 			if(prey.getPredatorResist() + 0.5 > 1)
 				prey.updateHealth(prey.getPredatorResist() - 1.5);
 			else
 				prey.setHealth(0);
+
+			if(currHealth < prey.getHealth())
+				prey.setHealth(currHealth);
 
 			if(prey.getHealth() <= 0)
 				return true;
@@ -71,6 +85,10 @@ public:
 			prey.updateHealth(prey.getPredatorResist() - 2);
 		else
 			prey.setHealth(0);
+
+		if(currHealth < prey.getHealth())
+			prey.setHealth(currHealth);
+
 		if(prey.getHealth() <= 0)
 			return true;
 		else
