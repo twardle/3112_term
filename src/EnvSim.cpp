@@ -20,6 +20,10 @@
 
 using namespace std;
 
+bool const PRINT_CREATURES = true;
+bool const PRINT_DEBUG = false;
+bool const PRINT_DEBUG_HUNT = false;
+
 //global variables
 int const NUMSPECIES = 10;
 int const NUMCREATURES = 100;
@@ -28,10 +32,7 @@ int sUsed = 0;
 int cUsed = 0;
 int hUsed = 0;
 int oUsed = 0;
-int sMax = NUMSPECIES * NUMCREATURES * 100;
-int cMax = NUMSPECIES * NUMCREATURES * 100;
-int hMax = NUMSPECIES * NUMCREATURES * 100;
-int oMax = NUMSPECIES * NUMCREATURES * 100;
+int sMax = NUMSPECIES * NUMCREATURES * 150;
 
 struct cCoords{
 	string species;
@@ -39,9 +40,13 @@ struct cCoords{
 	bool alive = true;
 };
 
-int iterateSeason(Environment&, Creature [], cCoords [], cCoords [], cCoords []);
+void setNewMax(int w, Creature[], cCoords[], cCoords[], cCoords[]);
+
+void iterateSeason(Environment&,Creature[],cCoords[],cCoords[],cCoords[]);
 
 void creatureInstantiation(Environment,Creature[],cCoords[],cCoords[],cCoords[]);
+
+int clearDead(Creature[],cCoords[],cCoords[],cCoords[]);
 
 int translateSeed(string);
 
@@ -54,9 +59,9 @@ int main()
 	cCoords * hList = NULL;
 	cCoords * oList = NULL;
 	sList = new Creature[sMax];
-	cList = new cCoords[cMax];
-	hList = new cCoords[hMax];
-	oList = new cCoords[oMax];
+	cList = new cCoords[sMax];
+	hList = new cCoords[sMax];
+	oList = new cCoords[sMax];
 	int numDead = 0;
 	string userSeed;
 
@@ -78,7 +83,9 @@ int main()
 
 	//iterate seasons
 	for(int i = 0; i < NUMSEASONS; i++){
-		numDead += iterateSeason(Env, sList, cList, oList, hList);
+		if(sUsed == 0)
+			break;
+		iterateSeason(Env, sList, cList, oList, hList);
 		//cout << Env.get_water_supply() << "," << numDead << endl;
 		for(int j = 0; j < sUsed; j++){
 			float avgWaterNeed=1.0;
@@ -87,12 +94,14 @@ int main()
 			}
 			//cout << "AVG:" << avgWaterNeed << endl;
 		}
+		numDead = clearDead(sList,cList,oList,hList);
 		Env.changeseason();
 	}
 
-	cout << Env.toString(sUsed - numDead);
+	//cout << sUsed << endl;
+
+	cout << Env.toString(sUsed);
 	cout << Env.get_season().toString();
-	//cout << "\nWater Supply:\t" << Env.get_water_supply() << "\nNumber Dead:\t" << numDead << "\nBiome:\t" << Env.get_biome();
 	delete [] cList;
 
 	return 0;
@@ -108,22 +117,19 @@ int translateSeed(string userSeed){
 	return seed;
 }
 
-int iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords oList[], cCoords hList[]){
-	int numDead = 0;
-
+void iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords oList[], cCoords hList[]){
 
 	for(int i = 0; i < cUsed; i++){
 		if(cList[i].alive){
 			if(sList[cList[i].creature].getHealth() < 0){
 				cList[i].alive = false;
-				numDead++;
 			}
 			else{
 				int breed = rand() % cUsed;
 				bool breeding = ((((rand() % 200) + 1) / 100.0) <= sList[cList[i].creature].getBreedChance(Env));
 				if(breeding){
 					if(sUsed < sMax)
-						if(hUsed < hMax){
+						if(hUsed < sMax){
 							cCoords temp;
 							//TODO:  Consider passing reference creature
 							sList[cList[i].creature].breed(sList[cList[breed].creature],rand());
@@ -133,21 +139,15 @@ int iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords 
 							temp.creature = sUsed++;
 							cList[cUsed++] = temp;
 						}
-						else{
-							//TODO: IMPLEMENT cList reinitialization
-						}
-					else{
-						//TODO: IMPLEMENT sList reinitialization
-					}
 				}
-
-				//cout << breeding << endl;
 				int creature = rand() % sUsed;
 				if(creature != cList[i].creature && sList[creature].getHealth() > 0){
 					((Carnivore)(sList[cList[i].creature])).hunt(sList[creature]);
-//					cout << "pre-hunt" << sList[creature].getHealth() << endl;
-//					if(((Carnivore)(sList[cList[i].creature])).hunt(sList[creature]))
-//						cout << "hunted" << sList[creature].getHealth() << endl;
+					if(PRINT_DEBUG_HUNT){
+						cout << "pre-hunt" << sList[creature].getHealth() << endl;
+						if(((Carnivore)(sList[cList[i].creature])).hunt(sList[creature]))
+							cout << "hunted" << sList[creature].getHealth() << endl;
+					}
 				}
 			}
 		}
@@ -157,14 +157,13 @@ int iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords 
 		if(oList[i].alive){
 			if(sList[oList[i].creature].getHealth() < 0){
 				oList[i].alive = false;
-				numDead++;
 			}
 			else{
 				int breed = rand() % oUsed;
 				bool breeding = ((((rand() % 200) + 1) / 100.0) <= sList[oList[i].creature].getBreedChance(Env));
 				if(breeding){
 					if(sUsed < sMax)
-						if(oUsed < hMax){
+						if(oUsed < sMax){
 							cCoords temp;
 							//TODO:  Consider passing reference creature
 							sList[sUsed] = sList[oList[i].creature].breed(sList[oList[breed].creature],rand());
@@ -174,20 +173,15 @@ int iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords 
 							temp.creature = sUsed++;
 							oList[oUsed++] = temp;
 						}
-						else{
-							//TODO: IMPLEMENT oList reinitialization
-						}
-					else{
-						//TODO: IMPLEMENT sList reinitialization
-					}
 				}
-				//cout << breeding << endl;
 				int creature = rand() % sUsed;
 				if(creature != oList[i].creature && sList[creature].getHealth() > 0){
 					((Omnivore)(sList[oList[i].creature])).hunt(sList[creature]);
-//					cout << "pre-hunt" << sList[creature].getHealth() << endl;
-//					if(((Omnivore)(sList[oList[i].creature])).hunt(sList[creature]))
-//						cout << "hunted" << sList[creature].getHealth() << endl;
+					if(PRINT_DEBUG_HUNT){
+						cout << "pre-hunt" << sList[creature].getHealth() << endl;
+						if(((Omnivore)(sList[oList[i].creature])).hunt(sList[creature]))
+							cout << "hunted" << sList[creature].getHealth() << endl;
+					}
 				}
 			}
 		}
@@ -197,14 +191,13 @@ int iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords 
 		if(hList[i].alive){
 			if(sList[oList[i].creature].getHealth() <= 0){
 				hList[i].alive = false;
-				numDead++;
 			}
 			else{
 				int breed = rand() % hUsed;
 				bool breeding = ((((rand() % 200) + 1) / 100.0) <= sList[hList[i].creature].getBreedChance(Env));
 				if(breeding){
 					if(sUsed < sMax)
-						if(hUsed < hMax){
+						if(hUsed < sMax){
 							cCoords temp;
 							//TODO:  Consider passing reference creature
 							sList[sUsed] = sList[hList[i].creature].breed(sList[hList[breed].creature],rand());
@@ -214,12 +207,6 @@ int iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords 
 							temp.creature = sUsed++;
 							hList[hUsed++] = temp;
 						}
-						else{
-							//TODO: IMPLEMENT hList reinitialization
-						}
-					else{
-						//TODO: IMPLEMENT sList reinitialization
-					}
 				}
 				//cout << breeding << endl;
 			}
@@ -228,12 +215,10 @@ int iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords 
 
 	for(int i = 0; i < sUsed; i++){
 		if(sList[i].getHealth() > 0)
-			if (sList[i].updateHealth(Env)){
+			if (sList[i].updateHealth(Env) && PRINT_CREATURES){
 				cout << sList[i].toString() << endl;
 			}
 		}
-
-	return numDead;
 }
 
 void creatureInstantiation(Environment Env, Creature sList[], cCoords cList[], cCoords hList[], cCoords oList[]){
@@ -261,6 +246,7 @@ void creatureInstantiation(Environment Env, Creature sList[], cCoords cList[], c
 				cCoords temp;
 				temp.creature = sUsed;
 				temp.species = newCarnivore.getSpecies();
+				newCarnivore.index = cUsed;
 				sList[sUsed++] = newCarnivore;
 				cList[cUsed++] = temp;
 			}
@@ -280,6 +266,7 @@ void creatureInstantiation(Environment Env, Creature sList[], cCoords cList[], c
 				cCoords temp;
 				temp.creature = sUsed;
 				temp.species = newOmnivore.getSpecies();
+				newOmnivore.index = cUsed;
 				sList[sUsed++] = newOmnivore;
 				oList[oUsed++] = temp;
 			}
@@ -298,7 +285,8 @@ void creatureInstantiation(Environment Env, Creature sList[], cCoords cList[], c
 			for(int j = 0; j < NUMCREATURES; j++){
 				cCoords temp;
 				temp.creature = sUsed;
-				temp.species = newOmnivore.getSpecies();
+				temp.species = newHerbivore.getSpecies();
+				newHerbivore.index = cUsed;
 				sList[sUsed++] = newHerbivore;
 				hList[hUsed++] = temp;
 			}
@@ -307,4 +295,29 @@ void creatureInstantiation(Environment Env, Creature sList[], cCoords cList[], c
 			cout << "err" << std::endl;
 		}
 	}
+}
+
+
+int clearDead(Creature * sList,cCoords * cList,cCoords * oList,cCoords * hList){
+	int currUsed = 0;
+	int numDead = 0;
+	for(int i = 0; i < sUsed; i++){
+		if(sList[i].getHealth() > 0){
+			sList[currUsed] = sList[i];
+			if(sList[currUsed].getSpecies().at(0) == 'C'){
+				cList[sList[i].index].creature = currUsed;
+			}
+			else if(sList[currUsed].getSpecies().at(0) == 'H'){
+				hList[sList[i].index].creature = currUsed;
+			}
+			else if(sList[currUsed].getSpecies().at(0) == 'O'){
+				oList[sList[i].index].creature = currUsed;
+			}
+			currUsed++;
+		}
+		else numDead++;
+	}
+	sUsed = currUsed;
+
+	return numDead;
 }

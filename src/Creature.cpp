@@ -32,6 +32,7 @@ using std::string;
 
 
 Creature::Creature(){
+	index = -1;
 	age = 0;
 	health = 1.00;
 	species = "";
