@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : EnvSim.cpp
 // Author      : Tyler Wardle and Candace Allison
-// Version     :
+// Version     : 1.0
 // Copyright   : Your copyright notice
 // Description :
 //============================================================================
@@ -20,21 +20,24 @@
 
 using namespace std;
 
+//debug print statements
 bool const PRINT_CREATURES = false;
-bool const PRINT_DEBUG_POP = false;
 bool const PRINT_DEBUG_HUNT = false;
-bool const PRINT_BIOME_SEASON = false;
-bool const DEBUG_PLOT = false;
+bool const PRINT_BIOME_SEASON = true;
+bool const DEBUG_PLOT = true;
 
-//global variables
+//iteration and initial counts
 int const NUMSPECIES = 10;
 int const NUMCREATURES = 100;
 int const NUMSEASONS = 20;
-int sUsed = 0;
-int cUsed = 0;
-int hUsed = 0;
-int oUsed = 0;
-int sMax = NUMSPECIES * NUMCREATURES * 1000;
+int const sMax = NUMSPECIES * NUMCREATURES * 1000;
+
+//global variables
+int sUsed;
+int cUsed;
+int hUsed;
+int oUsed;
+int pUsed;
 
 struct cCoords{
 	string species;
@@ -47,6 +50,8 @@ struct cCount{
 	int count;
 };
 
+void countSpecies(cCount[],Creature[]);
+
 void iterateSeason(Environment&,Creature[],cCoords[],cCoords[],cCoords[]);
 
 void creatureInstantiation(Environment,Creature[],cCoords[],cCoords[],cCoords[]);
@@ -55,8 +60,20 @@ void clearDead(Creature[],cCoords[],cCoords[],cCoords[]);
 
 int translateSeed(string);
 
-int main()
-{
+void runSimulation();
+
+int main(){
+	runSimulation();
+}
+
+void runSimulation(){
+	//initialization of global variables
+	sUsed = 0;
+	cUsed = 0;
+	hUsed = 0;
+	oUsed = 0;
+	pUsed = 0;
+
 	//Main Variables
 	Environment Env = Environment(); //Create environment
 	Creature * sList = NULL;
@@ -69,7 +86,6 @@ int main()
 	cList = new cCoords[sMax];
 	hList = new cCoords[sMax];
 	oList = new cCoords[sMax];
-	int pUsed = 0;
 	string userSeed;
 
 	//Get user input for program seed
@@ -83,67 +99,71 @@ int main()
 
 	creatureInstantiation(Env,sList,cList,hList,oList);
 
-	//calculate stats for every creature
-	for(int i = 0; i < sUsed; i++){
-			sList[i].calcStats(Env);
-	}
-
 	//iterate seasons
 	for(int i = 0; i < NUMSEASONS; i++){
 		if(sUsed == 0)
 			break;
 		iterateSeason(Env, sList, cList, oList, hList);
-		//cout << Env.get_water_supply() << "," << numDead << endl;
 		for(int j = 0; j < sUsed; j++){
 			float avgWaterNeed=1.0;
 			if(sList[j].getHealth() > 0){
 				avgWaterNeed *= sList[j].getWaterNeed();
 			}
-			//cout << "AVG:" << avgWaterNeed << endl;
 		}
 		clearDead(sList,cList,oList,hList);
 		Env.changeseason();
-		if(PRINT_DEBUG_POP)
-			cout << "Pop:\t" << sUsed << endl;
-	}
-	if(PRINT_BIOME_SEASON){
-		cout << Env.toString(sUsed);
-		cout << Env.get_season().toString() << endl << endl;
-	}
 
-	for(int i = 0; i < sUsed; i++){
-		int found = false;
-		int j;
-		for(j = 0; j < pUsed; j++){
-			for(int k = 0; k < 5; k++){
-				if(plotCount[j].species.at(k) != sList[i].getSpecies().at(k)){
-					found = false;
-					break;
-				}
-				else
-					found = true;
+		if(PRINT_BIOME_SEASON){
+				cout << Env.toString(sUsed);
+				cout << Env.get_season().toString() << endl << endl;
 			}
-			if(found)
-				break;
-		}
-		if(found){
-			plotCount[j].count++;
-		}
-		else{
-			cCount temp;
-			temp.count = 1;
-			temp.species = sList[i].getSpecies();
-			plotCount[pUsed++] = temp;
-		}
+
+		countSpecies(plotCount, sList);
+
+		for(int i = 0; i < pUsed; i++)
+			if(DEBUG_PLOT)
+				cout << plotCount[i].species << ":\t\t" << plotCount[i].count << endl;
+
+		delete [] plotCount;
+		plotCount = new cCount[sMax];
+		pUsed = 0;
 	}
 
-	for(int i = 0; i < pUsed; i++)
-		if(DEBUG_PLOT)
-			cout << plotCount[i].species << "," << plotCount[i].count << endl;
+
 
 	delete [] cList;
+	delete [] sList;
+	delete [] hList;
+	delete [] oList;
+	delete [] plotCount;
+}
 
-	return 0;
+void countSpecies(cCount plotCount[], Creature sList[]){
+	for(int i = 0; i < sUsed; i++){
+			int found = false;
+			int j;
+			for(j = 0; j < pUsed; j++){
+				for(int k = 0; k < 5; k++){
+					if(plotCount[j].species.at(k) != sList[i].getSpecies().at(k)){
+						found = false;
+						break;
+					}
+					else
+						found = true;
+				}
+				if(found)
+					break;
+			}
+			if(found){
+				plotCount[j].count++;
+			}
+			else{
+				cCount temp;
+				temp.count = 1;
+				temp.species = sList[i].getSpecies();
+				plotCount[pUsed++] = temp;
+			}
+	}
 }
 
 int translateSeed(string userSeed){
@@ -247,7 +267,6 @@ void iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords
 							hList[hUsed++] = temp;
 						}
 				}
-				//cout << breeding << endl;
 			}
 		}
 	}
@@ -333,6 +352,10 @@ void creatureInstantiation(Environment Env, Creature sList[], cCoords cList[], c
 		default:
 			cout << "err" << std::endl;
 		}
+	}
+
+	for(int i = 0; i < sUsed; i++){
+		sList[i].calcStats(Env);
 	}
 }
 
