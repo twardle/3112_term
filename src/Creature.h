@@ -19,6 +19,8 @@ using std::string;
 #define CREATURE_H_
 const int NUMTRAITS = 5;
 
+
+
 class Creature {
 protected:
 	float waterNeed, breedChance, herdTendency;
@@ -47,9 +49,9 @@ private:
 	void calcTempResist();
 	void calcDiseaseResist();
 	void calcPredatorResist();
-
-	string mutate();
 public:
+	int index;
+
 	Creature();
 	virtual ~Creature();
 	Trait getTrait(int);
