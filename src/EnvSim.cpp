@@ -29,7 +29,7 @@ bool const DEBUG_PLOT = true;
 //iteration and initial counts
 int const NUMSPECIES = 10;
 int const NUMCREATURES = 100;
-int const NUMSEASONS = 20;
+int NUMSEASONS = 20;
 int const sMax = NUMSPECIES * NUMCREATURES * 1000;
 
 //global variables
@@ -50,6 +50,13 @@ struct cCount{
 	int count;
 };
 
+Creature * sList = NULL;
+cCoords * cList = NULL;
+cCoords * hList = NULL;
+cCoords * oList = NULL;
+cCount * plotCount = NULL;
+Environment Env;
+
 void countSpecies(cCount[],Creature[]);
 
 void iterateSeason(Environment&,Creature[],cCoords[],cCoords[],cCoords[]);
@@ -60,39 +67,35 @@ void clearDead(Creature[],cCoords[],cCoords[],cCoords[]);
 
 int translateSeed(string);
 
-void runSimulation();
+void runSimulation(int,int);
 
 int main(){
-	runSimulation();
+	string userSeed;
+	cout << "INPUT SEED:\t";
+	std::cin >> userSeed;
+
+	runSimulation(20,translateSeed(userSeed));
 }
 
-void runSimulation(){
-	//initialization of global variables
+void runSimulation(int numIterations,int seed){
+	NUMSEASONS = numIterations;
+	srand( seed );
 	sUsed = 0;
 	cUsed = 0;
 	hUsed = 0;
 	oUsed = 0;
 	pUsed = 0;
+	//initialization of global variables
+
 
 	//Main Variables
-	Environment Env = Environment(); //Create environment
-	Creature * sList = NULL;
-	cCoords * cList = NULL;
-	cCoords * hList = NULL;
-	cCoords * oList = NULL;
-	cCount * plotCount = NULL;
-	plotCount = new cCount[sMax];
+	Env = Environment(); //Create environment
 	sList = new Creature[sMax];
 	cList = new cCoords[sMax];
 	hList = new cCoords[sMax];
 	oList = new cCoords[sMax];
-	string userSeed;
+	plotCount = new cCount[sMax];
 
-	//Get user input for program seed
-	cout << "INPUT SEED:\t";
-	std::cin >> userSeed;
-	int seed = translateSeed(userSeed);
-	srand( seed );
 	int random_biome = (rand() % 5);
 	Env = Environment(random_biome);
 	Env.readTraits(); //Get traits
