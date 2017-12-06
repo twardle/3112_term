@@ -12,10 +12,10 @@ MAKEFILE      = Makefile
 
 CC            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_CHARTS_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.10 -Wall -W -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.10 -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I../Simulator -I. -I../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers -I../../../../Qt/5.9.2/clang_64/lib/QtGui.framework/Headers -I../../../../Qt/5.9.2/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I../../../../Qt/5.9.2/clang_64/mkspecs/macx-clang -F/Users/candicane/Qt/5.9.2/clang_64/lib
+INCPATH       = -I../Simulator -I. -I../../../../Qt/5.9.2/clang_64/lib/QtCharts.framework/Headers -I../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers -I../../../../Qt/5.9.2/clang_64/lib/QtGui.framework/Headers -I../../../../Qt/5.9.2/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I../../../../Qt/5.9.2/clang_64/mkspecs/macx-clang -F/Users/candicane/Qt/5.9.2/clang_64/lib
 QMAKE         = /Users/candicane/Qt/5.9.2/clang_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -35,10 +35,10 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = Simulator1.0.0
-DISTDIR = /Users/candicane/Documents/Programs/3112/build-Simulator-Desktop_Qt_5_9_2_clang_64bit-Debug/.tmp/Simulator1.0.0
+DISTDIR = /Users/candicane/Documents/Programs/QT/build-Simulator-Desktop_Qt_5_9_2_clang_64bit-Debug/.tmp/Simulator1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.10 -Wl,-rpath,@executable_path/Frameworks -Wl,-rpath,/Users/candicane/Qt/5.9.2/clang_64/lib
-LIBS          = $(SUBLIBS) -F/Users/candicane/Qt/5.9.2/clang_64/lib -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL 
+LIBS          = $(SUBLIBS) -F/Users/candicane/Qt/5.9.2/clang_64/lib -framework QtCharts -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL 
 AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
 RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
 SED           = sed
@@ -51,11 +51,20 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../Simulator/main.cpp \
-		../Simulator/mainwindow.cpp moc_mainwindow.cpp
+		../Simulator/mainwindow.cpp \
+		../Simulator/weather.cpp \
+		../Simulator/environment.cpp \
+		../Simulator/creature.cpp \
+		../Simulator/trait.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
+		weather.o \
+		environment.o \
+		creature.o \
+		trait.o \
 		moc_mainwindow.o
-DIST          = ../../../../Qt/5.9.2/clang_64/mkspecs/features/spec_pre.prf \
+DIST          = ../Simulator/traits.csv \
+		../../../../Qt/5.9.2/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.9.2/clang_64/mkspecs/qdevice.pri \
 		../../../../Qt/5.9.2/clang_64/mkspecs/features/device_config.prf \
 		../../../../Qt/5.9.2/clang_64/mkspecs/common/unix.conf \
@@ -190,6 +199,7 @@ DIST          = ../../../../Qt/5.9.2/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.9.2/clang_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/5.9.2/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../../Qt/5.9.2/clang_64/mkspecs/features/spec_post.prf \
+		../Simulator/.qmake.stash \
 		../../../../Qt/5.9.2/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/5.9.2/clang_64/mkspecs/features/mac/sdk.prf \
 		../../../../Qt/5.9.2/clang_64/mkspecs/features/toolchain.prf \
@@ -216,8 +226,20 @@ DIST          = ../../../../Qt/5.9.2/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.9.2/clang_64/mkspecs/features/exceptions.prf \
 		../../../../Qt/5.9.2/clang_64/mkspecs/features/yacc.prf \
 		../../../../Qt/5.9.2/clang_64/mkspecs/features/lex.prf \
-		../Simulator/Simulator.pro ../Simulator/mainwindow.h ../Simulator/main.cpp \
-		../Simulator/mainwindow.cpp
+		../Simulator/Simulator.pro ../Simulator/mainwindow.h \
+		../Simulator/mainwindow.h \
+		../Simulator/weather.h \
+		../Simulator/environment.h \
+		../Simulator/creature.h \
+		../Simulator/trait.h \
+		../Simulator/carnivore.h \
+		../Simulator/omnivore.h \
+		../Simulator/herbivore.h ../Simulator/main.cpp \
+		../Simulator/mainwindow.cpp \
+		../Simulator/weather.cpp \
+		../Simulator/environment.cpp \
+		../Simulator/creature.cpp \
+		../Simulator/trait.cpp
 QMAKE_TARGET  = Simulator
 DESTDIR       = 
 TARGET        = Simulator.app/Contents/MacOS/Simulator
@@ -370,6 +392,7 @@ Makefile: ../Simulator/Simulator.pro ../../../../Qt/5.9.2/clang_64/mkspecs/macx-
 		../../../../Qt/5.9.2/clang_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/5.9.2/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../../Qt/5.9.2/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../Qt/5.9.2/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/5.9.2/clang_64/mkspecs/features/mac/sdk.prf \
 		../../../../Qt/5.9.2/clang_64/mkspecs/features/toolchain.prf \
@@ -397,6 +420,7 @@ Makefile: ../Simulator/Simulator.pro ../../../../Qt/5.9.2/clang_64/mkspecs/macx-
 		../../../../Qt/5.9.2/clang_64/mkspecs/features/yacc.prf \
 		../../../../Qt/5.9.2/clang_64/mkspecs/features/lex.prf \
 		../Simulator/Simulator.pro \
+		../../../../Qt/5.9.2/clang_64/lib/QtCharts.framework/QtCharts.prl \
 		../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/QtWidgets.prl \
 		../../../../Qt/5.9.2/clang_64/lib/QtGui.framework/QtGui.prl \
 		../../../../Qt/5.9.2/clang_64/lib/QtCore.framework/QtCore.prl
@@ -536,6 +560,7 @@ Makefile: ../Simulator/Simulator.pro ../../../../Qt/5.9.2/clang_64/mkspecs/macx-
 ../../../../Qt/5.9.2/clang_64/mkspecs/features/qt_config.prf:
 ../../../../Qt/5.9.2/clang_64/mkspecs/macx-clang/qmake.conf:
 ../../../../Qt/5.9.2/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../../Qt/5.9.2/clang_64/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt/5.9.2/clang_64/mkspecs/features/mac/sdk.prf:
 ../../../../Qt/5.9.2/clang_64/mkspecs/features/toolchain.prf:
@@ -563,6 +588,7 @@ Makefile: ../Simulator/Simulator.pro ../../../../Qt/5.9.2/clang_64/mkspecs/macx-
 ../../../../Qt/5.9.2/clang_64/mkspecs/features/yacc.prf:
 ../../../../Qt/5.9.2/clang_64/mkspecs/features/lex.prf:
 ../Simulator/Simulator.pro:
+../../../../Qt/5.9.2/clang_64/lib/QtCharts.framework/QtCharts.prl:
 ../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/QtWidgets.prl:
 ../../../../Qt/5.9.2/clang_64/lib/QtGui.framework/QtGui.prl:
 ../../../../Qt/5.9.2/clang_64/lib/QtCore.framework/QtCore.prl:
@@ -596,8 +622,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt/5.9.2/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Simulator/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Simulator/main.cpp ../Simulator/mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Simulator/mainwindow.h ../Simulator/mainwindow.h ../Simulator/weather.h ../Simulator/environment.h ../Simulator/creature.h ../Simulator/trait.h ../Simulator/carnivore.h ../Simulator/omnivore.h ../Simulator/herbivore.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Simulator/main.cpp ../Simulator/mainwindow.cpp ../Simulator/weather.cpp ../Simulator/environment.cpp ../Simulator/creature.cpp ../Simulator/trait.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Simulator/mainwindow.ui $(DISTDIR)/
 
 
@@ -608,6 +634,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r Simulator.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -629,15 +656,36 @@ compiler_moc_predefs_clean:
 moc_predefs.h: ../../../../Qt/5.9.2/clang_64/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.10 -Wall -W -dM -E -o moc_predefs.h ../../../../Qt/5.9.2/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_mainwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_mainwindow.cpp
 moc_mainwindow.cpp: ../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../Simulator/environment.h \
+		../Simulator/weather.h \
+		../Simulator/trait.h \
+		../Simulator/creature.h \
+		../Simulator/carnivore.h \
+		../Simulator/herbivore.h \
+		../Simulator/omnivore.h \
 		../Simulator/mainwindow.h \
 		moc_predefs.h \
 		../../../../Qt/5.9.2/clang_64/bin/moc
-	/Users/candicane/Qt/5.9.2/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/candicane/Qt/5.9.2/clang_64/mkspecs/macx-clang -I/Users/candicane/Documents/Programs/3112/Simulator -I/Users/candicane/Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers -I/Users/candicane/Qt/5.9.2/clang_64/lib/QtGui.framework/Headers -I/Users/candicane/Qt/5.9.2/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/candicane/Qt/5.9.2/clang_64/lib ../Simulator/mainwindow.h -o moc_mainwindow.cpp
+	/Users/candicane/Qt/5.9.2/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/candicane/Qt/5.9.2/clang_64/mkspecs/macx-clang -I/Users/candicane/Documents/Programs/QT/Simulator -I/Users/candicane/Qt/5.9.2/clang_64/lib/QtCharts.framework/Headers -I/Users/candicane/Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers -I/Users/candicane/Qt/5.9.2/clang_64/lib/QtGui.framework/Headers -I/Users/candicane/Qt/5.9.2/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/candicane/Qt/5.9.2/clang_64/lib ../Simulator/mainwindow.h -o moc_mainwindow.cpp
+
+moc_mainwindow.cpp: ../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../Simulator/environment.h \
+		../Simulator/weather.h \
+		../Simulator/trait.h \
+		../Simulator/creature.h \
+		../Simulator/carnivore.h \
+		../Simulator/herbivore.h \
+		../Simulator/omnivore.h \
+		../Simulator/mainwindow.h \
+		moc_predefs.h \
+		../../../../Qt/5.9.2/clang_64/bin/moc
+	/Users/candicane/Qt/5.9.2/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/candicane/Qt/5.9.2/clang_64/mkspecs/macx-clang -I/Users/candicane/Documents/Programs/QT/Simulator -I/Users/candicane/Qt/5.9.2/clang_64/lib/QtCharts.framework/Headers -I/Users/candicane/Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers -I/Users/candicane/Qt/5.9.2/clang_64/lib/QtGui.framework/Headers -I/Users/candicane/Qt/5.9.2/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/candicane/Qt/5.9.2/clang_64/lib ../Simulator/mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -663,6 +711,13 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 main.o: ../Simulator/main.cpp ../Simulator/mainwindow.h \
 		../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../Simulator/environment.h \
+		../Simulator/weather.h \
+		../Simulator/trait.h \
+		../Simulator/creature.h \
+		../Simulator/carnivore.h \
+		../Simulator/herbivore.h \
+		../Simulator/omnivore.h \
 		../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Simulator/main.cpp
@@ -670,8 +725,36 @@ main.o: ../Simulator/main.cpp ../Simulator/mainwindow.h \
 mainwindow.o: ../Simulator/mainwindow.cpp ../Simulator/mainwindow.h \
 		../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		ui_mainwindow.h
+		../Simulator/environment.h \
+		../Simulator/weather.h \
+		../Simulator/trait.h \
+		../Simulator/creature.h \
+		../Simulator/carnivore.h \
+		../Simulator/herbivore.h \
+		../Simulator/omnivore.h \
+		ui_mainwindow.h \
+		../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers/QInputDialog \
+		../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers/qinputdialog.h \
+		../../../../Qt/5.9.2/clang_64/lib/QtCore.framework/Headers/QDir \
+		../../../../Qt/5.9.2/clang_64/lib/QtCore.framework/Headers/qdir.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Simulator/mainwindow.cpp
+
+weather.o: ../Simulator/weather.cpp ../Simulator/weather.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o weather.o ../Simulator/weather.cpp
+
+environment.o: ../Simulator/environment.cpp ../Simulator/environment.h \
+		../Simulator/weather.h \
+		../Simulator/trait.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o environment.o ../Simulator/environment.cpp
+
+creature.o: ../Simulator/creature.cpp ../Simulator/creature.h \
+		../Simulator/environment.h \
+		../Simulator/weather.h \
+		../Simulator/trait.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o creature.o ../Simulator/creature.cpp
+
+trait.o: ../Simulator/trait.cpp ../Simulator/trait.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o trait.o ../Simulator/trait.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

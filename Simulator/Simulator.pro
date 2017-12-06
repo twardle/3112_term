@@ -26,10 +26,25 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    weather.cpp \
+    environment.cpp \
+    creature.cpp \
+    trait.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    mainwindow.h \
+    weather.h \
+    environment.h \
+    creature.h \
+    trait.h \
+    carnivore.h \
+    omnivore.h \
+    herbivore.h
 
 FORMS += \
         mainwindow.ui
+
+DISTFILES += \
+    traits.csv
