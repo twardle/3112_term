@@ -65,11 +65,13 @@ void MainWindow::on_btn_start_clicked()
     //Variables
     QString siter; //Default value
     int iter = 0;
-    bool del = true;
     bool ok;
 
     //Disable start button
     ui->btn_start->setEnabled(false);
+
+    //Clear the layout
+    clearLayout();
 
     //Get player input via QInputDialog
     QString seed = QInputDialog::getText(this,tr("Get Seed"), tr("Enter Seed:"),QLineEdit::Normal,
@@ -87,6 +89,8 @@ void MainWindow::on_btn_start_clicked()
 
     runSimulation(iter,translateSeed(seed.toStdString()));
 
+
+
 //    for(int i = 0; i < iter; i++)
 //    {
 //        std::cout << i << std::endl;
@@ -98,8 +102,8 @@ void MainWindow::on_btn_start_clicked()
 //    }
 }
 
-void MainWindow::createChart(bool del)
-{
+void MainWindow::createChart()
+{   
     QLineSeries *series0 = new QLineSeries();
     QLineSeries *series1 = new QLineSeries();
 
@@ -130,9 +134,14 @@ void MainWindow::createChart(bool del)
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
     ui->gridLayout_plots->addWidget(chartView);
+}
 
-    if(del == true)
-        ui->gridLayout_plots->removeWidget(chartView);
+void MainWindow::clearLayout()
+{
+    for(int i = 0; i < ui->gridLayout_plots->count(); i++)
+    {
+        ui->gridLayout_plots->itemAt(i)->widget()->deleteLater();
+    }
 }
 
 void MainWindow::runSimulation(int numIterations,int seed){
@@ -144,7 +153,6 @@ void MainWindow::runSimulation(int numIterations,int seed){
     oUsed = 0;
     pUsed = 0;
     //initialization of global variables
-
 
     //Main Variables
     Env = Environment(); //Create environment
@@ -161,7 +169,8 @@ void MainWindow::runSimulation(int numIterations,int seed){
     creatureInstantiation(Env,sList,cList,hList,oList);
 
     //iterate seasons
-    for(int i = 0; i < NUMSEASONS; i++){
+    for(int i = 0; i < NUMSEASONS; i++)
+    {
         if(sUsed == 0)
             break;
         iterateSeason(Env, sList, cList, oList, hList);
@@ -174,10 +183,30 @@ void MainWindow::runSimulation(int numIterations,int seed){
         clearDead(sList,cList,oList,hList);
         Env.changeseason();
 
-        if(PRINT_BIOME_SEASON){
+        if(PRINT_BIOME_SEASON)
+        {
+                //Print to Console
                 cout << Env.toString(sUsed);
                 cout << Env.get_season().toString() << endl << endl;
-            }
+
+                //Change GUI to Reflect Updates
+                QString biome = QString::fromStdString(Env.get_biome());
+                QString water_supply = QString::number(Env.get_water_supply());
+                QString water_refill = QString::number(Env.get_water_refill_speed());
+                QString water = water_supply;
+                water.append("(+");
+                water.append(water_refill);
+                water.append(")");
+                QString pop = QString::number(sUsed);
+                QString season = QString::fromStdString(Env.get_season().getSeason());
+                QString temp = QString::number(Env.get_temp());
+
+                ui->biome_name->setText(biome);
+                ui->biome_ws->setText(water);
+                ui->biome_pop->setText(pop);
+                ui->season_name->setText(season);
+                ui->season_temp->setText(temp);
+        }
 
         countSpecies(plotCount, sList);
 
@@ -189,7 +218,12 @@ void MainWindow::runSimulation(int numIterations,int seed){
         plotCount = new cCount[sMax];
         pUsed = 0;
     }
+    //Draw Chart
+    createChart();
 
+    //Reenable Start Button
+    ui->btn_start->setEnabled(true);
+    ui->btn_start->setText("Restart");
 
 
     delete [] cList;

@@ -89,7 +89,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    void createChart(bool del);
+    void createChart();
+    void clearLayout();
 };
 
 #endif // MAINWINDOW_H
