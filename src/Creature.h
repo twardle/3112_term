@@ -9,7 +9,6 @@
 
 #include "Environment.h"
 #include "Trait.h"
-#include "tree.hh"
 #include "Weather.h"
 
 using std::list;
@@ -27,7 +26,6 @@ protected:
 	float temp_resist, disease_resist, predator_resist;
 private:
 	string species;
-	tree<string> speciesTree;
 	int age;
 	bool diseased;
 	float health;
@@ -67,7 +65,6 @@ public:
 	void setSpecies();
 	bool getDiseased();
 	void setDiseased(bool);
-	tree<string> getSpeciesTree();
 
 	float getWaterNeed();
 	float getBreedChance(Environment Env);

@@ -39,7 +39,6 @@ Creature::Creature(){
 	health = 1.00;
 	species = "";
 	diseased = false;
-	tree<string> speciesTree;
 	Trait traits[NUMTRAITS];
 	base_waterNeed = 1.00;
 	base_breedChance = 0.1;
@@ -106,9 +105,6 @@ void Creature::setSpecies(){
 
 	for(int i = 1; i < 5; i++)
 		species += (traits[i].getTraitName()).at(0);
-}
-tree<string> Creature::getSpeciesTree(){
-	return speciesTree;
 }
 
 float Creature::getWaterNeed(){
@@ -358,11 +354,11 @@ Creature Creature::breed(Creature other, int breed){
 			baby.traits[i] = other.traits[i];
 		else if(other.traits[i].getType() == -1)
 			other.traits[i] = baby.traits[i];
-		else if(traits[i] >= other.traits[i] && !mutate)
+		else if((traits[i] >= other.traits[i] && !mutate) || mTrait != i)
 			baby.traits[i] = traits[i];
-		else if(traits[i] >= other.traits[i] && mutate)
+		else if((traits[i] >= other.traits[i] && mutate) || mTrait != i)
 			traits[i] = baby.traits[i];
-		else if (!mutate)
+		else if (!mutate || mTrait != i)
 			baby.traits[i] = other.traits[i];
 		else
 			other.traits[i] = baby.traits[i];
