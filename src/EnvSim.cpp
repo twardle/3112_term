@@ -71,10 +71,13 @@ void runSimulation(int,int);
 
 int main(){
 	string userSeed;
+	int numIterations;
 	cout << "INPUT SEED:\t";
 	std::cin >> userSeed;
+	cout << "ITERATION NUMBER:\t";
+	std::cin >> numIterations;
 
-	runSimulation(20,translateSeed(userSeed));
+	runSimulation(numIterations,translateSeed(userSeed));
 }
 
 void runSimulation(int numIterations,int seed){
