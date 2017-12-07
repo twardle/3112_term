@@ -25,6 +25,7 @@ protected:
 	float waterNeed, breedChance, herdTendency;
 	float temp_resist, disease_resist, predator_resist;
 private:
+	bool counted;
 	string species;
 	int age;
 	bool diseased;

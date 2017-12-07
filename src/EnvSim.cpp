@@ -21,10 +21,10 @@
 using namespace std;
 
 //debug print statements
-bool const PRINT_CREATURES = false;
+bool const PRINT_CREATURES = true;
 bool const PRINT_DEBUG_HUNT = false;
-bool const PRINT_BIOME_SEASON = true;
-bool const DEBUG_PLOT = true;
+bool const PRINT_BIOME_SEASON = false;
+bool const DEBUG_PLOT = false;
 
 //iteration and initial counts
 int const NUMSPECIES = 10;
@@ -126,13 +126,9 @@ void runSimulation(int numIterations,int seed){
 
 		countSpecies(plotCount, sList);
 
-		for(int i = 0; i < pUsed; i++)
+		for(int j = 0; j < pUsed; j++)
 			if(DEBUG_PLOT)
-				cout << plotCount[i].species << ":\t\t" << plotCount[i].count << endl;
-
-		delete [] plotCount;
-		plotCount = new cCount[sMax];
-		pUsed = 0;
+				cout << plotCount[j].species << ":\t\t" << plotCount[j].count << endl;
 	}
 
 
@@ -145,6 +141,10 @@ void runSimulation(int numIterations,int seed){
 }
 
 void countSpecies(cCount plotCount[], Creature sList[]){
+	for(int i = 0; i < pUsed; i++){
+		plotCount[i].count = 0;
+	}
+
 	for(int i = 0; i < sUsed; i++){
 			int found = false;
 			int j;
@@ -190,6 +190,7 @@ void iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords
 				cList[i].alive = false;
 			}
 			else{
+				sList[cList[i].creature].setAge(sList[cList[i].creature].getAge() + 0.25);
 				int breed = rand() % cUsed;
 				bool breeding = ((((rand() % 200) + 1) / 100.0) <= sList[cList[i].creature].getBreedChance(Env));
 				if(breeding){
@@ -224,6 +225,7 @@ void iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords
 				oList[i].alive = false;
 			}
 			else{
+				sList[oList[i].creature].setAge(sList[oList[i].creature].getAge() + 0.25);
 				int breed = rand() % oUsed;
 				bool breeding = ((((rand() % 200) + 1) / 100.0) <= sList[oList[i].creature].getBreedChance(Env));
 				if(breeding){
@@ -254,10 +256,11 @@ void iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords
 
 	for(int i = 0; i < hUsed; i++){
 		if(hList[i].alive){
-			if(sList[oList[i].creature].getHealth() <= 0){
+			if(sList[hList[i].creature].getHealth() <= 0){
 				hList[i].alive = false;
 			}
 			else{
+				sList[hList[i].creature].setAge(sList[hList[i].creature].getAge() + 0.25);
 				int breed = rand() % hUsed;
 				bool breeding = ((((rand() % 200) + 1) / 100.0) <= sList[hList[i].creature].getBreedChance(Env));
 				if(breeding){
