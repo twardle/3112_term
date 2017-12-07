@@ -21,7 +21,7 @@
 using namespace std;
 
 //debug print statements
-bool const PRINT_CREATURES = true;
+bool const PRINT_CREATURES = false;
 bool const PRINT_DEBUG_HUNT = false;
 bool const PRINT_BIOME_SEASON = false;
 bool const DEBUG_PLOT = false;
@@ -109,13 +109,8 @@ void runSimulation(int numIterations,int seed){
 	for(int i = 0; i < NUMSEASONS; i++){
 		if(sUsed == 0)
 			break;
+
 		iterateSeason(Env, sList, cList, oList, hList);
-		for(int j = 0; j < sUsed; j++){
-			float avgWaterNeed=1.0;
-			if(sList[j].getHealth() > 0){
-				avgWaterNeed *= sList[j].getWaterNeed();
-			}
-		}
 		clearDead(sList,cList,oList,hList);
 		Env.changeseason();
 

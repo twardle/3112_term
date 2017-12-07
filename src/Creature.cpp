@@ -77,10 +77,10 @@ void Creature::setDiseased(bool dis){
 	diseased = dis;
 }
 
-int Creature::getAge(){
+float Creature::getAge(){
 	return age;
 }
-void Creature::setAge(int nAge){
+void Creature::setAge(float nAge){
 	age = nAge;
 }
 float Creature::getHealth(){
