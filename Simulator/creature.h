@@ -25,8 +25,9 @@ protected:
     float waterNeed, breedChance, herdTendency;
     float temp_resist, disease_resist, predator_resist;
 private:
+    bool counted;
     string species;
-    int age;
+    float age;
     bool diseased;
     float health;
     Trait traits[NUMTRAITS];
@@ -56,8 +57,8 @@ public:
     void setTrait(int, Trait);
     void removeTrait(int);
 
-    int getAge();
-    void setAge(int);
+    float getAge();
+    void setAge(float);
     float getHealth();
     void setHealth(float);
     string getSpecies();

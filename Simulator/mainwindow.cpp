@@ -6,6 +6,7 @@
 #include <QtCharts/QAreaSeries>
 #include <QInputDialog>
 #include <QDir>
+#include <QValueAxis>
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -88,18 +89,6 @@ void MainWindow::on_btn_start_clicked()
     iter = siter.toInt();
 
     runSimulation(iter,translateSeed(seed.toStdString()));
-
-
-
-//    for(int i = 0; i < iter; i++)
-//    {
-//        std::cout << i << std::endl;
-
-//        if(i == iter - 1)
-//            del = false;
-
-//        createChart(del);
-//    }
 }
 
 void MainWindow::createChart()
@@ -112,21 +101,14 @@ void MainWindow::createChart()
     *series1 << QPointF(1, 3) << QPointF(3, 4) << QPointF(7, 3) << QPointF(8, 2) << QPointF(12, 3)
                     << QPointF(16, 4) << QPointF(18, 3);
 
-    QAreaSeries *series = new QAreaSeries(series0, series1);
-    series->setName("Batman");
-    QPen pen(0x059605);
-    pen.setWidth(3);
-    series->setPen(pen);
-
-    QLinearGradient gradient(QPointF(0, 0), QPointF(0, 1));
-    gradient.setColorAt(0.0, 0x3cc63c);
-    gradient.setColorAt(1.0, 0x26f626);
-    gradient.setCoordinateMode(QGradient::ObjectBoundingMode);
-    series->setBrush(gradient);
+    //QAreaSeries *series = new QAreaSeries(series0, series1);
+    //series->setName("Batman");
+    //series->setPen(pen);
 
     QChart *chart = new QChart();
-    chart->addSeries(series);
-    chart->setTitle("Simple areachart example");
+    chart->addSeries(series0);
+    chart->addSeries(series1);
+    chart->setTitle("Population Over Time");
     chart->createDefaultAxes();
     chart->axisX()->setRange(0, 20);
     chart->axisY()->setRange(0, 10);
@@ -162,11 +144,25 @@ void MainWindow::runSimulation(int numIterations,int seed){
     oList = new cCoords[sMax];
     plotCount = new cCount[sMax];
 
+    //Variable
+    int number = NUMSPECIES; //Number represents default numspecies
+    int maxCount = NUMCREATURES;
+
     int random_biome = (rand() % 5);
     Env = Environment(random_biome);
     Env.readTraits(); //Get traits
 
     creatureInstantiation(Env,sList,cList,hList,oList);
+
+    //Create default list of lineseries
+    QLineSeries *series[sMax];
+    QChart *chart = new QChart();
+
+    for(int i = 0; i < NUMSPECIES; i++)
+    {
+        series[i] = new QLineSeries();
+        series[i]->append(0,NUMCREATURES);
+    }
 
     //iterate seasons
     for(int i = 0; i < NUMSEASONS; i++)
@@ -174,12 +170,7 @@ void MainWindow::runSimulation(int numIterations,int seed){
         if(sUsed == 0)
             break;
         iterateSeason(Env, sList, cList, oList, hList);
-        for(int j = 0; j < sUsed; j++){
-            float avgWaterNeed=1.0;
-            if(sList[j].getHealth() > 0){
-                avgWaterNeed *= sList[j].getWaterNeed();
-            }
-        }
+
         clearDead(sList,cList,oList,hList);
         Env.changeseason();
 
@@ -210,21 +201,60 @@ void MainWindow::runSimulation(int numIterations,int seed){
 
         countSpecies(plotCount, sList);
 
-        for(int i = 0; i < pUsed; i++)
-            if(DEBUG_PLOT)
-                cout << plotCount[i].species << ":\t\t" << plotCount[i].count << endl;
+        if(pUsed > number)
+        {
+            for(int k = number; k < pUsed; k++)
+            {
+                series[k] = new QLineSeries();
+            }
 
-        delete [] plotCount;
-        plotCount = new cCount[sMax];
-        pUsed = 0;
+            number = pUsed;
+        }
+
+        for(int j = 0; j < pUsed; j++)
+        {
+            series[j]->append(i+1,plotCount[j].count);
+
+            //Get maximum count
+            if(plotCount[j].count > maxCount)
+                maxCount = plotCount[j].count;
+
+            if(DEBUG_PLOT)
+                cout << plotCount[j].species << ":\t\t" << plotCount[j].count << endl;
+        }
     }
-    //Draw Chart
-    createChart();
+
+    //Add each series to the chart
+    //Set up name for each series
+    for(int i = 0; i < pUsed; i++)
+    {
+        //Randomly generate colors
+        int red = (rand() % 255);
+        int green = (rand() % 255);
+        int blue = (rand() % 255);
+
+        //Create pen
+        QPen pen(QColor(red,green,blue));
+
+        series[i]->setName(QString::fromStdString(plotCount[i].species));
+        series[i]->setPen(pen);
+        chart->addSeries(series[i]);
+    }
+
+    //Add each series to the chart
+    chart->setTitle("Population Over Time");
+    chart->createDefaultAxes();
+    chart->legend()->setAlignment(Qt::AlignRight);
+    chart->axisX()->setRange(0,numIterations);
+    chart->axisY()->setRange(0,maxCount);
+
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    ui->gridLayout_plots->addWidget(chartView);
 
     //Reenable Start Button
     ui->btn_start->setEnabled(true);
     ui->btn_start->setText("Restart");
-
 
     delete [] cList;
     delete [] sList;
@@ -235,7 +265,13 @@ void MainWindow::runSimulation(int numIterations,int seed){
 
 void MainWindow::countSpecies(cCount[], Creature[])
 {
-    for(int i = 0; i < sUsed; i++){
+    for(int i = 0; i < pUsed; i++)
+    {
+        plotCount[i].count = 0;
+    }
+
+    for(int i = 0; i < sUsed; i++)
+    {
                 int found = false;
                 int j;
                 for(j = 0; j < pUsed; j++){
@@ -281,6 +317,7 @@ void MainWindow::iterateSeason(Environment & Env, Creature sList[], cCoords cLis
                 cList[i].alive = false;
             }
             else{
+                sList[cList[i].creature].setAge(sList[cList[i].creature].getAge() + 0.25);
                 int breed = rand() % cUsed;
                 bool breeding = ((((rand() % 200) + 1) / 100.0) <= sList[cList[i].creature].getBreedChance(Env));
                 if(breeding){
@@ -315,6 +352,7 @@ void MainWindow::iterateSeason(Environment & Env, Creature sList[], cCoords cLis
                 oList[i].alive = false;
             }
             else{
+                sList[oList[i].creature].setAge(sList[oList[i].creature].getAge() + 0.25);
                 int breed = rand() % oUsed;
                 bool breeding = ((((rand() % 200) + 1) / 100.0) <= sList[oList[i].creature].getBreedChance(Env));
                 if(breeding){
@@ -345,10 +383,11 @@ void MainWindow::iterateSeason(Environment & Env, Creature sList[], cCoords cLis
 
     for(int i = 0; i < hUsed; i++){
         if(hList[i].alive){
-            if(sList[oList[i].creature].getHealth() <= 0){
+            if(sList[hList[i].creature].getHealth() <= 0){
                 hList[i].alive = false;
             }
             else{
+                sList[hList[i].creature].setAge(sList[hList[i].creature].getAge() + 0.25);
                 int breed = rand() % hUsed;
                 bool breeding = ((((rand() % 200) + 1) / 100.0) <= sList[hList[i].creature].getBreedChance(Env));
                 if(breeding){

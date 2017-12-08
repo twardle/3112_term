@@ -34,6 +34,7 @@ bool const PRINT_DEBUG = false;
 
 
 Creature::Creature(){
+    counted = false;
     index = -1;
     age = 0;
     health = 1.00;
@@ -76,10 +77,10 @@ void Creature::setDiseased(bool dis){
     diseased = dis;
 }
 
-int Creature::getAge(){
+float Creature::getAge(){
     return age;
 }
-void Creature::setAge(int nAge){
+void Creature::setAge(float nAge){
     age = nAge;
 }
 float Creature::getHealth(){
