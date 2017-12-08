@@ -1,12 +1,15 @@
 //QT Imports
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "detailwindow.h"
+
 #include <QtCharts/QChartView>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QAreaSeries>
 #include <QInputDialog>
 #include <QDir>
 #include <QValueAxis>
+#include <QTableWidget>
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -54,6 +57,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    new_window = new detailwindow(this);
 }
 
 MainWindow::~MainWindow()
@@ -148,11 +152,19 @@ void MainWindow::runSimulation(int numIterations,int seed){
     int number = NUMSPECIES; //Number represents default numspecies
     int maxCount = NUMCREATURES;
 
+    //Create array to hold largest values for each species
+    int *largest = new int[sMax];
+
+    //Create random biome
     int random_biome = (rand() % 5);
     Env = Environment(random_biome);
     Env.readTraits(); //Get traits
 
     creatureInstantiation(Env,sList,cList,hList,oList);
+
+    //Create table stuff
+    new_window->setcols(numIterations+2);
+    new_window->setrows(NUMSPECIES+1);
 
     //Create default list of lineseries
     QLineSeries *series[sMax];
@@ -162,6 +174,9 @@ void MainWindow::runSimulation(int numIterations,int seed){
     {
         series[i] = new QLineSeries();
         series[i]->append(0,NUMCREATURES);
+        largest[i] = NUMCREATURES;
+        QTableWidgetItem *item = new QTableWidgetItem(tr("%1").arg(NUMCREATURES));
+        new_window->insertitem(i+1,1,item);
     }
 
     //iterate seasons
@@ -206,6 +221,10 @@ void MainWindow::runSimulation(int numIterations,int seed){
             for(int k = number; k < pUsed; k++)
             {
                 series[k] = new QLineSeries();
+                largest[k] = plotCount[k].count;
+                new_window->insertrow(k+1);
+                QTableWidgetItem *item = new QTableWidgetItem(tr("%1").arg(plotCount[k].count));
+                new_window->insertitem(k+1,i+2,item);
             }
 
             number = pUsed;
@@ -214,6 +233,11 @@ void MainWindow::runSimulation(int numIterations,int seed){
         for(int j = 0; j < pUsed; j++)
         {
             series[j]->append(i+1,plotCount[j].count);
+            QTableWidgetItem *item = new QTableWidgetItem(tr("%1").arg(plotCount[j].count));
+            new_window->insertitem(j+1,i+2,item);
+
+            if(largest[j] < plotCount[j].count)
+                largest[j] = plotCount[j].count;
 
             //Get maximum count
             if(plotCount[j].count > maxCount)
@@ -222,6 +246,27 @@ void MainWindow::runSimulation(int numIterations,int seed){
             if(DEBUG_PLOT)
                 cout << plotCount[j].species << ":\t\t" << plotCount[j].count << endl;
         }
+    }
+
+    //Set beginning values for row 1
+    for(int i = 0; i <= numIterations+1; i++)
+    {
+        QTableWidgetItem *item;
+        if(i == 0) //Species Name
+        {
+            item = new QTableWidgetItem(tr("Species"));
+        }
+        else
+        {
+            item = new QTableWidgetItem(tr("Iteration %1").arg(i-1));
+        }
+        new_window->insertitem(0,i,item);
+    }
+
+    for(int i = 0; i <= pUsed+2; i++)
+    {
+        QTableWidgetItem *item = new QTableWidgetItem(tr(plotCount[i].species.c_str()));
+        new_window->insertitem(i+1,0,item);
     }
 
     //Add each series to the chart
@@ -236,9 +281,12 @@ void MainWindow::runSimulation(int numIterations,int seed){
         //Create pen
         QPen pen(QColor(red,green,blue));
 
-        series[i]->setName(QString::fromStdString(plotCount[i].species));
-        series[i]->setPen(pen);
-        chart->addSeries(series[i]);
+        if(largest[i] >= 20) //Display on chart
+        {
+            series[i]->setName(QString::fromStdString(plotCount[i].species));
+            series[i]->setPen(pen);
+            chart->addSeries(series[i]);
+        }
     }
 
     //Add each series to the chart
@@ -515,4 +563,11 @@ void MainWindow::clearDead(Creature * sList,cCoords * cList,cCoords * oList,cCoo
         else numDead++;
     }
     sUsed = currUsed;
+}
+
+void MainWindow::on_show_details_clicked()
+{
+
+    new_window->show();
+
 }

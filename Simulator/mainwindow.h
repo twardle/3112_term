@@ -18,6 +18,8 @@
 #include "herbivore.h"
 #include "omnivore.h"
 
+#include "detailwindow.h"
+
 QT_BEGIN_NAMESPACE
 class QComboBox;
 class QCheckBox;
@@ -87,8 +89,11 @@ public:
 private slots:
     void on_btn_start_clicked();
 
+    void on_show_details_clicked();
+
 private:
     Ui::MainWindow *ui;
+    detailwindow *new_window;
     void createChart();
     void clearLayout();
 };

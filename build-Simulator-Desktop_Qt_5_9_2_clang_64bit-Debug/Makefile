@@ -55,14 +55,18 @@ SOURCES       = ../Simulator/main.cpp \
 		../Simulator/weather.cpp \
 		../Simulator/environment.cpp \
 		../Simulator/creature.cpp \
-		../Simulator/trait.cpp moc_mainwindow.cpp
+		../Simulator/trait.cpp \
+		../Simulator/detailwindow.cpp moc_mainwindow.cpp \
+		moc_detailwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		weather.o \
 		environment.o \
 		creature.o \
 		trait.o \
-		moc_mainwindow.o
+		detailwindow.o \
+		moc_mainwindow.o \
+		moc_detailwindow.o
 DIST          = ../Simulator/traits.csv \
 		../../../../Qt/5.9.2/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.9.2/clang_64/mkspecs/qdevice.pri \
@@ -234,12 +238,14 @@ DIST          = ../Simulator/traits.csv \
 		../Simulator/trait.h \
 		../Simulator/carnivore.h \
 		../Simulator/omnivore.h \
-		../Simulator/herbivore.h ../Simulator/main.cpp \
+		../Simulator/herbivore.h \
+		../Simulator/detailwindow.h ../Simulator/main.cpp \
 		../Simulator/mainwindow.cpp \
 		../Simulator/weather.cpp \
 		../Simulator/environment.cpp \
 		../Simulator/creature.cpp \
-		../Simulator/trait.cpp
+		../Simulator/trait.cpp \
+		../Simulator/detailwindow.cpp
 QMAKE_TARGET  = Simulator
 DESTDIR       = 
 TARGET        = Simulator.app/Contents/MacOS/Simulator
@@ -253,7 +259,7 @@ EXPORT_ACTIVE_ARCHS = $(filter $(EXPORT_VALID_ARCHS), $(ARCHS))
 first: all
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_detailwindow.h $(OBJECTS)  
 	@test -d Simulator.app/Contents/MacOS/ || mkdir -p Simulator.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -622,9 +628,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt/5.9.2/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Simulator/mainwindow.h ../Simulator/mainwindow.h ../Simulator/weather.h ../Simulator/environment.h ../Simulator/creature.h ../Simulator/trait.h ../Simulator/carnivore.h ../Simulator/omnivore.h ../Simulator/herbivore.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Simulator/main.cpp ../Simulator/mainwindow.cpp ../Simulator/weather.cpp ../Simulator/environment.cpp ../Simulator/creature.cpp ../Simulator/trait.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Simulator/mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../Simulator/mainwindow.h ../Simulator/mainwindow.h ../Simulator/weather.h ../Simulator/environment.h ../Simulator/creature.h ../Simulator/trait.h ../Simulator/carnivore.h ../Simulator/omnivore.h ../Simulator/herbivore.h ../Simulator/detailwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Simulator/main.cpp ../Simulator/mainwindow.cpp ../Simulator/weather.cpp ../Simulator/environment.cpp ../Simulator/creature.cpp ../Simulator/trait.cpp ../Simulator/detailwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Simulator/mainwindow.ui ../Simulator/detailwindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -656,9 +662,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: ../../../../Qt/5.9.2/clang_64/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.10 -Wall -W -dM -E -o moc_predefs.h ../../../../Qt/5.9.2/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_mainwindow.cpp moc_detailwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_mainwindow.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_mainwindow.cpp moc_detailwindow.cpp
 moc_mainwindow.cpp: ../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		../Simulator/environment.h \
@@ -686,15 +692,26 @@ moc_mainwindow.cpp: ../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Header
 		moc_predefs.h \
 		../../../../Qt/5.9.2/clang_64/bin/moc
 	/Users/candicane/Qt/5.9.2/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/candicane/Qt/5.9.2/clang_64/mkspecs/macx-clang -I/Users/candicane/Documents/Programs/QT/Simulator -I/Users/candicane/Qt/5.9.2/clang_64/lib/QtCharts.framework/Headers -I/Users/candicane/Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers -I/Users/candicane/Qt/5.9.2/clang_64/lib/QtGui.framework/Headers -I/Users/candicane/Qt/5.9.2/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/candicane/Qt/5.9.2/clang_64/lib ../Simulator/mainwindow.h -o moc_mainwindow.cpp
+
+moc_detailwindow.cpp: ../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../Simulator/detailwindow.h \
+		moc_predefs.h \
+		../../../../Qt/5.9.2/clang_64/bin/moc
+	/Users/candicane/Qt/5.9.2/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/candicane/Qt/5.9.2/clang_64/mkspecs/macx-clang -I/Users/candicane/Documents/Programs/QT/Simulator -I/Users/candicane/Qt/5.9.2/clang_64/lib/QtCharts.framework/Headers -I/Users/candicane/Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers -I/Users/candicane/Qt/5.9.2/clang_64/lib/QtGui.framework/Headers -I/Users/candicane/Qt/5.9.2/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/candicane/Qt/5.9.2/clang_64/lib ../Simulator/detailwindow.h -o moc_detailwindow.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h
+compiler_uic_make_all: ui_mainwindow.h ui_detailwindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h
+	-$(DEL_FILE) ui_mainwindow.h ui_detailwindow.h
 ui_mainwindow.h: ../Simulator/mainwindow.ui \
 		../../../../Qt/5.9.2/clang_64/bin/uic
 	/Users/candicane/Qt/5.9.2/clang_64/bin/uic ../Simulator/mainwindow.ui -o ui_mainwindow.h
+
+ui_detailwindow.h: ../Simulator/detailwindow.ui \
+		../../../../Qt/5.9.2/clang_64/bin/uic
+	/Users/candicane/Qt/5.9.2/clang_64/bin/uic ../Simulator/detailwindow.ui -o ui_detailwindow.h
 
 compiler_rez_source_make_all:
 compiler_rez_source_clean:
@@ -733,10 +750,15 @@ mainwindow.o: ../Simulator/mainwindow.cpp ../Simulator/mainwindow.h \
 		../Simulator/herbivore.h \
 		../Simulator/omnivore.h \
 		ui_mainwindow.h \
+		../Simulator/detailwindow.h \
 		../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers/QInputDialog \
 		../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers/qinputdialog.h \
 		../../../../Qt/5.9.2/clang_64/lib/QtCore.framework/Headers/QDir \
-		../../../../Qt/5.9.2/clang_64/lib/QtCore.framework/Headers/qdir.h
+		../../../../Qt/5.9.2/clang_64/lib/QtCore.framework/Headers/qdir.h \
+		../../../../Qt/5.9.2/clang_64/lib/QtCharts.framework/Headers/QValueAxis \
+		../../../../Qt/5.9.2/clang_64/lib/QtCharts.framework/Headers/qvalueaxis.h \
+		../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers/QTableWidget \
+		../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers/qtablewidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Simulator/mainwindow.cpp
 
 weather.o: ../Simulator/weather.cpp ../Simulator/weather.h
@@ -756,8 +778,17 @@ creature.o: ../Simulator/creature.cpp ../Simulator/creature.h \
 trait.o: ../Simulator/trait.cpp ../Simulator/trait.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o trait.o ../Simulator/trait.cpp
 
+detailwindow.o: ../Simulator/detailwindow.cpp ../Simulator/detailwindow.h \
+		../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Qt/5.9.2/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		ui_detailwindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o detailwindow.o ../Simulator/detailwindow.cpp
+
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_detailwindow.o: moc_detailwindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_detailwindow.o moc_detailwindow.cpp
 
 ####### Install
 

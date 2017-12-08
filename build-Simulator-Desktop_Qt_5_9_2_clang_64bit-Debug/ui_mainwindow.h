@@ -32,6 +32,8 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *actionExit;
+    QAction *actionStuff;
     QWidget *centralWidget;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *info_layout;
@@ -50,7 +52,7 @@ public:
     QLabel *prompt_temp;
     QFrame *line;
     QFrame *line_2;
-    QPushButton *pushButton;
+    QPushButton *show_details;
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout_plots;
     QPushButton *btn_start;
@@ -74,6 +76,10 @@ public:
         MainWindow->setStyleSheet(QStringLiteral(""));
         MainWindow->setDocumentMode(false);
         MainWindow->setTabShape(QTabWidget::Rounded);
+        actionExit = new QAction(MainWindow);
+        actionExit->setObjectName(QStringLiteral("actionExit"));
+        actionStuff = new QAction(MainWindow);
+        actionStuff->setObjectName(QStringLiteral("actionStuff"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         centralWidget->setEnabled(true);
@@ -164,9 +170,9 @@ public:
         line_2->setGeometry(QRect(10, 360, 231, 20));
         line_2->setFrameShape(QFrame::HLine);
         line_2->setFrameShadow(QFrame::Sunken);
-        pushButton = new QPushButton(frame_3);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(50, 410, 151, 61));
+        show_details = new QPushButton(frame_3);
+        show_details->setObjectName(QStringLiteral("show_details"));
+        show_details->setGeometry(QRect(50, 410, 151, 61));
 
         info_layout->addWidget(frame_3);
 
@@ -225,19 +231,21 @@ public:
 #ifndef QT_NO_TOOLTIP
         MainWindow->setToolTip(QString());
 #endif // QT_NO_TOOLTIP
+        actionExit->setText(QApplication::translate("MainWindow", "Exit", Q_NULLPTR));
+        actionStuff->setText(QApplication::translate("MainWindow", "Stuff", Q_NULLPTR));
         title_biome->setText(QApplication::translate("MainWindow", "Biome", Q_NULLPTR));
         title_season->setText(QApplication::translate("MainWindow", "Season", Q_NULLPTR));
         prompt_name->setText(QApplication::translate("MainWindow", "Name:", Q_NULLPTR));
-        biome_name->setText(QApplication::translate("MainWindow", "place", Q_NULLPTR));
-        biome_ws->setText(QApplication::translate("MainWindow", "place", Q_NULLPTR));
+        biome_name->setText(QString());
+        biome_ws->setText(QString());
         prompt_ws->setText(QApplication::translate("MainWindow", "Water Supply:", Q_NULLPTR));
-        biome_pop->setText(QApplication::translate("MainWindow", "place", Q_NULLPTR));
+        biome_pop->setText(QString());
         prompt_pop->setText(QApplication::translate("MainWindow", "Population:", Q_NULLPTR));
-        season_name->setText(QApplication::translate("MainWindow", "place", Q_NULLPTR));
-        season_temp->setText(QApplication::translate("MainWindow", "place", Q_NULLPTR));
+        season_name->setText(QString());
+        season_temp->setText(QString());
         prompt_name_s->setText(QApplication::translate("MainWindow", "Name:", Q_NULLPTR));
         prompt_temp->setText(QApplication::translate("MainWindow", "Temperature:", Q_NULLPTR));
-        pushButton->setText(QApplication::translate("MainWindow", "Population Details", Q_NULLPTR));
+        show_details->setText(QApplication::translate("MainWindow", "Population Details", Q_NULLPTR));
         btn_start->setText(QApplication::translate("MainWindow", "Start", Q_NULLPTR));
         label->setText(QApplication::translate("MainWindow", "Iterations:", Q_NULLPTR));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", Q_NULLPTR));

@@ -137,7 +137,7 @@
          </font>
         </property>
         <property name="text">
-         <string>place</string>
+         <string/>
         </property>
        </widget>
        <widget class="QLabel" name="biome_ws">
@@ -157,7 +157,7 @@
          </font>
         </property>
         <property name="text">
-         <string>place</string>
+         <string/>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
@@ -203,7 +203,7 @@
          </font>
         </property>
         <property name="text">
-         <string>place</string>
+         <string/>
         </property>
        </widget>
        <widget class="QLabel" name="prompt_pop">
@@ -243,7 +243,7 @@
          </font>
         </property>
         <property name="text">
-         <string>place</string>
+         <string/>
         </property>
        </widget>
        <widget class="QLabel" name="season_temp">
@@ -263,7 +263,7 @@
          </font>
         </property>
         <property name="text">
-         <string>place</string>
+         <string/>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
@@ -338,7 +338,7 @@
          <enum>Qt::Horizontal</enum>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="show_details">
         <property name="geometry">
          <rect>
           <x>50</x>
@@ -453,6 +453,16 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionStuff">
+   <property name="text">
+    <string>Stuff</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

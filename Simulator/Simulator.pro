@@ -30,7 +30,8 @@ SOURCES += \
     weather.cpp \
     environment.cpp \
     creature.cpp \
-    trait.cpp
+    trait.cpp \
+    detailwindow.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -41,10 +42,12 @@ HEADERS += \
     trait.h \
     carnivore.h \
     omnivore.h \
-    herbivore.h
+    herbivore.h \
+    detailwindow.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    detailwindow.ui
 
 DISTFILES += \
     traits.csv
