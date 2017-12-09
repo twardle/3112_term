@@ -17,22 +17,10 @@ using std::string;
 
 bool const PRINT_DEBUG = false;
 
-/*
- * Creature Factors
- * |-Food
- * | |-Carnivore/Herbivore/Omnivore ( type of creature )
- * | |-Prey ( What this creature eats, lower prey pop means less food )
- * | |-Necessary Water Intake ( less means health decreases, more is irrelevant )
- * |-Internal Characteristics
- * | |-Age ( 0-x infant, x-y middle-aged, y-z elder )
- * | |-Health ( 0-100% lower means less likely to survive, disease lowers this faster and constantly )
- * | |-Species ( species of this creature, only able to breed with same species or relative species )
- * | |-Relative Species ( species with similar but mutated traits, encourages mutations and stores distance to original)
- * | |-Herding Tendencies ( bonus for herbivore, penalty for carnivore )
- * | |-Breeding Chance ( encourages predators, discourages herbivores )
+/**
+ * Default Constructor. Sets default values for Creature class.
+ * @param none
  */
-
-
 Creature::Creature(){
     counted = false;
     index = -1;
@@ -55,47 +43,123 @@ Creature::Creature(){
     predator_resist = base_predator_resist;
 }
 
+/**
+ * Destructor for Creature.
+ * @param none
+ */
 Creature::~Creature(){
     //TODO: create destructor
 }
 
+/**
+ * Getter. Gets each Trait for a Creature.
+ * @param index
+ * @return traits[index]
+ */
 Trait Creature::getTrait(int index){
     return traits[index];
 }
+
+/**
+ * Setter. Sets Trait at index value for a Creature.
+ * @param index
+ * @param newTrait
+ * @return none
+ */
 void Creature::setTrait(int index, Trait newTrait){
     traits[index] = newTrait;
 }
+
+/**
+ * Method. Removes Trait for a Creature.
+ * @param index
+ * @return none
+ */
 void Creature::removeTrait(int index){
     Trait temporary;
 
     traits[index] = temporary;
 }
+
+/**
+ * Getter. Gets bool value representing whether or not
+ * a creature is diseased.
+ * @param none
+ * @return diseased
+ */
 bool Creature::getDiseased(){
     return diseased;
 }
+
+/**
+ * Setter. Sets diseased value to a true/false input value.
+ * @param dis
+ * @return none
+ */
 void Creature::setDiseased(bool dis){
     diseased = dis;
 }
 
+/**
+ * Getter. Returns Creature's age.
+ * @param none
+ * @return age
+ */
 float Creature::getAge(){
     return age;
 }
+
+/**
+ * Setter. Sets Creature's age.
+ * @param nAge
+ * @return none
+ */
 void Creature::setAge(float nAge){
     age = nAge;
 }
+
+/**
+ * Getter. Gets Creature's health.
+ * @param none
+ * @return health
+ */
 float Creature::getHealth(){
     assert(health == health);
     return health;
 }
+
+/**
+ * Setter. Sets Creature's health.
+ * @param nHealth
+ * @return none
+ */
 void Creature::setHealth(float nHealth){
     health = nHealth;
 }
+
+/**
+ * Getter. Gets Creature's Species.
+ * @param none
+ * @return species
+ */
 string Creature::getSpecies(){
     return species;
 }
+
+/**
+ * Method. Updates Creature's health.
+ * @param update
+ * @return none
+ */
 void Creature::updateHealth(float update){
     health += update;
 }
+
+/**
+ * Method. Determines name for a species.
+ * @param none
+ * @return none
+ */
 void Creature::setSpecies(){
     if(traits[0].getTraitName().at(0) == 'G')
         species = "H";
@@ -108,69 +172,179 @@ void Creature::setSpecies(){
         species += (traits[i].getTraitName()).at(0);
 }
 
+/**
+ * Getter. Returns water need for a Creature.
+ * @param none
+ * @return waterNeed
+ */
 float Creature::getWaterNeed(){
     calcWaterNeed();
     return waterNeed;
 }
+
+/**
+ * Getter. Returns breed chance of a Creature.
+ * @param Env
+ * @return breedChance
+ */
 float Creature::getBreedChance(Environment Env){
     calcBreedChance(Env);
     return breedChance;
 }
+
+/**
+ * Getter. Returns herd tendency of a Creature.
+ * @param none
+ * @return herdTendency
+ */
 float Creature::getHerdTendency(){
     calcHerdTendency();
     return herdTendency;
 }
+
+/**
+ * Getter. Returns temperature resistance of a Creature.
+ * @param none
+ * @return temp_resist
+ */
 float Creature::getTempResist(){
     calcTempResist();
     return temp_resist;
 }
+
+/**
+ * Getter. Returns disease resistance of a Creature.
+ * @param none
+ * @return disease_resist
+ */
 float Creature::getDiseaseResist(){
     calcDiseaseResist();
     return disease_resist;
 }
+
+/**
+ * Getter. Returns predator resistance of a Creature.
+ * @param none
+ * @return predator_resist
+ */
 float Creature::getPredatorResist(){
     calcPredatorResist();
     return predator_resist;
 }
 
+/**
+ * Getter. Returns base water need for a Creature.
+ * @param none
+ * @return base_waterNeed
+ */
 float Creature::getBaseWaterNeed(){
     return base_waterNeed;
 }
+
+/**
+ * Getter. Returns base breed chance for a Creature.
+ * @param none
+ * @return base_breedChance
+ */
 float Creature::getBaseBreedChance(){
     return base_breedChance;
 }
+
+/**
+ * Getter. Returns base herd tendency for a Creature.
+ * @param none
+ * @return base_herdTendency
+ */
 float Creature::getBaseHerdTendency(){
     return base_herdTendency;
 }
+
+/**
+ * Getter. Returns base temperature resistance for a Creature.
+ * @param none
+ * @return base_temp_resist
+ */
 float Creature::getBaseTempResist(){
     return base_temp_resist;
 }
+
+/**
+ * Getter. Returns base disease resistance for a Creature.
+ * @param none
+ * @return base_disease_resist
+ */
 float Creature::getBaseDiseaseResist(){
     return base_disease_resist;
 }
+
+/**
+ * Getter. Returns base predator resistance for a Creature.
+ * @param none
+ * @return base_predator_resist
+ */
 float Creature::getBasePredatorResist(){
     return base_predator_resist;
 }
 
+/**
+ * Setter. Sets water need for a Creature.
+ * @param wn
+ * @return none
+ */
 void Creature::setWaterNeed(float wn){
     base_waterNeed = wn;
 }
+
+/**
+ * Setter. Sets a Creature's breed chance.
+ * @param bc
+ * @return none
+ */
 void Creature::setBreedChance(float bc){
     base_breedChance = bc;
 }
+
+/**
+ * Setter. Sets a Creature's herd tendency.
+ * @param ht
+ * @return none
+ */
 void Creature::setHerdTendency(float ht){
     base_herdTendency = ht;
 }
+
+/**
+ * Setter. Sets a Creature's temperature resistance.
+ * @param tr
+ * @return none
+ */
 void Creature::setTempResist(float tr){
     base_temp_resist = tr;
 }
+
+/**
+ * Setter. Setss a Creature's disease resistance.
+ * @param dr
+ * @return none
+ */
 void Creature::setDieaseResist(float dr){
     base_disease_resist = dr;
 }
+
+/**
+ * Setter. Sets a Creature's predator resistance.
+ * @param pr
+ * @return none
+ */
 void Creature::setPredatorResist(float pr){
     base_predator_resist = pr;
 }
 
+/**
+ * Method. Calculates the water need for a Creature.
+ * @param none
+ * @return none
+ */
 void Creature::calcWaterNeed(){
     waterNeed = base_waterNeed;
     float temp = 1.00;
@@ -179,6 +353,12 @@ void Creature::calcWaterNeed(){
     }
     waterNeed *= temp;
 }
+
+/**
+ * Method. Calculates the breed chance for a Creature.
+ * @param Env
+ * @return none
+ */
 void Creature::calcBreedChance(Environment Env){
     float temperature = Env.get_temp();
     breedChance = base_breedChance;
@@ -199,6 +379,12 @@ void Creature::calcBreedChance(Environment Env){
     breedChance *= temp;
 
 }
+
+/**
+ * Method. Calculates the herd tendency for a Creature.
+ * @param none
+ * @return none
+ */
 void Creature::calcHerdTendency(){
     herdTendency = base_herdTendency;
     float temp = 1.00;
@@ -207,6 +393,12 @@ void Creature::calcHerdTendency(){
     }
     herdTendency *= temp;
 }
+
+/**
+ * Method. Calculates the temperature resistance of a Creature.
+ * @param none
+ * @return none
+ */
 void Creature::calcTempResist(){
     temp_resist = base_temp_resist;
     float temp = 1.00;
@@ -215,6 +407,12 @@ void Creature::calcTempResist(){
     }
     temp_resist *= temp;
 }
+
+/**
+ * Method. Calculates the disease resistance for a Creature.
+ * @param none
+ * @return none
+ */
 void Creature::calcDiseaseResist(){
     disease_resist = base_disease_resist;
     float temp = 1.00;
@@ -223,6 +421,12 @@ void Creature::calcDiseaseResist(){
     }
     disease_resist *= temp;
 }
+
+/**
+ * Method. Calculates the predator resistance for a Creature.
+ * @param none
+ * @return none
+ */
 void Creature::calcPredatorResist(){
     predator_resist = base_predator_resist;
     float temp = 1.00;
@@ -231,6 +435,12 @@ void Creature::calcPredatorResist(){
     }
     predator_resist *= temp;
 }
+
+/**
+ * Method. Calculates the statistics for a Creature.
+ * @param Env
+ * @return none
+ */
 void Creature::calcStats(Environment Env){
     calcWaterNeed();
     calcBreedChance(Env);
@@ -239,6 +449,12 @@ void Creature::calcStats(Environment Env){
     calcDiseaseResist();
     calcPredatorResist();
 }
+
+/**
+ * Method. Updates a Creature's health
+ * @param Env
+ * @return boolean
+ */
 bool Creature::updateHealth(Environment& Env){
     Weather currSeason = Env.get_season();
 
@@ -290,6 +506,12 @@ bool Creature::updateHealth(Environment& Env){
     return true;
 }
 
+/**
+ * Method. Allows a Creature to breed.
+ * @param other
+ * @param breed
+ * @return baby
+ */
 Creature Creature::breed(Creature other, int breed){
     Creature baby;
 
@@ -369,6 +591,11 @@ Creature Creature::breed(Creature other, int breed){
 
 }
 
+/**
+ * Method. ToString for Creature class.
+ * @param none
+ * @return cString
+ */
 string Creature::toString(){
     std::stringstream ss;
     string cString;
@@ -391,6 +618,3 @@ string Creature::toString(){
     cString = ss.str();
     return cString;
 }
-
-
-

@@ -18,8 +18,6 @@ using std::string;
 #define CREATURE_H_
 const int NUMTRAITS = 5;
 
-
-
 class Creature {
 protected:
     float waterNeed, breedChance, herdTendency;

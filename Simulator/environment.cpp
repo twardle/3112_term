@@ -1,4 +1,4 @@
-/**
+/*
  * Environment Class
  * Candace Allison
  *
@@ -26,6 +26,10 @@ using std::string;
 using std::map;
 using std::stringstream;
 
+/**
+ * Default Constructor. Sets default values for Environment.
+ * @param none
+ */
 Environment::Environment()
 {
 
@@ -48,6 +52,10 @@ Environment::Environment()
     cur_season = -1;
 }
 
+/**
+ * Normal Constructor. Sets values for Environment based on input b.
+ * @param b
+ */
 Environment::Environment(int b)
 {
 
@@ -76,64 +84,140 @@ Environment::Environment(int b)
     set_values();
 }
 
+/**
+ * Getter. Returns name for a biome
+ * @param none
+ * @return biome.name
+ */
 string Environment::get_biome()
 {
     return biome.name;
 }
 
+/**
+ * Getter. Returns water supply for an Environment.
+ * @param none
+ * @return water_supply
+ */
 float Environment::get_water_supply()
 {
     return water_supply;
 }
 
+/**
+ * Setter. Sets water supply for an Environment.
+ * @param w
+ * @return none
+ */
 void Environment::set_water_supply(float w)
 {
     water_supply = w;
 }
 
+/**
+ * Getter. Returns water refill speed for Environment.
+ * @param none
+ * @return water_refill_speed
+ */
 float Environment::get_water_refill_speed() {
     return water_refill_speed;
 }
 
+/**
+ * Setter. Sets water refill speed for an Environment.
+ * @param w
+ * @return none
+ */
 void Environment::set_water_refill_speed(float w) {
     water_refill_speed = w;
 }
 
+/**
+ * Getter. Returns current population of the Environment.
+ * @param none
+ * @return current_pop
+ */
 int Environment::get_current_pop() {
     return current_pop;
 }
 
+/**
+ * Setter. Sets the current population for the Environment.
+ * @param c
+ * @return none
+ */
 void Environment::set_current_pop(int c) {
     current_pop = c;
 }
 
+/**
+ * Getter. Returns the danger for the Environment.
+ * @param none
+ * @return danger
+ */
 float Environment::get_danger() {
     return danger;
 }
 
+/**
+ * Setter. Sets danger for the Environment.
+ * @param d
+ * @return none
+ */
 void Environment::set_danger(float d) {
     danger = d;
 }
 
+/**
+ * Getter. Returns maximum population for an Environment.
+ * @param none
+ * @return max_pop
+ */
 int Environment::get_max_pop() {
     return max_pop;
 }
 
+/**
+ * Setter. Sets maximum population for an Environment.
+ * @param m
+ * @return none
+ */
 void Environment::set_max_pop(int m) {
     max_pop = m;
 }
 
+/**
+ * Getter. Returns the current season for the Environment.
+ * @param none
+ * @return season
+ */
 Weather Environment::get_season() {
     return season;
 }
 
+/**
+ * Getter. Returns current temperature of the Environment.
+ * @param none
+ * @return season.getTemp()
+ */
 float Environment::get_temp() {
     return season.getTemp();
 }
+
+/**
+ * Setter. Sets maximum water supply for the Environment.
+ * @param max
+ * @return none
+ */
 void Environment::set_max_water_supply(float max){
     max_water_supply = max;
 }
 
+/**
+ * Method. Sets temperature values for the ENvironment.
+ * @param none
+ * @return none
+ */
 void Environment::set_values() {
     if(current_environ == 0) //Desert
     {
@@ -236,6 +320,11 @@ void Environment::set_values() {
     season.setSeason(cur_season);
 }
 
+/**
+ * Method. Changes the current season of the Environment.
+ * @param none
+ * @return none
+ */
 void Environment::changeseason() {
     season.change_season();
     num_iterations++;
@@ -245,6 +334,11 @@ void Environment::changeseason() {
         set_water_supply(max_water_supply);
 }
 
+/**
+ * Method. Reads traits from csv file.
+ * @param none
+ * @return none
+ */
 void Environment::readTraits() {
     std::ifstream file;
     //file.open("/Users/candicane/Documents/Programs/QT/Simulator/traits.csv");
@@ -348,6 +442,11 @@ void Environment::readTraits() {
     }
 }
 
+/**
+ * Method. ToString method for Environment
+ * @param pop
+ * @return toString
+ */
 string Environment::toString(int pop){
     std::stringstream ss;
     string toString;

@@ -52,6 +52,11 @@ cCoords * oList = NULL;
 cCount * plotCount = NULL;
 Environment Env;
 
+/**
+ * Default Constructor. Sets up UI and DetailWindow for MainWindow.
+ * @param parent
+ * @return none
+ */
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -60,11 +65,21 @@ MainWindow::MainWindow(QWidget *parent) :
     new_window = new detailwindow(this);
 }
 
+/**
+ * Destructor for MainWindow.
+ * @param none
+ * @return none
+ */
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
+/**
+ * Method. Action that occurs when btn_start is clicked.
+ * @param none
+ * @return none
+ */
 void MainWindow::on_btn_start_clicked()
 {
     //Variables
@@ -95,33 +110,11 @@ void MainWindow::on_btn_start_clicked()
     runSimulation(iter,translateSeed(seed.toStdString()));
 }
 
-void MainWindow::createChart()
-{   
-    QLineSeries *series0 = new QLineSeries();
-    QLineSeries *series1 = new QLineSeries();
-
-    *series0 << QPointF(1, 5) << QPointF(3, 7) << QPointF(7, 6) << QPointF(9, 7) << QPointF(12, 6)
-                    << QPointF(16, 7) << QPointF(18, 5);
-    *series1 << QPointF(1, 3) << QPointF(3, 4) << QPointF(7, 3) << QPointF(8, 2) << QPointF(12, 3)
-                    << QPointF(16, 4) << QPointF(18, 3);
-
-    //QAreaSeries *series = new QAreaSeries(series0, series1);
-    //series->setName("Batman");
-    //series->setPen(pen);
-
-    QChart *chart = new QChart();
-    chart->addSeries(series0);
-    chart->addSeries(series1);
-    chart->setTitle("Population Over Time");
-    chart->createDefaultAxes();
-    chart->axisX()->setRange(0, 20);
-    chart->axisY()->setRange(0, 10);
-
-    QChartView *chartView = new QChartView(chart);
-    chartView->setRenderHint(QPainter::Antialiasing);
-    ui->gridLayout_plots->addWidget(chartView);
-}
-
+/**
+ * Method. Clears the layout of the window.
+ * @param none
+ * @return none
+ */
 void MainWindow::clearLayout()
 {
     for(int i = 0; i < ui->gridLayout_plots->count(); i++)
@@ -130,6 +123,12 @@ void MainWindow::clearLayout()
     }
 }
 
+/**
+ * Method. Runs the simulation for the program.
+ * @param numIterations
+ * @param seed
+ * @return none
+ */
 void MainWindow::runSimulation(int numIterations,int seed){
     NUMSEASONS = numIterations;
     srand( seed );
@@ -148,7 +147,7 @@ void MainWindow::runSimulation(int numIterations,int seed){
     oList = new cCoords[sMax];
     plotCount = new cCount[sMax];
 
-    //Variable
+    //Variables
     int number = NUMSPECIES; //Number represents default numspecies
     int maxCount = NUMCREATURES;
 
@@ -311,6 +310,12 @@ void MainWindow::runSimulation(int numIterations,int seed){
     delete [] plotCount;
 }
 
+/**
+ * Method. Gets the total counts for a species.
+ * @param cCount[]
+ * @param Creature[]
+ * @return none
+ */
 void MainWindow::countSpecies(cCount[], Creature[])
 {
     for(int i = 0; i < pUsed; i++)
@@ -346,6 +351,11 @@ void MainWindow::countSpecies(cCount[], Creature[])
         }
 }
 
+/**
+ * Method. Translates seed into an integer value.
+ * @param userSeed
+ * @return seed
+ */
 int MainWindow::translateSeed(string userSeed)
 {
     int seed = 0;
@@ -357,6 +367,15 @@ int MainWindow::translateSeed(string userSeed)
     return seed;
 }
 
+/**
+ * Method. Iterates the season for the simulation.
+ * @param Env
+ * @param sList
+ * @param cList
+ * @param oList
+ * @param hList
+ * @return none
+ */
 void MainWindow::iterateSeason(Environment & Env, Creature sList[], cCoords cList[], cCoords oList[], cCoords hList[]){
 
     for(int i = 0; i < cUsed; i++){
@@ -463,6 +482,15 @@ void MainWindow::iterateSeason(Environment & Env, Creature sList[], cCoords cLis
         }
 }
 
+/**
+ * Method. Instantiates creatures for a simulation.
+ * @param Env
+ * @param sList
+ * @param cList
+ * @param hList
+ * @param oList
+ * @return none
+ */
 void MainWindow::creatureInstantiation(Environment Env, Creature sList[], cCoords cList[], cCoords hList[], cCoords oList[]){
     for(int i = 0; i < NUMSPECIES; i++)
     {
@@ -543,6 +571,14 @@ void MainWindow::creatureInstantiation(Environment Env, Creature sList[], cCoord
     }
 }
 
+/**
+ * Method. Clears the numbers of dead creatures.
+ * @param sList
+ * @param cList
+ * @param oList
+ * @param hList
+ * @return none
+ */
 void MainWindow::clearDead(Creature * sList,cCoords * cList,cCoords * oList,cCoords * hList){
     int currUsed = 0;
     int numDead = 0;
@@ -565,9 +601,12 @@ void MainWindow::clearDead(Creature * sList,cCoords * cList,cCoords * oList,cCoo
     sUsed = currUsed;
 }
 
+/**
+ * Method. Action that occurs when show_details button is clicked.
+ * @param none
+ * @return none
+ */
 void MainWindow::on_show_details_clicked()
 {
-
     new_window->show();
-
 }

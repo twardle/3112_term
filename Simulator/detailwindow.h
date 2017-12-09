@@ -1,3 +1,7 @@
+/*
+ * GUI
+ */
+
 #ifndef DETAILWINDOW_H
 #define DETAILWINDOW_H
 

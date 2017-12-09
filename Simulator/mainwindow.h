@@ -1,3 +1,7 @@
+/*
+ * GUI
+ */
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -94,7 +98,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     detailwindow *new_window;
-    void createChart();
     void clearLayout();
 };
 
