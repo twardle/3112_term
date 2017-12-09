@@ -1,0 +1,244 @@
+\hypertarget{class_main_window}{}\section{Main\+Window Class Reference}
+\label{class_main_window}\index{Main\+Window@{Main\+Window}}
+Inheritance diagram for Main\+Window\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_main_window}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_main_window_1_1c_coords}{c\+Coords}
+\item 
+struct \hyperlink{struct_main_window_1_1c_count}{c\+Count}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_main_window_a8b244be8b7b7db1b08de2a2acb9409db}{Main\+Window} (Q\+Widget $\ast$parent=0)
+\item 
+\hyperlink{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7}{$\sim$\+Main\+Window} ()
+\item 
+void \hyperlink{class_main_window_ae6900ae41d5504ba5fd5bebd94c091a8}{count\+Species} (\hyperlink{struct_main_window_1_1c_count}{c\+Count}\mbox{[}$\,$\mbox{]}, \hyperlink{class_creature}{Creature}\mbox{[}$\,$\mbox{]})
+\item 
+void \hyperlink{class_main_window_a6d41dd2f999fb6fef9b4de0b93e5e93e}{iterate\+Season} (\hyperlink{class_environment}{Environment} \&, \hyperlink{class_creature}{Creature}\mbox{[}$\,$\mbox{]}, \hyperlink{struct_main_window_1_1c_coords}{c\+Coords}\mbox{[}$\,$\mbox{]}, \hyperlink{struct_main_window_1_1c_coords}{c\+Coords}\mbox{[}$\,$\mbox{]}, \hyperlink{struct_main_window_1_1c_coords}{c\+Coords}\mbox{[}$\,$\mbox{]})
+\item 
+void \hyperlink{class_main_window_a212560b975aacf3247ee109797f99941}{creature\+Instantiation} (\hyperlink{class_environment}{Environment}, \hyperlink{class_creature}{Creature}\mbox{[}$\,$\mbox{]}, \hyperlink{struct_main_window_1_1c_coords}{c\+Coords}\mbox{[}$\,$\mbox{]}, \hyperlink{struct_main_window_1_1c_coords}{c\+Coords}\mbox{[}$\,$\mbox{]}, \hyperlink{struct_main_window_1_1c_coords}{c\+Coords}\mbox{[}$\,$\mbox{]})
+\item 
+void \hyperlink{class_main_window_a9be9fbd759eb5d1efe76f94d3e16fdc3}{clear\+Dead} (\hyperlink{class_creature}{Creature}\mbox{[}$\,$\mbox{]}, \hyperlink{struct_main_window_1_1c_coords}{c\+Coords}\mbox{[}$\,$\mbox{]}, \hyperlink{struct_main_window_1_1c_coords}{c\+Coords}\mbox{[}$\,$\mbox{]}, \hyperlink{struct_main_window_1_1c_coords}{c\+Coords}\mbox{[}$\,$\mbox{]})
+\item 
+int \hyperlink{class_main_window_a293a993c9290abb989bedd05501e838d}{translate\+Seed} (string)
+\item 
+void \hyperlink{class_main_window_abfdebc0fe2713bd3157ea166ab6bb0d5}{run\+Simulation} (int, int)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_main_window_a5a579461e6d3da3db4a95a0c6b42c92b}\label{class_main_window_a5a579461e6d3da3db4a95a0c6b42c92b}} 
+bool const {\bfseries P\+R\+I\+N\+T\+\_\+\+C\+R\+E\+A\+T\+U\+R\+ES} = false
+\item 
+\mbox{\Hypertarget{class_main_window_a286ae12bebf668903a333f39d7223e16}\label{class_main_window_a286ae12bebf668903a333f39d7223e16}} 
+bool const {\bfseries P\+R\+I\+N\+T\+\_\+\+D\+E\+B\+U\+G\+\_\+\+H\+U\+NT} = false
+\item 
+\mbox{\Hypertarget{class_main_window_a0a1ad208278e6125d212f806085ec54e}\label{class_main_window_a0a1ad208278e6125d212f806085ec54e}} 
+bool const {\bfseries P\+R\+I\+N\+T\+\_\+\+B\+I\+O\+M\+E\+\_\+\+S\+E\+A\+S\+ON} = true
+\item 
+\mbox{\Hypertarget{class_main_window_ac044a32e3f8d411066ef2369c47c8244}\label{class_main_window_ac044a32e3f8d411066ef2369c47c8244}} 
+bool const {\bfseries D\+E\+B\+U\+G\+\_\+\+P\+L\+OT} = true
+\item 
+\mbox{\Hypertarget{class_main_window_ab77df82dcce9de9588e733190a6af1f6}\label{class_main_window_ab77df82dcce9de9588e733190a6af1f6}} 
+int const {\bfseries N\+U\+M\+S\+P\+E\+C\+I\+ES} = 10
+\item 
+\mbox{\Hypertarget{class_main_window_a21dee883e6cfca8e664e361c46a10c6b}\label{class_main_window_a21dee883e6cfca8e664e361c46a10c6b}} 
+int const {\bfseries N\+U\+M\+C\+R\+E\+A\+T\+U\+R\+ES} = 100
+\item 
+\mbox{\Hypertarget{class_main_window_a91feb998b7e872bdd0eff4800ab30194}\label{class_main_window_a91feb998b7e872bdd0eff4800ab30194}} 
+int {\bfseries N\+U\+M\+S\+E\+A\+S\+O\+NS} = 20
+\item 
+\mbox{\Hypertarget{class_main_window_ad8ce29de680719ac16dce2f4c8d07ab9}\label{class_main_window_ad8ce29de680719ac16dce2f4c8d07ab9}} 
+int const {\bfseries s\+Max} = N\+U\+M\+S\+P\+E\+C\+I\+ES $\ast$ N\+U\+M\+C\+R\+E\+A\+T\+U\+R\+ES $\ast$ 1000
+\item 
+\mbox{\Hypertarget{class_main_window_ae77061edba8dec4019f3fa23a79a591e}\label{class_main_window_ae77061edba8dec4019f3fa23a79a591e}} 
+int {\bfseries s\+Used}
+\item 
+\mbox{\Hypertarget{class_main_window_ae42dace68680fa2b497199b30a2b198c}\label{class_main_window_ae42dace68680fa2b497199b30a2b198c}} 
+int {\bfseries c\+Used}
+\item 
+\mbox{\Hypertarget{class_main_window_a14056e5221af6e151c12460b6e5e6487}\label{class_main_window_a14056e5221af6e151c12460b6e5e6487}} 
+int {\bfseries h\+Used}
+\item 
+\mbox{\Hypertarget{class_main_window_ae799f62cf4797132d297ec57ba90f7ba}\label{class_main_window_ae799f62cf4797132d297ec57ba90f7ba}} 
+int {\bfseries o\+Used}
+\item 
+\mbox{\Hypertarget{class_main_window_a622e8f757c6c533e46e9cd6c053a0e47}\label{class_main_window_a622e8f757c6c533e46e9cd6c053a0e47}} 
+int {\bfseries p\+Used}
+\item 
+\mbox{\Hypertarget{class_main_window_afb57e3195ba1109e92fd4211eb35d740}\label{class_main_window_afb57e3195ba1109e92fd4211eb35d740}} 
+\hyperlink{class_creature}{Creature} $\ast$ {\bfseries s\+List} = N\+U\+LL
+\item 
+\mbox{\Hypertarget{class_main_window_a0da4e7dbcead644c0ea0a4f643885baf}\label{class_main_window_a0da4e7dbcead644c0ea0a4f643885baf}} 
+\hyperlink{struct_main_window_1_1c_coords}{c\+Coords} $\ast$ {\bfseries c\+List} = N\+U\+LL
+\item 
+\mbox{\Hypertarget{class_main_window_a88ca702f5b1bd1be6343e710f818acc9}\label{class_main_window_a88ca702f5b1bd1be6343e710f818acc9}} 
+\hyperlink{struct_main_window_1_1c_coords}{c\+Coords} $\ast$ {\bfseries h\+List} = N\+U\+LL
+\item 
+\mbox{\Hypertarget{class_main_window_a01a05cc067bb0125eb1ad8e4e883837c}\label{class_main_window_a01a05cc067bb0125eb1ad8e4e883837c}} 
+\hyperlink{struct_main_window_1_1c_coords}{c\+Coords} $\ast$ {\bfseries o\+List} = N\+U\+LL
+\item 
+\mbox{\Hypertarget{class_main_window_a0578b620cc92817cab4480433542e83a}\label{class_main_window_a0578b620cc92817cab4480433542e83a}} 
+\hyperlink{struct_main_window_1_1c_count}{c\+Count} $\ast$ {\bfseries plot\+Count} = N\+U\+LL
+\item 
+\mbox{\Hypertarget{class_main_window_a542517069b2f09f81ca545866509f063}\label{class_main_window_a542517069b2f09f81ca545866509f063}} 
+\hyperlink{class_environment}{Environment} {\bfseries Env}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_main_window_a8b244be8b7b7db1b08de2a2acb9409db}\label{class_main_window_a8b244be8b7b7db1b08de2a2acb9409db}} 
+\index{Main\+Window@{Main\+Window}!Main\+Window@{Main\+Window}}
+\index{Main\+Window@{Main\+Window}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{Main\+Window()}{MainWindow()}}
+{\footnotesize\ttfamily Main\+Window\+::\+Main\+Window (\begin{DoxyParamCaption}\item[{Q\+Widget $\ast$}]{parent = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Default Constructor. Sets up UI and Detail\+Window for \hyperlink{class_main_window}{Main\+Window}. 
+\begin{DoxyParams}{Parameters}
+{\em parent} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7}\label{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7}} 
+\index{Main\+Window@{Main\+Window}!````~Main\+Window@{$\sim$\+Main\+Window}}
+\index{````~Main\+Window@{$\sim$\+Main\+Window}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{$\sim$\+Main\+Window()}{~MainWindow()}}
+{\footnotesize\ttfamily Main\+Window\+::$\sim$\+Main\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Destructor for \hyperlink{class_main_window}{Main\+Window}. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_main_window_a9be9fbd759eb5d1efe76f94d3e16fdc3}\label{class_main_window_a9be9fbd759eb5d1efe76f94d3e16fdc3}} 
+\index{Main\+Window@{Main\+Window}!clear\+Dead@{clear\+Dead}}
+\index{clear\+Dead@{clear\+Dead}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{clear\+Dead()}{clearDead()}}
+{\footnotesize\ttfamily void Main\+Window\+::clear\+Dead (\begin{DoxyParamCaption}\item[{\hyperlink{class_creature}{Creature}}]{\mbox{[}$\,$\mbox{]},  }\item[{\hyperlink{struct_main_window_1_1c_coords}{c\+Coords}}]{\mbox{[}$\,$\mbox{]},  }\item[{\hyperlink{struct_main_window_1_1c_coords}{c\+Coords}}]{\mbox{[}$\,$\mbox{]},  }\item[{\hyperlink{struct_main_window_1_1c_coords}{c\+Coords}}]{\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+Method. Clears the numbers of dead creatures. 
+\begin{DoxyParams}{Parameters}
+{\em s\+List} & \\
+\hline
+{\em c\+List} & \\
+\hline
+{\em o\+List} & \\
+\hline
+{\em h\+List} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_main_window_ae6900ae41d5504ba5fd5bebd94c091a8}\label{class_main_window_ae6900ae41d5504ba5fd5bebd94c091a8}} 
+\index{Main\+Window@{Main\+Window}!count\+Species@{count\+Species}}
+\index{count\+Species@{count\+Species}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{count\+Species()}{countSpecies()}}
+{\footnotesize\ttfamily void Main\+Window\+::count\+Species (\begin{DoxyParamCaption}\item[{\hyperlink{struct_main_window_1_1c_count}{c\+Count}}]{\mbox{[}$\,$\mbox{]},  }\item[{\hyperlink{class_creature}{Creature}}]{\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+Method. Gets the total counts for a species. 
+\begin{DoxyParams}{Parameters}
+{\em c\+Count\mbox{[}$\,$\mbox{]}} & \\
+\hline
+{\em Creature\mbox{[}$\,$\mbox{]}} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_main_window_a212560b975aacf3247ee109797f99941}\label{class_main_window_a212560b975aacf3247ee109797f99941}} 
+\index{Main\+Window@{Main\+Window}!creature\+Instantiation@{creature\+Instantiation}}
+\index{creature\+Instantiation@{creature\+Instantiation}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{creature\+Instantiation()}{creatureInstantiation()}}
+{\footnotesize\ttfamily void Main\+Window\+::creature\+Instantiation (\begin{DoxyParamCaption}\item[{\hyperlink{class_environment}{Environment}}]{Env,  }\item[{\hyperlink{class_creature}{Creature}}]{s\+List\mbox{[}$\,$\mbox{]},  }\item[{\hyperlink{struct_main_window_1_1c_coords}{c\+Coords}}]{c\+List\mbox{[}$\,$\mbox{]},  }\item[{\hyperlink{struct_main_window_1_1c_coords}{c\+Coords}}]{h\+List\mbox{[}$\,$\mbox{]},  }\item[{\hyperlink{struct_main_window_1_1c_coords}{c\+Coords}}]{o\+List\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+Method. Instantiates creatures for a simulation. 
+\begin{DoxyParams}{Parameters}
+{\em Env} & \\
+\hline
+{\em s\+List} & \\
+\hline
+{\em c\+List} & \\
+\hline
+{\em h\+List} & \\
+\hline
+{\em o\+List} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_main_window_a6d41dd2f999fb6fef9b4de0b93e5e93e}\label{class_main_window_a6d41dd2f999fb6fef9b4de0b93e5e93e}} 
+\index{Main\+Window@{Main\+Window}!iterate\+Season@{iterate\+Season}}
+\index{iterate\+Season@{iterate\+Season}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{iterate\+Season()}{iterateSeason()}}
+{\footnotesize\ttfamily void Main\+Window\+::iterate\+Season (\begin{DoxyParamCaption}\item[{\hyperlink{class_environment}{Environment} \&}]{Env,  }\item[{\hyperlink{class_creature}{Creature}}]{s\+List\mbox{[}$\,$\mbox{]},  }\item[{\hyperlink{struct_main_window_1_1c_coords}{c\+Coords}}]{c\+List\mbox{[}$\,$\mbox{]},  }\item[{\hyperlink{struct_main_window_1_1c_coords}{c\+Coords}}]{o\+List\mbox{[}$\,$\mbox{]},  }\item[{\hyperlink{struct_main_window_1_1c_coords}{c\+Coords}}]{h\+List\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+Method. Iterates the season for the simulation. 
+\begin{DoxyParams}{Parameters}
+{\em Env} & \\
+\hline
+{\em s\+List} & \\
+\hline
+{\em c\+List} & \\
+\hline
+{\em o\+List} & \\
+\hline
+{\em h\+List} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_main_window_abfdebc0fe2713bd3157ea166ab6bb0d5}\label{class_main_window_abfdebc0fe2713bd3157ea166ab6bb0d5}} 
+\index{Main\+Window@{Main\+Window}!run\+Simulation@{run\+Simulation}}
+\index{run\+Simulation@{run\+Simulation}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{run\+Simulation()}{runSimulation()}}
+{\footnotesize\ttfamily void Main\+Window\+::run\+Simulation (\begin{DoxyParamCaption}\item[{int}]{num\+Iterations,  }\item[{int}]{seed }\end{DoxyParamCaption})}
+
+Method. Runs the simulation for the program. 
+\begin{DoxyParams}{Parameters}
+{\em num\+Iterations} & \\
+\hline
+{\em seed} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_main_window_a293a993c9290abb989bedd05501e838d}\label{class_main_window_a293a993c9290abb989bedd05501e838d}} 
+\index{Main\+Window@{Main\+Window}!translate\+Seed@{translate\+Seed}}
+\index{translate\+Seed@{translate\+Seed}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{translate\+Seed()}{translateSeed()}}
+{\footnotesize\ttfamily int Main\+Window\+::translate\+Seed (\begin{DoxyParamCaption}\item[{string}]{user\+Seed }\end{DoxyParamCaption})}
+
+Method. Translates seed into an integer value. 
+\begin{DoxyParams}{Parameters}
+{\em user\+Seed} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+seed 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+mainwindow.\+h\item 
+mainwindow.\+cpp\end{DoxyCompactItemize}

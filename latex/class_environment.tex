@@ -1,0 +1,324 @@
+\hypertarget{class_environment}{}\section{Environment Class Reference}
+\label{class_environment}\index{Environment@{Environment}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_environment_a8b427c4448d8b7536666837521b9e83d}{Environment} ()
+\item 
+\hyperlink{class_environment_a50c8eb3630e6640078ab0939ed54d7a8}{Environment} (int)
+\item 
+string \hyperlink{class_environment_a85caf2f76cffed1ff5f26d9f419faa34}{get\+\_\+biome} ()
+\item 
+float \hyperlink{class_environment_a34f8cb7070c04c78bff5a4e32e1c4529}{get\+\_\+water\+\_\+supply} ()
+\item 
+void \hyperlink{class_environment_a68b5b4471d4eed0e6ce5b27f3182a2c2}{set\+\_\+water\+\_\+supply} (float)
+\item 
+float \hyperlink{class_environment_a22323f11696c983cfb936fbc55442a5d}{get\+\_\+water\+\_\+refill\+\_\+speed} ()
+\item 
+void \hyperlink{class_environment_a77ef203c0aed27b0eed00d5b0d714993}{set\+\_\+water\+\_\+refill\+\_\+speed} (float)
+\item 
+int \hyperlink{class_environment_a5e4d853c509dc2e7d321254c0f553a6f}{get\+\_\+current\+\_\+pop} ()
+\item 
+void \hyperlink{class_environment_a5e18c76d6ee7629bab4b0d2800d0b0dd}{set\+\_\+current\+\_\+pop} (int)
+\item 
+float \hyperlink{class_environment_ade4e5787c137e4646d260198cfc4dee5}{get\+\_\+danger} ()
+\item 
+void \hyperlink{class_environment_aa573ecb533cea1336b6db7d983358db2}{set\+\_\+danger} (float)
+\item 
+int \hyperlink{class_environment_afedf443586624eaf57fa5f118295bc30}{get\+\_\+max\+\_\+pop} ()
+\item 
+void \hyperlink{class_environment_a12323e6c706898f120b3297582e09121}{set\+\_\+max\+\_\+pop} (int)
+\item 
+\hyperlink{class_weather}{Weather} \hyperlink{class_environment_a14b790bd9ce0b0a90373e852790d77bd}{get\+\_\+season} ()
+\item 
+float \hyperlink{class_environment_a7d2421a61589319e51acb4692aeacd3a}{get\+\_\+temp} ()
+\item 
+void \hyperlink{class_environment_a5b9b1df176ffa5a48c672fd6739b4d90}{set\+\_\+max\+\_\+water\+\_\+supply} (float)
+\item 
+\mbox{\Hypertarget{class_environment_abec2ecca87c4f9df69969ba322f2c704}\label{class_environment_abec2ecca87c4f9df69969ba322f2c704}} 
+void {\bfseries calculate\+\_\+danger} ()
+\item 
+void \hyperlink{class_environment_a2d4d7e655a5d1fad7e6a74bc9e52d028}{read\+Traits} ()
+\item 
+void \hyperlink{class_environment_ae12770ca6866e80c6b5c1ed6ce64088c}{changeseason} ()
+\item 
+string \hyperlink{class_environment_ad8f542ef50c512f13d66ae3cd75071d5}{to\+String} (int)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_environment_a5f29e1e1537c1005400519d811ca00b3}\label{class_environment_a5f29e1e1537c1005400519d811ca00b3}} 
+\hyperlink{class_trait}{Trait} {\bfseries trait\+List} \mbox{[}5\mbox{]}\mbox{[}6\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_environment_a8b427c4448d8b7536666837521b9e83d}\label{class_environment_a8b427c4448d8b7536666837521b9e83d}} 
+\index{Environment@{Environment}!Environment@{Environment}}
+\index{Environment@{Environment}!Environment@{Environment}}
+\subsubsection{\texorpdfstring{Environment()}{Environment()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Environment\+::\+Environment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Default Constructor. Sets default values for \hyperlink{class_environment}{Environment}. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_environment_a50c8eb3630e6640078ab0939ed54d7a8}\label{class_environment_a50c8eb3630e6640078ab0939ed54d7a8}} 
+\index{Environment@{Environment}!Environment@{Environment}}
+\index{Environment@{Environment}!Environment@{Environment}}
+\subsubsection{\texorpdfstring{Environment()}{Environment()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Environment\+::\+Environment (\begin{DoxyParamCaption}\item[{int}]{b }\end{DoxyParamCaption})}
+
+Normal Constructor. Sets values for \hyperlink{class_environment}{Environment} based on input b. 
+\begin{DoxyParams}{Parameters}
+{\em b} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_environment_ae12770ca6866e80c6b5c1ed6ce64088c}\label{class_environment_ae12770ca6866e80c6b5c1ed6ce64088c}} 
+\index{Environment@{Environment}!changeseason@{changeseason}}
+\index{changeseason@{changeseason}!Environment@{Environment}}
+\subsubsection{\texorpdfstring{changeseason()}{changeseason()}}
+{\footnotesize\ttfamily void Environment\+::changeseason (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Method. Changes the current season of the \hyperlink{class_environment}{Environment}. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_environment_a85caf2f76cffed1ff5f26d9f419faa34}\label{class_environment_a85caf2f76cffed1ff5f26d9f419faa34}} 
+\index{Environment@{Environment}!get\+\_\+biome@{get\+\_\+biome}}
+\index{get\+\_\+biome@{get\+\_\+biome}!Environment@{Environment}}
+\subsubsection{\texorpdfstring{get\+\_\+biome()}{get\_biome()}}
+{\footnotesize\ttfamily string Environment\+::get\+\_\+biome (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Getter. Returns name for a biome 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+biome.\+name 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_environment_a5e4d853c509dc2e7d321254c0f553a6f}\label{class_environment_a5e4d853c509dc2e7d321254c0f553a6f}} 
+\index{Environment@{Environment}!get\+\_\+current\+\_\+pop@{get\+\_\+current\+\_\+pop}}
+\index{get\+\_\+current\+\_\+pop@{get\+\_\+current\+\_\+pop}!Environment@{Environment}}
+\subsubsection{\texorpdfstring{get\+\_\+current\+\_\+pop()}{get\_current\_pop()}}
+{\footnotesize\ttfamily int Environment\+::get\+\_\+current\+\_\+pop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Getter. Returns current population of the \hyperlink{class_environment}{Environment}. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+current\+\_\+pop 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_environment_ade4e5787c137e4646d260198cfc4dee5}\label{class_environment_ade4e5787c137e4646d260198cfc4dee5}} 
+\index{Environment@{Environment}!get\+\_\+danger@{get\+\_\+danger}}
+\index{get\+\_\+danger@{get\+\_\+danger}!Environment@{Environment}}
+\subsubsection{\texorpdfstring{get\+\_\+danger()}{get\_danger()}}
+{\footnotesize\ttfamily float Environment\+::get\+\_\+danger (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Getter. Returns the danger for the \hyperlink{class_environment}{Environment}. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+danger 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_environment_afedf443586624eaf57fa5f118295bc30}\label{class_environment_afedf443586624eaf57fa5f118295bc30}} 
+\index{Environment@{Environment}!get\+\_\+max\+\_\+pop@{get\+\_\+max\+\_\+pop}}
+\index{get\+\_\+max\+\_\+pop@{get\+\_\+max\+\_\+pop}!Environment@{Environment}}
+\subsubsection{\texorpdfstring{get\+\_\+max\+\_\+pop()}{get\_max\_pop()}}
+{\footnotesize\ttfamily int Environment\+::get\+\_\+max\+\_\+pop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Getter. Returns maximum population for an \hyperlink{class_environment}{Environment}. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+max\+\_\+pop 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_environment_a14b790bd9ce0b0a90373e852790d77bd}\label{class_environment_a14b790bd9ce0b0a90373e852790d77bd}} 
+\index{Environment@{Environment}!get\+\_\+season@{get\+\_\+season}}
+\index{get\+\_\+season@{get\+\_\+season}!Environment@{Environment}}
+\subsubsection{\texorpdfstring{get\+\_\+season()}{get\_season()}}
+{\footnotesize\ttfamily \hyperlink{class_weather}{Weather} Environment\+::get\+\_\+season (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Getter. Returns the current season for the \hyperlink{class_environment}{Environment}. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+season 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_environment_a7d2421a61589319e51acb4692aeacd3a}\label{class_environment_a7d2421a61589319e51acb4692aeacd3a}} 
+\index{Environment@{Environment}!get\+\_\+temp@{get\+\_\+temp}}
+\index{get\+\_\+temp@{get\+\_\+temp}!Environment@{Environment}}
+\subsubsection{\texorpdfstring{get\+\_\+temp()}{get\_temp()}}
+{\footnotesize\ttfamily float Environment\+::get\+\_\+temp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Getter. Returns current temperature of the \hyperlink{class_environment}{Environment}. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+season.\+get\+Temp() 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_environment_a22323f11696c983cfb936fbc55442a5d}\label{class_environment_a22323f11696c983cfb936fbc55442a5d}} 
+\index{Environment@{Environment}!get\+\_\+water\+\_\+refill\+\_\+speed@{get\+\_\+water\+\_\+refill\+\_\+speed}}
+\index{get\+\_\+water\+\_\+refill\+\_\+speed@{get\+\_\+water\+\_\+refill\+\_\+speed}!Environment@{Environment}}
+\subsubsection{\texorpdfstring{get\+\_\+water\+\_\+refill\+\_\+speed()}{get\_water\_refill\_speed()}}
+{\footnotesize\ttfamily float Environment\+::get\+\_\+water\+\_\+refill\+\_\+speed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Getter. Returns water refill speed for \hyperlink{class_environment}{Environment}. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+water\+\_\+refill\+\_\+speed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_environment_a34f8cb7070c04c78bff5a4e32e1c4529}\label{class_environment_a34f8cb7070c04c78bff5a4e32e1c4529}} 
+\index{Environment@{Environment}!get\+\_\+water\+\_\+supply@{get\+\_\+water\+\_\+supply}}
+\index{get\+\_\+water\+\_\+supply@{get\+\_\+water\+\_\+supply}!Environment@{Environment}}
+\subsubsection{\texorpdfstring{get\+\_\+water\+\_\+supply()}{get\_water\_supply()}}
+{\footnotesize\ttfamily float Environment\+::get\+\_\+water\+\_\+supply (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Getter. Returns water supply for an \hyperlink{class_environment}{Environment}. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+water\+\_\+supply 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_environment_a2d4d7e655a5d1fad7e6a74bc9e52d028}\label{class_environment_a2d4d7e655a5d1fad7e6a74bc9e52d028}} 
+\index{Environment@{Environment}!read\+Traits@{read\+Traits}}
+\index{read\+Traits@{read\+Traits}!Environment@{Environment}}
+\subsubsection{\texorpdfstring{read\+Traits()}{readTraits()}}
+{\footnotesize\ttfamily void Environment\+::read\+Traits (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Method. Reads traits from csv file. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_environment_a5e18c76d6ee7629bab4b0d2800d0b0dd}\label{class_environment_a5e18c76d6ee7629bab4b0d2800d0b0dd}} 
+\index{Environment@{Environment}!set\+\_\+current\+\_\+pop@{set\+\_\+current\+\_\+pop}}
+\index{set\+\_\+current\+\_\+pop@{set\+\_\+current\+\_\+pop}!Environment@{Environment}}
+\subsubsection{\texorpdfstring{set\+\_\+current\+\_\+pop()}{set\_current\_pop()}}
+{\footnotesize\ttfamily void Environment\+::set\+\_\+current\+\_\+pop (\begin{DoxyParamCaption}\item[{int}]{c }\end{DoxyParamCaption})}
+
+Setter. Sets the current population for the \hyperlink{class_environment}{Environment}. 
+\begin{DoxyParams}{Parameters}
+{\em c} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_environment_aa573ecb533cea1336b6db7d983358db2}\label{class_environment_aa573ecb533cea1336b6db7d983358db2}} 
+\index{Environment@{Environment}!set\+\_\+danger@{set\+\_\+danger}}
+\index{set\+\_\+danger@{set\+\_\+danger}!Environment@{Environment}}
+\subsubsection{\texorpdfstring{set\+\_\+danger()}{set\_danger()}}
+{\footnotesize\ttfamily void Environment\+::set\+\_\+danger (\begin{DoxyParamCaption}\item[{float}]{d }\end{DoxyParamCaption})}
+
+Setter. Sets danger for the \hyperlink{class_environment}{Environment}. 
+\begin{DoxyParams}{Parameters}
+{\em d} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_environment_a12323e6c706898f120b3297582e09121}\label{class_environment_a12323e6c706898f120b3297582e09121}} 
+\index{Environment@{Environment}!set\+\_\+max\+\_\+pop@{set\+\_\+max\+\_\+pop}}
+\index{set\+\_\+max\+\_\+pop@{set\+\_\+max\+\_\+pop}!Environment@{Environment}}
+\subsubsection{\texorpdfstring{set\+\_\+max\+\_\+pop()}{set\_max\_pop()}}
+{\footnotesize\ttfamily void Environment\+::set\+\_\+max\+\_\+pop (\begin{DoxyParamCaption}\item[{int}]{m }\end{DoxyParamCaption})}
+
+Setter. Sets maximum population for an \hyperlink{class_environment}{Environment}. 
+\begin{DoxyParams}{Parameters}
+{\em m} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_environment_a5b9b1df176ffa5a48c672fd6739b4d90}\label{class_environment_a5b9b1df176ffa5a48c672fd6739b4d90}} 
+\index{Environment@{Environment}!set\+\_\+max\+\_\+water\+\_\+supply@{set\+\_\+max\+\_\+water\+\_\+supply}}
+\index{set\+\_\+max\+\_\+water\+\_\+supply@{set\+\_\+max\+\_\+water\+\_\+supply}!Environment@{Environment}}
+\subsubsection{\texorpdfstring{set\+\_\+max\+\_\+water\+\_\+supply()}{set\_max\_water\_supply()}}
+{\footnotesize\ttfamily void Environment\+::set\+\_\+max\+\_\+water\+\_\+supply (\begin{DoxyParamCaption}\item[{float}]{max }\end{DoxyParamCaption})}
+
+Setter. Sets maximum water supply for the \hyperlink{class_environment}{Environment}. 
+\begin{DoxyParams}{Parameters}
+{\em max} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_environment_a77ef203c0aed27b0eed00d5b0d714993}\label{class_environment_a77ef203c0aed27b0eed00d5b0d714993}} 
+\index{Environment@{Environment}!set\+\_\+water\+\_\+refill\+\_\+speed@{set\+\_\+water\+\_\+refill\+\_\+speed}}
+\index{set\+\_\+water\+\_\+refill\+\_\+speed@{set\+\_\+water\+\_\+refill\+\_\+speed}!Environment@{Environment}}
+\subsubsection{\texorpdfstring{set\+\_\+water\+\_\+refill\+\_\+speed()}{set\_water\_refill\_speed()}}
+{\footnotesize\ttfamily void Environment\+::set\+\_\+water\+\_\+refill\+\_\+speed (\begin{DoxyParamCaption}\item[{float}]{w }\end{DoxyParamCaption})}
+
+Setter. Sets water refill speed for an \hyperlink{class_environment}{Environment}. 
+\begin{DoxyParams}{Parameters}
+{\em w} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_environment_a68b5b4471d4eed0e6ce5b27f3182a2c2}\label{class_environment_a68b5b4471d4eed0e6ce5b27f3182a2c2}} 
+\index{Environment@{Environment}!set\+\_\+water\+\_\+supply@{set\+\_\+water\+\_\+supply}}
+\index{set\+\_\+water\+\_\+supply@{set\+\_\+water\+\_\+supply}!Environment@{Environment}}
+\subsubsection{\texorpdfstring{set\+\_\+water\+\_\+supply()}{set\_water\_supply()}}
+{\footnotesize\ttfamily void Environment\+::set\+\_\+water\+\_\+supply (\begin{DoxyParamCaption}\item[{float}]{w }\end{DoxyParamCaption})}
+
+Setter. Sets water supply for an \hyperlink{class_environment}{Environment}. 
+\begin{DoxyParams}{Parameters}
+{\em w} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_environment_ad8f542ef50c512f13d66ae3cd75071d5}\label{class_environment_ad8f542ef50c512f13d66ae3cd75071d5}} 
+\index{Environment@{Environment}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!Environment@{Environment}}
+\subsubsection{\texorpdfstring{to\+String()}{toString()}}
+{\footnotesize\ttfamily string Environment\+::to\+String (\begin{DoxyParamCaption}\item[{int}]{pop }\end{DoxyParamCaption})}
+
+Method. To\+String method for \hyperlink{class_environment}{Environment} 
+\begin{DoxyParams}{Parameters}
+{\em pop} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+to\+String 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+environment.\+h\item 
+environment.\+cpp\end{DoxyCompactItemize}

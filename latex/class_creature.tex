@@ -1,0 +1,528 @@
+\hypertarget{class_creature}{}\section{Creature Class Reference}
+\label{class_creature}\index{Creature@{Creature}}
+Inheritance diagram for Creature\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_creature}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_creature_a597cc3b08ee17de46c3e7ec3cf0d9b58}{Creature} ()
+\item 
+virtual \hyperlink{class_creature_aa991b23f4813fbdb6f875204ed49814d}{$\sim$\+Creature} ()
+\item 
+\hyperlink{class_trait}{Trait} \hyperlink{class_creature_a5cbb05e4ed97cefab203ce1d0a639663}{get\+Trait} (int)
+\item 
+void \hyperlink{class_creature_a5e9314c792471d371c9255567c7f57f6}{set\+Trait} (int, \hyperlink{class_trait}{Trait})
+\item 
+void \hyperlink{class_creature_a68390ce1e3db845b569edbb56d2a2e45}{remove\+Trait} (int)
+\item 
+float \hyperlink{class_creature_aaa5ecf02e6ec776831d68ee031c3a71a}{get\+Age} ()
+\item 
+void \hyperlink{class_creature_a53a6ce1c089f66f5d72d383918ac6c56}{set\+Age} (float)
+\item 
+float \hyperlink{class_creature_afbda0cd7841915f1fb1f0b00002e4d9a}{get\+Health} ()
+\item 
+void \hyperlink{class_creature_a470452d2a72844d841475e2fa1411b87}{set\+Health} (float)
+\item 
+string \hyperlink{class_creature_a29c472b8d8c500ed750028d35008b874}{get\+Species} ()
+\item 
+void \hyperlink{class_creature_abe278d213726a2385c03348e0b70baaf}{update\+Health} (float)
+\item 
+void \hyperlink{class_creature_ad55d859cd054fb78c7ec368a8f93fdab}{set\+Species} ()
+\item 
+bool \hyperlink{class_creature_a9758254f86daca23432c2aa52388b371}{get\+Diseased} ()
+\item 
+void \hyperlink{class_creature_a87418faed3520d70b5e79454c51d9d6b}{set\+Diseased} (bool)
+\item 
+float \hyperlink{class_creature_afc61264e8b9d6e683aa73e225d9165ec}{get\+Water\+Need} ()
+\item 
+float \hyperlink{class_creature_afaa5a16d665af1b106ea974314ed000b}{get\+Breed\+Chance} (\hyperlink{class_environment}{Environment} Env)
+\item 
+float \hyperlink{class_creature_a1683c23a3644294d16529feb3d10e2c3}{get\+Herd\+Tendency} ()
+\item 
+float \hyperlink{class_creature_af2d9ed47b9f8c4baebf8be7f1a6c7c16}{get\+Temp\+Resist} ()
+\item 
+float \hyperlink{class_creature_a26cacf88614142bfab05c2602088f1ba}{get\+Disease\+Resist} ()
+\item 
+float \hyperlink{class_creature_af18fa6015052120359c99cd56620c91e}{get\+Predator\+Resist} ()
+\item 
+void \hyperlink{class_creature_a61b42a4c3fe592a559ccfcef5089d676}{set\+Water\+Need} (float)
+\item 
+void \hyperlink{class_creature_aa0c973f2abb3cfad7c828b62baf80a33}{set\+Breed\+Chance} (float)
+\item 
+void \hyperlink{class_creature_ac54280109cd668ca679189c83cf9318c}{set\+Herd\+Tendency} (float)
+\item 
+void \hyperlink{class_creature_a7e34bf01307d2818cf51f184237a62b8}{set\+Temp\+Resist} (float)
+\item 
+void \hyperlink{class_creature_a76623b331f8a5051c8ab6aa122ed3091}{set\+Diease\+Resist} (float)
+\item 
+void \hyperlink{class_creature_a1e8c730feef5947ead25549f7b43c36c}{set\+Predator\+Resist} (float)
+\item 
+bool \hyperlink{class_creature_a3316556d75305448ffb28a26d7eaa0ad}{update\+Health} (\hyperlink{class_environment}{Environment} \&)
+\item 
+void \hyperlink{class_creature_a87624b71be563323455cb5241aba25b4}{calc\+Stats} (\hyperlink{class_environment}{Environment})
+\item 
+\hyperlink{class_creature}{Creature} \hyperlink{class_creature_aa3495553c53d7743c158d961827ec81f}{breed} (\hyperlink{class_creature}{Creature}, int)
+\item 
+string \hyperlink{class_creature_a22ba2327e33a9e8554284f485ad9cf0f}{to\+String} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_creature_adab2dc50d1556d82299c3dd3db9597f8}\label{class_creature_adab2dc50d1556d82299c3dd3db9597f8}} 
+int {\bfseries index}
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_creature_a4240e372407b7df5614b0766f95524a8}\label{class_creature_a4240e372407b7df5614b0766f95524a8}} 
+float {\bfseries water\+Need}
+\item 
+\mbox{\Hypertarget{class_creature_a66cb1f9c65d6b63976b00e03c9174868}\label{class_creature_a66cb1f9c65d6b63976b00e03c9174868}} 
+float {\bfseries breed\+Chance}
+\item 
+\mbox{\Hypertarget{class_creature_aeac241536d909e12cbae19d1577a8cbe}\label{class_creature_aeac241536d909e12cbae19d1577a8cbe}} 
+float {\bfseries herd\+Tendency}
+\item 
+\mbox{\Hypertarget{class_creature_a53c8032f68153df41f7b22796eb72bd0}\label{class_creature_a53c8032f68153df41f7b22796eb72bd0}} 
+float {\bfseries temp\+\_\+resist}
+\item 
+\mbox{\Hypertarget{class_creature_a797fc79828501798cd216f56471583fc}\label{class_creature_a797fc79828501798cd216f56471583fc}} 
+float {\bfseries disease\+\_\+resist}
+\item 
+\mbox{\Hypertarget{class_creature_a85bd79783c5a8f9b0de2c7be338d0eca}\label{class_creature_a85bd79783c5a8f9b0de2c7be338d0eca}} 
+float {\bfseries predator\+\_\+resist}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_creature_a597cc3b08ee17de46c3e7ec3cf0d9b58}\label{class_creature_a597cc3b08ee17de46c3e7ec3cf0d9b58}} 
+\index{Creature@{Creature}!Creature@{Creature}}
+\index{Creature@{Creature}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{Creature()}{Creature()}}
+{\footnotesize\ttfamily Creature\+::\+Creature (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Default Constructor. Sets default values for \hyperlink{class_creature}{Creature} class. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_creature_aa991b23f4813fbdb6f875204ed49814d}\label{class_creature_aa991b23f4813fbdb6f875204ed49814d}} 
+\index{Creature@{Creature}!````~Creature@{$\sim$\+Creature}}
+\index{````~Creature@{$\sim$\+Creature}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{$\sim$\+Creature()}{~Creature()}}
+{\footnotesize\ttfamily Creature\+::$\sim$\+Creature (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Destructor for \hyperlink{class_creature}{Creature}. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_creature_aa3495553c53d7743c158d961827ec81f}\label{class_creature_aa3495553c53d7743c158d961827ec81f}} 
+\index{Creature@{Creature}!breed@{breed}}
+\index{breed@{breed}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{breed()}{breed()}}
+{\footnotesize\ttfamily \hyperlink{class_creature}{Creature} Creature\+::breed (\begin{DoxyParamCaption}\item[{\hyperlink{class_creature}{Creature}}]{other,  }\item[{int}]{breed }\end{DoxyParamCaption})}
+
+Method. Allows a \hyperlink{class_creature}{Creature} to breed. 
+\begin{DoxyParams}{Parameters}
+{\em other} & \\
+\hline
+{\em breed} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+baby 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_a87624b71be563323455cb5241aba25b4}\label{class_creature_a87624b71be563323455cb5241aba25b4}} 
+\index{Creature@{Creature}!calc\+Stats@{calc\+Stats}}
+\index{calc\+Stats@{calc\+Stats}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{calc\+Stats()}{calcStats()}}
+{\footnotesize\ttfamily void Creature\+::calc\+Stats (\begin{DoxyParamCaption}\item[{\hyperlink{class_environment}{Environment}}]{Env }\end{DoxyParamCaption})}
+
+Method. Calculates the statistics for a \hyperlink{class_creature}{Creature}. 
+\begin{DoxyParams}{Parameters}
+{\em Env} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_aaa5ecf02e6ec776831d68ee031c3a71a}\label{class_creature_aaa5ecf02e6ec776831d68ee031c3a71a}} 
+\index{Creature@{Creature}!get\+Age@{get\+Age}}
+\index{get\+Age@{get\+Age}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{get\+Age()}{getAge()}}
+{\footnotesize\ttfamily float Creature\+::get\+Age (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Getter. Returns \hyperlink{class_creature}{Creature}\textquotesingle{}s age. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+age 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_afaa5a16d665af1b106ea974314ed000b}\label{class_creature_afaa5a16d665af1b106ea974314ed000b}} 
+\index{Creature@{Creature}!get\+Breed\+Chance@{get\+Breed\+Chance}}
+\index{get\+Breed\+Chance@{get\+Breed\+Chance}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{get\+Breed\+Chance()}{getBreedChance()}}
+{\footnotesize\ttfamily float Creature\+::get\+Breed\+Chance (\begin{DoxyParamCaption}\item[{\hyperlink{class_environment}{Environment}}]{Env }\end{DoxyParamCaption})}
+
+Getter. Returns breed chance of a \hyperlink{class_creature}{Creature}. 
+\begin{DoxyParams}{Parameters}
+{\em Env} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+breed\+Chance 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_a9758254f86daca23432c2aa52388b371}\label{class_creature_a9758254f86daca23432c2aa52388b371}} 
+\index{Creature@{Creature}!get\+Diseased@{get\+Diseased}}
+\index{get\+Diseased@{get\+Diseased}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{get\+Diseased()}{getDiseased()}}
+{\footnotesize\ttfamily bool Creature\+::get\+Diseased (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Getter. Gets bool value representing whether or not a creature is diseased. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+diseased 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_a26cacf88614142bfab05c2602088f1ba}\label{class_creature_a26cacf88614142bfab05c2602088f1ba}} 
+\index{Creature@{Creature}!get\+Disease\+Resist@{get\+Disease\+Resist}}
+\index{get\+Disease\+Resist@{get\+Disease\+Resist}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{get\+Disease\+Resist()}{getDiseaseResist()}}
+{\footnotesize\ttfamily float Creature\+::get\+Disease\+Resist (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Getter. Returns disease resistance of a \hyperlink{class_creature}{Creature}. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+disease\+\_\+resist 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_afbda0cd7841915f1fb1f0b00002e4d9a}\label{class_creature_afbda0cd7841915f1fb1f0b00002e4d9a}} 
+\index{Creature@{Creature}!get\+Health@{get\+Health}}
+\index{get\+Health@{get\+Health}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{get\+Health()}{getHealth()}}
+{\footnotesize\ttfamily float Creature\+::get\+Health (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Getter. Gets \hyperlink{class_creature}{Creature}\textquotesingle{}s health. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+health 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_a1683c23a3644294d16529feb3d10e2c3}\label{class_creature_a1683c23a3644294d16529feb3d10e2c3}} 
+\index{Creature@{Creature}!get\+Herd\+Tendency@{get\+Herd\+Tendency}}
+\index{get\+Herd\+Tendency@{get\+Herd\+Tendency}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{get\+Herd\+Tendency()}{getHerdTendency()}}
+{\footnotesize\ttfamily float Creature\+::get\+Herd\+Tendency (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Getter. Returns herd tendency of a \hyperlink{class_creature}{Creature}. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+herd\+Tendency 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_af18fa6015052120359c99cd56620c91e}\label{class_creature_af18fa6015052120359c99cd56620c91e}} 
+\index{Creature@{Creature}!get\+Predator\+Resist@{get\+Predator\+Resist}}
+\index{get\+Predator\+Resist@{get\+Predator\+Resist}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{get\+Predator\+Resist()}{getPredatorResist()}}
+{\footnotesize\ttfamily float Creature\+::get\+Predator\+Resist (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Getter. Returns predator resistance of a \hyperlink{class_creature}{Creature}. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+predator\+\_\+resist 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_a29c472b8d8c500ed750028d35008b874}\label{class_creature_a29c472b8d8c500ed750028d35008b874}} 
+\index{Creature@{Creature}!get\+Species@{get\+Species}}
+\index{get\+Species@{get\+Species}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{get\+Species()}{getSpecies()}}
+{\footnotesize\ttfamily string Creature\+::get\+Species (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Getter. Gets \hyperlink{class_creature}{Creature}\textquotesingle{}s Species. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+species 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_af2d9ed47b9f8c4baebf8be7f1a6c7c16}\label{class_creature_af2d9ed47b9f8c4baebf8be7f1a6c7c16}} 
+\index{Creature@{Creature}!get\+Temp\+Resist@{get\+Temp\+Resist}}
+\index{get\+Temp\+Resist@{get\+Temp\+Resist}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{get\+Temp\+Resist()}{getTempResist()}}
+{\footnotesize\ttfamily float Creature\+::get\+Temp\+Resist (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Getter. Returns temperature resistance of a \hyperlink{class_creature}{Creature}. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+temp\+\_\+resist 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_a5cbb05e4ed97cefab203ce1d0a639663}\label{class_creature_a5cbb05e4ed97cefab203ce1d0a639663}} 
+\index{Creature@{Creature}!get\+Trait@{get\+Trait}}
+\index{get\+Trait@{get\+Trait}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{get\+Trait()}{getTrait()}}
+{\footnotesize\ttfamily \hyperlink{class_trait}{Trait} Creature\+::get\+Trait (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+Getter. Gets each \hyperlink{class_trait}{Trait} for a \hyperlink{class_creature}{Creature}. 
+\begin{DoxyParams}{Parameters}
+{\em index} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+traits\mbox{[}index\mbox{]} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_afc61264e8b9d6e683aa73e225d9165ec}\label{class_creature_afc61264e8b9d6e683aa73e225d9165ec}} 
+\index{Creature@{Creature}!get\+Water\+Need@{get\+Water\+Need}}
+\index{get\+Water\+Need@{get\+Water\+Need}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{get\+Water\+Need()}{getWaterNeed()}}
+{\footnotesize\ttfamily float Creature\+::get\+Water\+Need (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Getter. Returns water need for a \hyperlink{class_creature}{Creature}. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+water\+Need 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_a68390ce1e3db845b569edbb56d2a2e45}\label{class_creature_a68390ce1e3db845b569edbb56d2a2e45}} 
+\index{Creature@{Creature}!remove\+Trait@{remove\+Trait}}
+\index{remove\+Trait@{remove\+Trait}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{remove\+Trait()}{removeTrait()}}
+{\footnotesize\ttfamily void Creature\+::remove\+Trait (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+Method. Removes \hyperlink{class_trait}{Trait} for a \hyperlink{class_creature}{Creature}. 
+\begin{DoxyParams}{Parameters}
+{\em index} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_a53a6ce1c089f66f5d72d383918ac6c56}\label{class_creature_a53a6ce1c089f66f5d72d383918ac6c56}} 
+\index{Creature@{Creature}!set\+Age@{set\+Age}}
+\index{set\+Age@{set\+Age}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{set\+Age()}{setAge()}}
+{\footnotesize\ttfamily void Creature\+::set\+Age (\begin{DoxyParamCaption}\item[{float}]{n\+Age }\end{DoxyParamCaption})}
+
+Setter. Sets \hyperlink{class_creature}{Creature}\textquotesingle{}s age. 
+\begin{DoxyParams}{Parameters}
+{\em n\+Age} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_aa0c973f2abb3cfad7c828b62baf80a33}\label{class_creature_aa0c973f2abb3cfad7c828b62baf80a33}} 
+\index{Creature@{Creature}!set\+Breed\+Chance@{set\+Breed\+Chance}}
+\index{set\+Breed\+Chance@{set\+Breed\+Chance}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{set\+Breed\+Chance()}{setBreedChance()}}
+{\footnotesize\ttfamily void Creature\+::set\+Breed\+Chance (\begin{DoxyParamCaption}\item[{float}]{bc }\end{DoxyParamCaption})}
+
+Setter. Sets a \hyperlink{class_creature}{Creature}\textquotesingle{}s breed chance. 
+\begin{DoxyParams}{Parameters}
+{\em bc} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_a76623b331f8a5051c8ab6aa122ed3091}\label{class_creature_a76623b331f8a5051c8ab6aa122ed3091}} 
+\index{Creature@{Creature}!set\+Diease\+Resist@{set\+Diease\+Resist}}
+\index{set\+Diease\+Resist@{set\+Diease\+Resist}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{set\+Diease\+Resist()}{setDieaseResist()}}
+{\footnotesize\ttfamily void Creature\+::set\+Diease\+Resist (\begin{DoxyParamCaption}\item[{float}]{dr }\end{DoxyParamCaption})}
+
+Setter. Setss a \hyperlink{class_creature}{Creature}\textquotesingle{}s disease resistance. 
+\begin{DoxyParams}{Parameters}
+{\em dr} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_a87418faed3520d70b5e79454c51d9d6b}\label{class_creature_a87418faed3520d70b5e79454c51d9d6b}} 
+\index{Creature@{Creature}!set\+Diseased@{set\+Diseased}}
+\index{set\+Diseased@{set\+Diseased}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{set\+Diseased()}{setDiseased()}}
+{\footnotesize\ttfamily void Creature\+::set\+Diseased (\begin{DoxyParamCaption}\item[{bool}]{dis }\end{DoxyParamCaption})}
+
+Setter. Sets diseased value to a true/false input value. 
+\begin{DoxyParams}{Parameters}
+{\em dis} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_a470452d2a72844d841475e2fa1411b87}\label{class_creature_a470452d2a72844d841475e2fa1411b87}} 
+\index{Creature@{Creature}!set\+Health@{set\+Health}}
+\index{set\+Health@{set\+Health}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{set\+Health()}{setHealth()}}
+{\footnotesize\ttfamily void Creature\+::set\+Health (\begin{DoxyParamCaption}\item[{float}]{n\+Health }\end{DoxyParamCaption})}
+
+Setter. Sets \hyperlink{class_creature}{Creature}\textquotesingle{}s health. 
+\begin{DoxyParams}{Parameters}
+{\em n\+Health} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_ac54280109cd668ca679189c83cf9318c}\label{class_creature_ac54280109cd668ca679189c83cf9318c}} 
+\index{Creature@{Creature}!set\+Herd\+Tendency@{set\+Herd\+Tendency}}
+\index{set\+Herd\+Tendency@{set\+Herd\+Tendency}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{set\+Herd\+Tendency()}{setHerdTendency()}}
+{\footnotesize\ttfamily void Creature\+::set\+Herd\+Tendency (\begin{DoxyParamCaption}\item[{float}]{ht }\end{DoxyParamCaption})}
+
+Setter. Sets a \hyperlink{class_creature}{Creature}\textquotesingle{}s herd tendency. 
+\begin{DoxyParams}{Parameters}
+{\em ht} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_a1e8c730feef5947ead25549f7b43c36c}\label{class_creature_a1e8c730feef5947ead25549f7b43c36c}} 
+\index{Creature@{Creature}!set\+Predator\+Resist@{set\+Predator\+Resist}}
+\index{set\+Predator\+Resist@{set\+Predator\+Resist}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{set\+Predator\+Resist()}{setPredatorResist()}}
+{\footnotesize\ttfamily void Creature\+::set\+Predator\+Resist (\begin{DoxyParamCaption}\item[{float}]{pr }\end{DoxyParamCaption})}
+
+Setter. Sets a \hyperlink{class_creature}{Creature}\textquotesingle{}s predator resistance. 
+\begin{DoxyParams}{Parameters}
+{\em pr} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_ad55d859cd054fb78c7ec368a8f93fdab}\label{class_creature_ad55d859cd054fb78c7ec368a8f93fdab}} 
+\index{Creature@{Creature}!set\+Species@{set\+Species}}
+\index{set\+Species@{set\+Species}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{set\+Species()}{setSpecies()}}
+{\footnotesize\ttfamily void Creature\+::set\+Species (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Method. Determines name for a species. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_a7e34bf01307d2818cf51f184237a62b8}\label{class_creature_a7e34bf01307d2818cf51f184237a62b8}} 
+\index{Creature@{Creature}!set\+Temp\+Resist@{set\+Temp\+Resist}}
+\index{set\+Temp\+Resist@{set\+Temp\+Resist}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{set\+Temp\+Resist()}{setTempResist()}}
+{\footnotesize\ttfamily void Creature\+::set\+Temp\+Resist (\begin{DoxyParamCaption}\item[{float}]{tr }\end{DoxyParamCaption})}
+
+Setter. Sets a \hyperlink{class_creature}{Creature}\textquotesingle{}s temperature resistance. 
+\begin{DoxyParams}{Parameters}
+{\em tr} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_a5e9314c792471d371c9255567c7f57f6}\label{class_creature_a5e9314c792471d371c9255567c7f57f6}} 
+\index{Creature@{Creature}!set\+Trait@{set\+Trait}}
+\index{set\+Trait@{set\+Trait}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{set\+Trait()}{setTrait()}}
+{\footnotesize\ttfamily void Creature\+::set\+Trait (\begin{DoxyParamCaption}\item[{int}]{index,  }\item[{\hyperlink{class_trait}{Trait}}]{new\+Trait }\end{DoxyParamCaption})}
+
+Setter. Sets \hyperlink{class_trait}{Trait} at index value for a \hyperlink{class_creature}{Creature}. 
+\begin{DoxyParams}{Parameters}
+{\em index} & \\
+\hline
+{\em new\+Trait} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_a61b42a4c3fe592a559ccfcef5089d676}\label{class_creature_a61b42a4c3fe592a559ccfcef5089d676}} 
+\index{Creature@{Creature}!set\+Water\+Need@{set\+Water\+Need}}
+\index{set\+Water\+Need@{set\+Water\+Need}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{set\+Water\+Need()}{setWaterNeed()}}
+{\footnotesize\ttfamily void Creature\+::set\+Water\+Need (\begin{DoxyParamCaption}\item[{float}]{wn }\end{DoxyParamCaption})}
+
+Setter. Sets water need for a \hyperlink{class_creature}{Creature}. 
+\begin{DoxyParams}{Parameters}
+{\em wn} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_a22ba2327e33a9e8554284f485ad9cf0f}\label{class_creature_a22ba2327e33a9e8554284f485ad9cf0f}} 
+\index{Creature@{Creature}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{to\+String()}{toString()}}
+{\footnotesize\ttfamily string Creature\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Method. To\+String for \hyperlink{class_creature}{Creature} class. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+c\+String 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_abe278d213726a2385c03348e0b70baaf}\label{class_creature_abe278d213726a2385c03348e0b70baaf}} 
+\index{Creature@{Creature}!update\+Health@{update\+Health}}
+\index{update\+Health@{update\+Health}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{update\+Health()}{updateHealth()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Creature\+::update\+Health (\begin{DoxyParamCaption}\item[{float}]{update }\end{DoxyParamCaption})}
+
+Method. Updates \hyperlink{class_creature}{Creature}\textquotesingle{}s health. 
+\begin{DoxyParams}{Parameters}
+{\em update} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_creature_a3316556d75305448ffb28a26d7eaa0ad}\label{class_creature_a3316556d75305448ffb28a26d7eaa0ad}} 
+\index{Creature@{Creature}!update\+Health@{update\+Health}}
+\index{update\+Health@{update\+Health}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{update\+Health()}{updateHealth()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Creature\+::update\+Health (\begin{DoxyParamCaption}\item[{\hyperlink{class_environment}{Environment} \&}]{Env }\end{DoxyParamCaption})}
+
+Method. Updates a \hyperlink{class_creature}{Creature}\textquotesingle{}s health 
+\begin{DoxyParams}{Parameters}
+{\em Env} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+creature.\+h\item 
+creature.\+cpp\end{DoxyCompactItemize}
