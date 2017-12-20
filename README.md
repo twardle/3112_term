@@ -4,22 +4,40 @@
 * Candace Allison
 * [Tyler Wardle](https://github.com/twardle)
 ---
-## Note: ##
+## About ##
+This project was created as a term project for ITCS 3112 - Objected Oriented Programming. 
 
-To compile class only C++ file: 
-`g++ -c <file>.cpp`
+This project creates a randomly generated environment and a number of Creatures that initially exist within it. The program performs a user-set number of iterations and as it iterates, creatures interact with the environment an each other - changing their population (gaining/losing members of the population), breeding, or mutating.
 
-To link 2 classes together
-* For testing purposes
-* Assume one class uses the other as a variable
-* Assume the class using the other contains a main method
-* To do this, be sure to compile each class separately 
+Once all iterations have completed, the program generates a chart representing how the species populations have changed over the course of the iterations. Specifics for this data is available to the user in the form of a table. 
 
-`g++ -o Class1 class1.o class2.o`
+---
+## Classes ##
+### Environment ###
+* Biome
+* Water Supply
+* Water Refill Speed
+* Instance of Weather class
 
-To iterate through the creature array:
+### Weather ###
+* Seasons
+* Seasonal Temperatures
+* Changing of Seasons
 
-	for(it = cList.begin(); it != cList.end(); it++){
-		Creature val = *it;
-		std::cout << val.getAge() << std::endl;
-	}
+### Creature ###
+* Age
+* Diseased or Not
+* Health
+* List of Traits
+* Subclasses:
+  * Carnivore
+  * Herbivore
+  * Omnivore
+ 
+### Trait ###
+* Water Need
+* Breed Chance
+* Herd Tendency
+* Temperature Resistance
+* Disease Resistance
+* Predator Resistance
