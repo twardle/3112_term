@@ -1,8 +1,8 @@
 # Term project for ITCS 3112 - Evolution Simulator #
 ---
 ## Contributors ##
-* Candace Allison
-* [Tyler Wardle](https://github.com/twardle)
+* [Candace Allison](https://github.com/crallison)
+* Tyler Wardle
 ---
 ## About ##
 This project was created as a term project for ITCS 3112 - Objected Oriented Programming. 
